@@ -1,3 +1,5 @@
+import AccessControl.Login;
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +15,7 @@ public class Main {
             System.out.println("\n");
             System.out.println("\t\tSelect an Option:\n");
             System.out.println("\t\t1. Register");
-            System.out.println("\t\t2. Login");
+            System.out.println("\t\t2. AccessControl.Login");
             System.out.println("\t\t3. Exit");
             System.out.println("\n");
 
