@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import AccessControl.Login;
 import AccessControl.Register;
-import EventManagement.EventManager;
-=======
 import Team.TeamManager;
->>>>>>> adib
-=======
-import Team.TeamManager;
->>>>>>> adib
 
 import java.util.Scanner;
 
@@ -20,15 +12,8 @@ public class Main {
         boolean exit = false;
 
         Login login = new Login();
-<<<<<<< HEAD
-<<<<<<< HEAD
         Register register = new Register();
-=======
         TeamManager teamManager = new TeamManager();
->>>>>>> adib
-=======
-        TeamManager teamManager = new TeamManager();
->>>>>>> adib
 
         while (!exit) {
             System.out.println("\n");
@@ -59,48 +44,6 @@ public class Main {
         }
 
         scanner.close();
-<<<<<<< HEAD
-
-
-
-//        EventManager manager = new EventManager();
-//        Scanner scanner1 = new Scanner(System.in);
-//
-//        while (true) {
-//            System.out.println("1. Add a new Event");
-//            System.out.println("2. Remove an existing Event");
-//            System.out.println("3. Display upcoming Events");
-//            System.out.println("4. Quit");
-//            System.out.print("\nChoose an option: ");
-//            int choice = scanner1.nextInt();
-//            scanner1.nextLine();
-//
-//            switch (choice) {
-//                case 1:
-//                    System.out.print("Enter event id: ");
-//                    int id = Integer.parseInt(scanner1.nextLine());
-//                    System.out.print("Enter event name: ");
-//                    String name = scanner1.nextLine();
-//                    System.out.print("Enter event date: ");
-//                    String date = scanner1.nextLine();
-//                    manager.addNewEvent(id, name, date);
-//                    break;
-//                case 2:
-//                    System.out.print("Enter event id: ");
-//                    int id2 = Integer.parseInt(scanner1.nextLine());
-//                    manager.removeEvent(id2);
-//                    break;
-//                case 3:
-//                    manager.displayEvents();
-//                    break;
-//                case 4:
-//                    System.out.println("Exiting...");
-//                    return;
-//                default:
-//                    System.out.println("Invalid choice. Please try again.");
-//            }
-//        }
-
     }
     private static void manageTeams(Scanner scanner, TeamManager teamManager) {
         boolean back = false;
@@ -111,18 +54,6 @@ public class Main {
             System.out.println("3. Display All Sectors");
             System.out.println("4. Back to Main Menu");
 
-=======
-    }
-    private static void manageTeams(Scanner scanner, TeamManager teamManager) {
-        boolean back = false;
-        while (!back) {
-            System.out.println("\nTeam Management:");
-            System.out.println("1. Add Member to Sector");
-            System.out.println("2. Create Custom Sector");
-            System.out.println("3. Display All Sectors");
-            System.out.println("4. Back to Main Menu");
-
->>>>>>> adib
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
