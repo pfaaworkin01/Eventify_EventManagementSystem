@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import AccessControl.Login;
 import AccessControl.Register;
 import EventManagement.EventManager;
+=======
+import Team.TeamManager;
+>>>>>>> adib
 =======
 import Team.TeamManager;
 >>>>>>> adib
@@ -17,7 +21,11 @@ public class Main {
 
         Login login = new Login();
 <<<<<<< HEAD
+<<<<<<< HEAD
         Register register = new Register();
+=======
+        TeamManager teamManager = new TeamManager();
+>>>>>>> adib
 =======
         TeamManager teamManager = new TeamManager();
 >>>>>>> adib
@@ -51,6 +59,7 @@ public class Main {
         }
 
         scanner.close();
+<<<<<<< HEAD
 
 
 
@@ -102,6 +111,18 @@ public class Main {
             System.out.println("3. Display All Sectors");
             System.out.println("4. Back to Main Menu");
 
+=======
+    }
+    private static void manageTeams(Scanner scanner, TeamManager teamManager) {
+        boolean back = false;
+        while (!back) {
+            System.out.println("\nTeam Management:");
+            System.out.println("1. Add Member to Sector");
+            System.out.println("2. Create Custom Sector");
+            System.out.println("3. Display All Sectors");
+            System.out.println("4. Back to Main Menu");
+
+>>>>>>> adib
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
