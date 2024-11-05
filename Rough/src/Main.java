@@ -18,7 +18,7 @@ public class Main {
         while (!exit) {
             System.out.println("\n");
             System.out.println("\t\tSelect an Option:\n");
-            System.out.println("\t\t1. Registration");
+            System.out.println("\t\t1. Register");
             System.out.println("\t\t2. Login");
             System.out.println("\t\t3. Manage Teams");
             System.out.println("\t\t4. Exit");
