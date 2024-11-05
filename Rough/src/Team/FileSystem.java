@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.List;
 
 public class FileSystem {
-    private static final String FILE_NAME = "teamData.ser";
+    private static final String FILE_NAME = "teamData.txt";
 
     // Method to save sectors data to file
     public static void saveData(List<Sector> sectors) {
