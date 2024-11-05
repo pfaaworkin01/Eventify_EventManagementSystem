@@ -1,8 +1,10 @@
 package Team;   // Package containing all the classes related to the team
 
+import java.io.Serializable;
 import java.util.List;
 
-abstract class Sector {
+abstract class Sector implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String sectorName;
     private List<String> teamMembers;
 
