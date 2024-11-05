@@ -19,6 +19,7 @@ public class Register {
 
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();
+        
         while (!password.matches("[a-zA-Z0-9]+")) {
             System.out.println("Invalid Password!!!");
             password = scanner.nextLine();
