@@ -1,6 +1,6 @@
 package Team;
 
-import java.io.Serializable;
+/*import java.io.Serializable;*/
 import java.util.ArrayList;
 
 public class CustomSector extends Sector implements Serializable {
