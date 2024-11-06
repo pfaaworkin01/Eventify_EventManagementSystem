@@ -1,5 +1,7 @@
 package Team;
 
+import Window.LoggedInWindow;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -60,6 +62,10 @@ public class TeamManager {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
+                //Change Later
+                            LoggedInWindow loggedInWindow = new LoggedInWindow();
+                //Change Later
+
         while (running) {
             System.out.println("\n=== Team Manager ===");
             System.out.println("1. Add Custom Sector");
@@ -84,7 +90,10 @@ public class TeamManager {
                     addMemberToSector(sectorName, memberName);
                 }
                 case 3 -> displayAllSectors();
-                case 4 -> running = false;
+                case 4 -> {
+                    loggedInWindow.takeInput();
+                    running = false;
+                }
                 default -> System.out.println("Invalid choice. Please try again.");
             }
         }

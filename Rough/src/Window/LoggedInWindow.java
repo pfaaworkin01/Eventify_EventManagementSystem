@@ -26,6 +26,7 @@ public class LoggedInWindow implements Window {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         EventWindow eventWindow = new EventWindow();
+        TeamWindow teamWindow = new TeamWindow();
 
         while (!quit) {
             showWindow();
@@ -37,6 +38,7 @@ public class LoggedInWindow implements Window {
                     eventWindow.takeInput();
                     break;
                 case 2:
+                    teamWindow.showWindow();
                     break;
                 case 3:
                     quit = true;
