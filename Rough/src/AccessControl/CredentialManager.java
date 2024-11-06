@@ -16,7 +16,7 @@ public class CredentialManager {
         } catch (IOException e) {
             System.out.println("Error Registering User!!!");
         }
-    };
+    }
 
     public void loadCredentials(String username, String password) {
         try(BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
@@ -40,6 +40,6 @@ public class CredentialManager {
         } catch (IOException e) {
             System.out.println("Error Logging In!!!");
         }
-    };
+    }
 
 }
