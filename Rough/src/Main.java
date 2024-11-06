@@ -35,15 +35,12 @@ public class Main {
                     break;
                 case 3:
                     quit = true;
-
+                    break;
                 default:
                     System.out.println("Invalid Option");
                     break;
             }
         }
-
-        scanner.close();
-
     }
 
 }
