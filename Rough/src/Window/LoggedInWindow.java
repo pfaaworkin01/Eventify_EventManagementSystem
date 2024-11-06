@@ -11,16 +11,17 @@ public class LoggedInWindow implements Window {
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
-        printCentered("EVENTIFY");
-        printCentered("Make Every Event Count");
+        Window.printCentered("EVENTIFY");
+        Window.printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
         System.out.println("\n");
-        printCentered("Logged In\n");
+        Window.printCentered("Logged In\n");
         System.out.println(" ".repeat(65) + "1. Manage Events");
         System.out.println(" ".repeat(65) + "2. Manage Teams");
         System.out.println(" ".repeat(65) + "3. Log Out\n");
     }
 
+    @Override
     public void takeInput() {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class LoggedInWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    eventWindow.showWindow();
+                    eventWindow.takeInput();
                     break;
                 case 2:
                     break;
@@ -45,14 +46,6 @@ public class LoggedInWindow implements Window {
                     break;
             }
         }
-
-//        scanner.close();
-    }
-
-    public static void printCentered(String text) {
-        int terminalWidth = 150;
-        int padding = (terminalWidth - text.length()) / 2;
-        System.out.println(" ".repeat(Math.max(0, padding)) + text);
     }
 
 }
