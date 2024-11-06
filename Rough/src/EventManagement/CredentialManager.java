@@ -1,13 +1,12 @@
-package AccessControl;
+package EventManagement;
 
 import GlobalData.GlobalData;
 
 import java.io.*;
-import java.io.IOException;
 
 public class CredentialManager {
 
-    private static final String LOGIN_CREDENTIALS = "Login_Credentials.txt";
+    private static final String LOGIN_CREDENTIALS = "Event_Data.txt";
 
     public void saveCredentials(String username, String password) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(LOGIN_CREDENTIALS, true))) {
@@ -16,7 +15,7 @@ public class CredentialManager {
         } catch (IOException e) {
             System.out.println("Error Registering User!!!");
         }
-    }
+    };
 
     public void loadCredentials(String username, String password) {
         try(BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
@@ -28,18 +27,19 @@ public class CredentialManager {
                 if(username.equals(parts[0]) && password.equals(parts[1])) {
                     found = true;
                     GlobalData.AUTHENTICATED = true;
-                    System.out.println(" ".repeat(65) + "Logged in Successfully!!!");
+                    System.out.println(GlobalData.AUTHENTICATED);
+                    System.out.println("Logged In Successfully!!!");
                     break;
                 }
             }
 
             if(!found) {
-                GlobalData.AUTHENTICATED = false;
-                System.out.println(" ".repeat(63) + "** Invalid Username or Password **");
+                System.out.println("Invalid Username or Password!!!");
             }
+
         } catch (IOException e) {
             System.out.println("Error Logging In!!!");
         }
-    }
+    };
 
 }
