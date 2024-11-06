@@ -19,8 +19,9 @@ public class Register {
 
         System.out.println("Enter Password: ");
         String password = scanner.nextLine();
-        while (!password.matches("[a-zA-Z0-9]+")) {
-            System.out.println("Invalid Password!!!");
+        
+        while (!password.matches(".*[a-z].*") || !password.matches(".*[A-Z].*") || !password.matches(".*[0-9].*")) {
+            System.out.println("Invalid Password. Password must contain at least one lowercase letter, one uppercase letter, and one digit.");
             password = scanner.nextLine();
         }
 
