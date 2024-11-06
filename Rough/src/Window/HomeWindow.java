@@ -1,5 +1,11 @@
 package Window;
 
+import AccessControl.Login;
+import AccessControl.Register;
+import GlobalData.GlobalData;
+
+import java.util.Scanner;
+
 public class HomeWindow implements Window {
 
     @Override
@@ -17,5 +23,35 @@ public class HomeWindow implements Window {
     }
 
     @Override
-    public void takeInput() {}
+    public void takeInput() {
+        LoggedInWindow loggedInWindow = new LoggedInWindow();
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+
+        while (!quit) {
+            showWindow();
+            System.out.println("Select an Option (1-3): ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    Register register = new Register();
+                    register.register();
+                    break;
+                case 2:
+                    Login login = new Login();
+                    login.login();
+                    if(GlobalData.AUTHENTICATED) {
+                        loggedInWindow.takeInput();
+                    }
+                    break;
+                case 3:
+                    quit = true;
+
+                default:
+                    System.out.println("Invalid Option");
+                    break;
+            }
+        }
+    }
 }
