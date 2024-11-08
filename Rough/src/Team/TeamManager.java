@@ -56,46 +56,4 @@ public class TeamManager {
         }
         return null;
     }
-
-    // manageTeams method to handle user interactions
-    public void manageTeams() {
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
-
-                //Change Later
-                            LoggedInWindow loggedInWindow = new LoggedInWindow();
-                //Change Later
-
-        while (running) {
-            System.out.println("\n=== Team Manager ===");
-            System.out.println("1. Add Custom Sector");
-            System.out.println("2. Add Member to Sector");
-            System.out.println("3. Display All Sectors and Members");
-            System.out.println("4. Exit");
-            System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
-
-            switch (choice) {
-                case 1 -> {
-                    System.out.print("Enter the name of the new sector: ");
-                    String sectorName = scanner.nextLine();
-                    addCustomSector(sectorName);
-                }
-                case 2 -> {
-                    System.out.print("Enter the sector name to add a member: ");
-                    String sectorName = scanner.nextLine();
-                    System.out.print("Enter the member's name: ");
-                    String memberName = scanner.nextLine();
-                    addMemberToSector(sectorName, memberName);
-                }
-                case 3 -> displayAllSectors();
-                case 4 -> {
-                    loggedInWindow.askForInput();
-                    running = false;
-                }
-                default -> System.out.println("Invalid choice. Please try again.");
-            }
-        }
-    }
 }

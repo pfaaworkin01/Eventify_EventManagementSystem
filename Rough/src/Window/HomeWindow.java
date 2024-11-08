@@ -32,6 +32,7 @@ public class HomeWindow implements Window {
             showWindow();
             System.out.println("Select an Option (1-3): ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -47,7 +48,6 @@ public class HomeWindow implements Window {
                     break;
                 case 3:
                     quit = true;
-
                 default:
                     System.out.println("Invalid Option");
                     break;

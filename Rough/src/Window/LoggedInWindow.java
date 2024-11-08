@@ -38,7 +38,7 @@ public class LoggedInWindow implements Window {
                     eventWindow.askForInput();
                     break;
                 case 2:
-                    teamWindow.showWindow();
+                    teamWindow.askForInput();
                     break;
                 case 3:
                     quit = true;
