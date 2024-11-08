@@ -10,7 +10,7 @@ public class TeamWindow implements Window {
     }
 
     @Override
-    public void takeInput() {
+    public void askForInput() {
 
     }
 }

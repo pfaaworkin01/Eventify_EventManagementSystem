@@ -22,7 +22,7 @@ public class LoggedInWindow implements Window {
     }
 
     @Override
-    public void takeInput() {
+    public void askForInput() {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         EventWindow eventWindow = new EventWindow();
@@ -35,7 +35,7 @@ public class LoggedInWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    eventWindow.takeInput();
+                    eventWindow.askForInput();
                     break;
                 case 2:
                     teamWindow.showWindow();

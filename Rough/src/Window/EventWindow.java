@@ -22,7 +22,7 @@ public class EventWindow implements Window {
     }
 
     @Override
-    public void takeInput() {
+    public void askForInput() {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         EventManager eventManager = new EventManager();
