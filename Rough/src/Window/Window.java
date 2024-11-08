@@ -3,7 +3,7 @@ package Window;
 public interface  Window {
 
     public void showWindow();
-    public void takeInput();
+    public void askForInput();
 
     public static void printCentered(String text) {
         int terminalWidth = 150;

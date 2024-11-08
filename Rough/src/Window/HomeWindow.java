@@ -23,7 +23,7 @@ public class HomeWindow implements Window {
     }
 
     @Override
-    public void takeInput() {
+    public void askForInput() {
         LoggedInWindow loggedInWindow = new LoggedInWindow();
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
@@ -42,7 +42,7 @@ public class HomeWindow implements Window {
                     Login login = new Login();
                     login.login();
                     if(GlobalData.AUTHENTICATED) {
-                        loggedInWindow.takeInput();
+                        loggedInWindow.askForInput();
                     }
                     break;
                 case 3:

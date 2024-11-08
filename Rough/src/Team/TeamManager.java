@@ -91,7 +91,7 @@ public class TeamManager {
                 }
                 case 3 -> displayAllSectors();
                 case 4 -> {
-                    loggedInWindow.takeInput();
+                    loggedInWindow.askForInput();
                     running = false;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");
