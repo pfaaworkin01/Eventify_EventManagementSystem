@@ -31,6 +31,7 @@ public class EventWindow implements Window {
             showWindow();
             System.out.println("Select an Option (1-3): ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -46,6 +47,7 @@ public class EventWindow implements Window {
                 case 2:
                     System.out.println("Enter Event ID: ");
                     eventID = scanner.nextInt();
+                    scanner.nextLine();
                     eventManager.removeEvent(eventID);
                     break;
                 case 3:

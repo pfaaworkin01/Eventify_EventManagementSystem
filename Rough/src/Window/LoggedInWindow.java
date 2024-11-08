@@ -1,7 +1,6 @@
 package Window;
 
-import AccessControl.Login;
-import AccessControl.Register;
+import GlobalData.GlobalData;
 
 import java.util.Scanner;
 
@@ -32,6 +31,7 @@ public class LoggedInWindow implements Window {
             showWindow();
             System.out.println("Select an Option (1/2): ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -39,6 +39,9 @@ public class LoggedInWindow implements Window {
                     break;
                 case 2:
                     teamWindow.askForInput();
+                    if(GlobalData.BACK_TO_MAIN_MENU == true) {
+                        quit = true;
+                    }
                     break;
                 case 3:
                     quit = true;
