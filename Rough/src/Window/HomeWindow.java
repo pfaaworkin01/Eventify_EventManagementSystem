@@ -42,7 +42,7 @@ public class HomeWindow implements Window {
                 case 2:
                     Login login = new Login();
                     login.login();
-                    if(GlobalData.AUTHENTICATED) {
+                    if(GlobalData.AUTHENTICATED == true) {
                         loggedInWindow.askForInput();
                     }
                     break;

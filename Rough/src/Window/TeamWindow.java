@@ -1,5 +1,6 @@
 package Window;
 
+import GlobalData.GlobalData;
 import Team.TeamManager;
 
 import java.util.Scanner;
@@ -26,12 +27,12 @@ public class TeamWindow implements Window {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         TeamManager teamManager = new TeamManager();
-        HomeWindow homeWindow = new HomeWindow();
 
         while (!quit) {
             showWindow();
             System.out.println("Select an Option (1-5): ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -54,7 +55,7 @@ public class TeamWindow implements Window {
                     break;
                 case 5:
                     quit = true;
-                    homeWindow.askForInput();
+                    GlobalData.BACK_TO_MAIN_MENU = true;
                     break;
                 default:
                     System.out.println("Invalid Option");
