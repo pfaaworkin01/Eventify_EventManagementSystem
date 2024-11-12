@@ -17,6 +17,10 @@ public class Event {
         return EventID;
     }
 
+    public String getEventType() {
+        return EventType;
+    }
+
     public String getEventName() {
         return EventName;
     }

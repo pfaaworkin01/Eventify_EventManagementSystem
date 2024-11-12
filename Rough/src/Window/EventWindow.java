@@ -38,7 +38,7 @@ public class EventWindow implements Window {
                     System.out.println("Enter Event ID: ");
                     int eventID = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Enter Event Name: ");
+                    System.out.println("Enter Event Type: ");
                     String eventType = scanner.nextLine();
                     System.out.println("Enter Event Name: ");
                     String eventName = scanner.nextLine();
@@ -48,12 +48,11 @@ public class EventWindow implements Window {
                     break;
                 case 2:
                     System.out.println("Enter Event ID: ");
-                    eventID = scanner.nextInt();
-                    scanner.nextLine();
-                    eventManager.removeEvent(eventID);
+                    String eventID2 = scanner.nextLine();
+                    eventManager.removeEvent(eventID2);
                     break;
                 case 3:
-                    eventManager.displayEvents();
+//                    eventManager.displayEvents();
                     break;
                 case 4:
                     quit = true;
