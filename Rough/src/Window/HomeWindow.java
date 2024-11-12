@@ -30,7 +30,13 @@ public class HomeWindow implements Window {
 
         while (!quit) {
             showWindow();
-            System.out.println("Select an Option (1-3): ");
+
+            int terminalWidth = 150;
+            int padding = (terminalWidth - "Select an Option (1-3): ".length()) / 2;
+            for(int i = 0; i < padding; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("Select an Option (1-3): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -42,7 +48,7 @@ public class HomeWindow implements Window {
                 case 2:
                     Login login = new Login();
                     login.login();
-                    if(GlobalData.AUTHENTICATED == true) {
+                    if(GlobalData.AUTHENTICATED) {
                         loggedInWindow.askForInput();
                     }
                     break;
