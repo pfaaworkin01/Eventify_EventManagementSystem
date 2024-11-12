@@ -29,7 +29,13 @@ public class EventWindow implements Window {
 
         while (!quit) {
             showWindow();
-            System.out.println("Select an Option (1-3): ");
+
+            int terminalWidth = 150;
+            int padding = (terminalWidth - "Select an Option (1-4): ".length()) / 2;
+            for(int i = 0; i < padding; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("Select an Option (1-4): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 

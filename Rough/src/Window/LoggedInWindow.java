@@ -29,7 +29,13 @@ public class LoggedInWindow implements Window {
 
         while (!quit) {
             showWindow();
-            System.out.println("Select an Option (1/2): ");
+
+            int terminalWidth = 150;
+            int padding = (terminalWidth - "Select an Option (1-3): ".length()) / 2;
+            for(int i = 0; i < padding; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("Select an Option (1-3): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -39,7 +45,7 @@ public class LoggedInWindow implements Window {
                     break;
                 case 2:
                     teamWindow.askForInput();
-                    if(GlobalData.BACK_TO_MAIN_MENU == true) {
+                    if(GlobalData.BACK_TO_MAIN_MENU) {
                         quit = true;
                     }
                     break;
