@@ -10,8 +10,8 @@ public class EventManager {
         events = new ArrayList<>();
     }
 
-    public void addNewEvent(int EventID, String EventName, String EventDate) {
-        Event newEvent = new Event(EventID, EventName, EventDate);
+    public void addNewEvent(int EventID, String EventType, String EventName, String EventDate) {
+        Event newEvent = new Event(EventID, EventType, EventName, EventDate);
         events.add(newEvent);
         System.out.println("Event named \"" + newEvent.getEventName() + "\" added successfully.");
     }

@@ -4,7 +4,7 @@ import GlobalData.GlobalData;
 
 import java.io.*;
 
-public class CredentialManager {
+public class DataManager {
 
     private static final String LOGIN_CREDENTIALS = "Event_Data.txt";
 
