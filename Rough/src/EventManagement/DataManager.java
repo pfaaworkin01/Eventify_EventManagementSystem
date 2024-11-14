@@ -1,6 +1,11 @@
 package EventManagement;
 
 import GlobalData.GlobalData;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.io.*;
 
@@ -54,30 +59,50 @@ public class DataManager {
 
     }
 
-    public void loadData(String username, String password) {
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(EVENT_DATA))) {
-            String line;
-            boolean found = false;
 
-            while((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if(username.equals(parts[0]) && password.equals(parts[1])) {
-                    found = true;
-                    GlobalData.AUTHENTICATED = true;
-                    System.out.println("Logged In Successfully!!!");
-                    break;
+    public class EventDisplay {
+        public static void main(String[] args) {
+            String filePath = "events.txt";  // Replace with your file path
+            List<String[]> events = new ArrayList<>();
+
+            // Read file and parse event details
+            try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] eventDetails = line.split(":");
+                    events.add(eventDetails);
                 }
+            } catch (IOException e) {
+                System.out.println("Error reading file: " + e.getMessage());
             }
 
-            if(!found) {
-                System.out.println("Invalid Username or Password!!!");
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error Logging In!!!");
+            // Display data in table format
+            displayTable(events);
         }
 
+        private static void displayTable(List<String[]> events) {
+            // Define column widths
+            int idWidth = 10;
+            int nameWidth = 20;
+            int dateWidth = 15;
+
+            // Print table header
+            System.out.println("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
+            System.out.printf("| %-8s | %-18s | %-13s |\n", "Event ID", "Event Name", "Event Date");
+            System.out.println("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
+
+            // Print each event
+            for (String[] event : events) {
+                System.out.printf("| %-8s | %-18s | %-13s |\n", event[0], event[1], event[2]);
+            }
+
+            // Print table footer
+            System.out.println("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
+        }
     }
+
+
+
 
 }
