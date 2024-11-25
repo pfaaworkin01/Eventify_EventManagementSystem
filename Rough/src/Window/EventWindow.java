@@ -1,5 +1,6 @@
 package Window;
 
+import EventManagement.DataManager;
 import EventManagement.EventManager;
 
 import java.util.Scanner;
@@ -42,8 +43,13 @@ public class EventWindow implements Window {
             switch (choice) {
                 case 1:
                     System.out.println("Enter Event ID: ");
-                    int eventID = scanner.nextInt();
-                    scanner.nextLine();
+                    String eventIDInput = scanner.nextLine();
+                    while (!eventIDInput.matches("^[0-9]{6}$")) {
+                        System.out.println("Invalid Event ID. Event ID must strictly be 6 digits long.");
+                        eventIDInput = scanner.nextLine();
+                    }
+                    int eventID = Integer.parseInt(eventIDInput);
+
                     System.out.println("Enter Event Type: ");
                     String eventType = scanner.nextLine();
                     System.out.println("Enter Event Name: ");
@@ -58,7 +64,8 @@ public class EventWindow implements Window {
                     eventManager.removeEvent(eventID2);
                     break;
                 case 3:
-//                    eventManager.displayEvents();
+//                    DataManager dataManager = new DataManager();
+//                    DataManager.EventDisplay();
                     break;
                 case 4:
                     quit = true;
