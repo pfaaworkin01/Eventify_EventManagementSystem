@@ -1,25 +1,16 @@
 package BudgetManagement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EventBudget {
     private String eventName;
-    private double totalBudget;
     private BudgetManager budgetManager;
 
-    public EventBudget(String eventName, double totalBudget) {
+    public EventBudget(String eventName) {
         this.eventName = eventName;
-        this.totalBudget = totalBudget;
-        this.budgetManager = new BudgetManager(totalBudget);
+        this.budgetManager = new BudgetManager();
     }
 
     public String getEventName() {
         return eventName;
-    }
-
-    public double getTotalBudget() {
-        return totalBudget;
     }
 
     public BudgetManager getBudgetManager() {
@@ -29,7 +20,7 @@ public class EventBudget {
     public void displayEventSummary() {
         System.out.println("\nEvent Summary:");
         System.out.println("Event Name: " + eventName);
-        System.out.println("Total Budget: $" + totalBudget);
+        System.out.println("Total Budget: $" + budgetManager.getTotalAllocatedBudget());
         budgetManager.viewEventBudgetSummary();
     }
 }
