@@ -28,4 +28,13 @@ public class EventBudget {
         }
         return total;
     }
+    public void addExpenseToDepartment(String departmentName, String expenseName, double amount, String description) {
+        for (DepartmentBudget department : departments) {
+            if (department.getDepartmentName().equalsIgnoreCase(departmentName)) {
+                department.addExpense(expenseName, amount, description);
+                return;
+            }
+        }
+        System.out.println("Error: Department not found.");
+    }
 }
