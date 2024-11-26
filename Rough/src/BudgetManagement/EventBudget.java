@@ -21,4 +21,11 @@ public class EventBudget {
             System.out.println("Department added: " + departmentName + " (Budget: " + allocatedBudget + ")");
         }
     }
+    public double getTotalAllocatedBudget() {
+        double total = 0;
+        for (DepartmentBudget department : departments) {
+            total += department.getAllocatedBudget();
+        }
+        return total;
+    }
 }
