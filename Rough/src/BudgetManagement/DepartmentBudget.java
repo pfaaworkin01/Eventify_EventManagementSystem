@@ -3,7 +3,8 @@ package BudgetManagement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentBudget {private String departmentName;
+public class DepartmentBudget {
+    private String departmentName;
     private double allocatedBudget;
     private List<Expense> expenses;
 
