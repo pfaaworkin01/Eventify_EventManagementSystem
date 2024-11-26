@@ -37,4 +37,17 @@ public class EventBudget {
         }
         System.out.println("Error: Department not found.");
     }
+    public void displayExpenseSummary() {
+        System.out.println("\nExpense Summary for Event: " + eventName);
+        System.out.printf("%-20s %-15s %-15s %-15s%n", "Department", "Allocated", "Spent", "Remaining");
+        for (DepartmentBudget department : departments) {
+            System.out.printf("%-20s %-15.2f %-15.2f %-15.2f%n",
+                    department.getDepartmentName(),
+                    department.getAllocatedBudget(),
+                    department.getTotalExpenses(),
+                    department.getRemainingBudget());
+        }
+        System.out.println("Total Event Budget: " + totalBudget);
+        System.out.println("Total Allocated: " + getTotalAllocatedBudget());
+    }
 }
