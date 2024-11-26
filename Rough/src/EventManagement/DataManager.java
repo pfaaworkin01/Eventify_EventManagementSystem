@@ -1,6 +1,11 @@
 package EventManagement;
 
 import GlobalData.GlobalData;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.io.*;
 
@@ -50,32 +55,6 @@ public class DataManager {
             tempFile.renameTo(originalFile);
         } else {
             System.out.println(" ".repeat(65) + "Failed To Update The Event Data File");
-        }
-
-    }
-
-    public void loadData(String username, String password) {
-
-        try(BufferedReader reader = new BufferedReader(new FileReader(EVENT_DATA))) {
-            String line;
-            boolean found = false;
-
-            while((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if(username.equals(parts[0]) && password.equals(parts[1])) {
-                    found = true;
-                    GlobalData.AUTHENTICATED = true;
-                    System.out.println("Logged In Successfully!!!");
-                    break;
-                }
-            }
-
-            if(!found) {
-                System.out.println("Invalid Username or Password!!!");
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error Logging In!!!");
         }
 
     }
