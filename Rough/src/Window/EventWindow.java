@@ -2,6 +2,8 @@ package Window;
 
 import EventManagement.DataManager;
 import EventManagement.EventManager;
+import EventManagement.InputValidator;
+import Global.GlobalMethod;
 
 import java.util.Scanner;
 
@@ -27,6 +29,7 @@ public class EventWindow implements Window {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         EventManager eventManager = new EventManager();
+        InputValidator inputValidator = new InputValidator();
 
         while (!quit) {
             showWindow();
@@ -44,8 +47,7 @@ public class EventWindow implements Window {
                 case 1:
                     System.out.println("Enter Event ID: ");
                     String eventIDInput = scanner.nextLine();
-                    while (!eventIDInput.matches("^[0-9]{6}$")) {
-                        System.out.println("Invalid Event ID. Event ID must strictly be 6 digits long.");
+                    while (!inputValidator.eventIDValid(eventIDInput)) {
                         eventIDInput = scanner.nextLine();
                     }
                     int eventID = Integer.parseInt(eventIDInput);
@@ -64,8 +66,18 @@ public class EventWindow implements Window {
                     eventManager.removeEvent(eventID2);
                     break;
                 case 3:
-//                    DataManager dataManager = new DataManager();
-//                    DataManager.EventDisplay();
+                    DataManager dataManager = new DataManager();
+                    dataManager.displayEvents();
+                    String doneViewingEvents = "N";
+                    while (!doneViewingEvents.equalsIgnoreCase("Y")) {
+                        terminalWidth = 150;
+                        padding = (terminalWidth - "Quit? (Y/N): ".length()) / 2;
+                        for(int i = 0; i < padding; i++) {
+                            System.out.print(" ");
+                        }
+                        System.out.print("Quit? (Y/N): ");
+                        doneViewingEvents = scanner.nextLine();
+                    }
                     break;
                 case 4:
                     quit = true;
