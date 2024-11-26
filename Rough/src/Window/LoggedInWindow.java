@@ -50,6 +50,14 @@ public class LoggedInWindow implements Window {
                     }
                     break;
                 case 3:
+                    BudgetWindow budgetWindow = new BudgetWindow();
+                    budgetWindow.askForInput();
+                    if(GlobalData.BACK_TO_MAIN_MENU) {
+                        quit = true;
+                    }
+                    break;
+
+                case 4:
                     quit = true;
                     break;
                 default:

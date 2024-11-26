@@ -7,7 +7,7 @@ public class BudgetWindow implements Window {
     private HashMap<String, EventBudget> eventBudgets;
 
 
-    public BudgetWindow(String eventName, double totalBudget) {
+    public BudgetWindow() {
         this.eventBudgets = new HashMap<>();
     }
 
