@@ -1,13 +1,19 @@
 package Window;
+
 import BudgetManagement.EventBudget;
-import java.util.Scanner;
+import EventManagement.EventManager;
+import EventManagement.Event;
+
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class BudgetWindow implements Window {
-    private HashMap<String, EventBudget> eventBudgets;
-
+    private Map<Integer, EventBudget> eventBudgets; // Keyed by event ID
+    private EventManager eventManager;
 
     public BudgetWindow() {
+        this.eventManager = new EventManager();
         this.eventBudgets = new HashMap<>();
     }
 
@@ -52,28 +58,35 @@ public class BudgetWindow implements Window {
             }
         }
     }
-    private void selectEvent(Scanner scanner) {
-        System.out.print("\nEnter the event name: ");
-        String eventName = scanner.nextLine();
 
-        EventBudget selectedEvent = eventBudgets.get(eventName);
-        if (selectedEvent != null) {
-            manageEventBudget(scanner, selectedEvent);
+    private void selectEvent(Scanner scanner) {
+        System.out.print("\nEnter the event ID: ");
+        int eventID = scanner.nextInt();
+        scanner.nextLine();
+
+        Event event = eventManager.getEventByID(eventID);
+        if (event != null) {
+            if (!eventBudgets.containsKey(eventID)) {
+                // If no budget exists for this event, create a new one
+                EventBudget newBudget = new EventBudget(event.getEventName(), 10000); // Default budget
+                eventBudgets.put(eventID, newBudget);
+            }
+            manageEventBudget(scanner, eventID);
         } else {
             System.out.println("Error: Event not found. Please try again.");
         }
     }
+
     private void viewAllEvents() {
-        System.out.println("\nAvailable Events:");
-        for (String eventName : eventBudgets.keySet()) {
-            System.out.println("  - " + eventName);
-        }
+        eventManager.displayAllEvents();
     }
-    private void manageEventBudget(Scanner scanner, EventBudget eventBudget) {
+
+    private void manageEventBudget(Scanner scanner, int eventID) {
+        EventBudget eventBudget = eventBudgets.get(eventID);
         boolean quit = false;
 
         while (!quit) {
-            System.out.println("\nManaging Budget for: " + eventBudget.getEventName());
+            System.out.println("\nManaging Budget for Event ID: " + eventID);
             System.out.println(" ".repeat(65) + "1. Allocate Budget to a Department");
             System.out.println(" ".repeat(65) + "2. Add Expense to a Department");
             System.out.println(" ".repeat(65) + "3. View Department Budgets");
@@ -119,9 +132,4 @@ public class BudgetWindow implements Window {
             }
         }
     }
-
-
-
-
-
 }
