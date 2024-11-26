@@ -1,6 +1,6 @@
 package Window;
 
-import GlobalData.GlobalData;
+import Global.GlobalData;
 import Team.TeamManager;
 
 import java.util.Scanner;

@@ -1,6 +1,6 @@
 package AccessControl;
 
-import GlobalData.GlobalData;
+import Global.GlobalData;
 
 import java.io.*;
 import java.io.IOException;

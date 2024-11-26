@@ -1,4 +1,4 @@
-package GlobalData;
+package Global;
 
 public class GlobalData {
 

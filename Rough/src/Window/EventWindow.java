@@ -2,6 +2,7 @@ package Window;
 
 import EventManagement.DataManager;
 import EventManagement.EventManager;
+import EventManagement.InputValidator;
 
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class EventWindow implements Window {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         EventManager eventManager = new EventManager();
+        InputValidator inputValidator = new InputValidator();
 
         while (!quit) {
             showWindow();
@@ -44,8 +46,7 @@ public class EventWindow implements Window {
                 case 1:
                     System.out.println("Enter Event ID: ");
                     String eventIDInput = scanner.nextLine();
-                    while (!eventIDInput.matches("^[0-9]{6}$")) {
-                        System.out.println("Invalid Event ID. Event ID must strictly be 6 digits long.");
+                    while (!inputValidator.eventIDValid(eventIDInput)) {
                         eventIDInput = scanner.nextLine();
                     }
                     int eventID = Integer.parseInt(eventIDInput);

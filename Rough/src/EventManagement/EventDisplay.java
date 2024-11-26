@@ -8,10 +8,9 @@ import java.util.List;
 
 public class EventDisplay {
     public static void main(String[] args) {
-        String filePath = "Event_Data.txt";  // Replace with your file path
+        String filePath = "Event_Data.txt";
         List<String[]> events = new ArrayList<>();
 
-        // Read file and parse event details
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -22,12 +21,10 @@ public class EventDisplay {
             System.out.println("Error reading file: " + e.getMessage());
         }
 
-        // Display data in table format
         displayTable(events);
     }
 
     private static void displayTable(List<String[]> events) {
-        // Define column widths
         int idWidth = 30;
         int nameWidth = 50;
         int dateWidth = 30;
@@ -39,16 +36,13 @@ public class EventDisplay {
         printCentered(columnHeader1 + columnHeader2 + columnHeader3);
         printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
 
-        // Print each event
         for (String[] event : events) {
             String cell1 = "|" + " ".repeat((idWidth - event[0].length())/2) + event[0] + " ".repeat((idWidth - event[0].length())/2);
             String cell2 = "|" + " ".repeat((nameWidth - event[1].length())/2) + event[1] + " ".repeat((nameWidth - event[1].length())/2);
             String cell3 = "|" + " ".repeat((dateWidth - event[2].length())/2) + event[2] + " ".repeat((dateWidth - event[2].length())/2) + "|";
             printCentered(cell1 + cell2 + cell3);
-//            System.out.printf("| %-8s | %-18s | %-13s |\n", event[0], event[1], event[2]);
         }
 
-        // Print table footer
         System.out.println("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
     }
 

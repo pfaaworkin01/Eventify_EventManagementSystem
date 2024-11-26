@@ -1,11 +1,8 @@
 package EventManagement;
 
-import GlobalData.GlobalData;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import java.io.*;
 
@@ -17,7 +14,7 @@ public class DataManager {
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(EVENT_DATA, true))) {
             writer.write(event.getEventID() + ":" + event.getEventType() + ":" + event.getEventName() + ":" + event.getEventDate() + "\n");
-            System.out.println(" ".repeat(65) + "Event named " + event.getEventName() + " Created Successfully!!!");
+            printCentered("Event named " + event.getEventName() + " Created Successfully!!!");
         } catch (IOException e) {
             System.out.println(" ".repeat(65) + "Error Creating New Event!!!");
         }
@@ -57,6 +54,12 @@ public class DataManager {
             System.out.println(" ".repeat(65) + "Failed To Update The Event Data File");
         }
 
+    }
+
+    static void printCentered(String text) {
+        int terminalWidth = 150;
+        int padding = (terminalWidth - text.length()) / 2;
+        System.out.println(" ".repeat(Math.max(0, padding)) + text);
     }
 
 }

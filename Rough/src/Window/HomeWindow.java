@@ -2,7 +2,7 @@ package Window;
 
 import AccessControl.Login;
 import AccessControl.Register;
-import GlobalData.GlobalData;
+import Global.GlobalData;
 
 import java.util.Scanner;
 
