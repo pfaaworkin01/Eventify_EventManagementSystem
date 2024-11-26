@@ -63,4 +63,14 @@ public class BudgetWindow implements Window {
             System.out.println("Error: Event not found. Please try again.");
         }
     }
+    private void viewAllEvents() {
+        System.out.println("\nAvailable Events:");
+        for (String eventName : eventBudgets.keySet()) {
+            System.out.println("  - " + eventName);
+        }
+    }
+
+    
+
+
 }
