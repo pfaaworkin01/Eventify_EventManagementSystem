@@ -17,7 +17,8 @@ public class LoggedInWindow implements Window {
         Window.printCentered("Logged In\n");
         System.out.println(" ".repeat(65) + "1. Manage Events");
         System.out.println(" ".repeat(65) + "2. Manage Teams");
-        System.out.println(" ".repeat(65) + "3. Log Out\n");
+        System.out.println(" ".repeat(65) + "3. Manage Budget");
+        System.out.println(" ".repeat(65) + "4. Log Out\n");
     }
 
     @Override
@@ -31,11 +32,11 @@ public class LoggedInWindow implements Window {
             showWindow();
 
             int terminalWidth = 150;
-            int padding = (terminalWidth - "Select an Option (1-3): ".length()) / 2;
+            int padding = (terminalWidth - "Select an Option (1-4): ".length()) / 2;
             for(int i = 0; i < padding; i++) {
                 System.out.print(" ");
             }
-            System.out.print("Select an Option (1-3): ");
+            System.out.print("Select an Option (1-4): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -50,6 +51,14 @@ public class LoggedInWindow implements Window {
                     }
                     break;
                 case 3:
+                    BudgetWindow budgetWindow = new BudgetWindow();
+                    budgetWindow.askForInput();
+                    if(GlobalData.BACK_TO_MAIN_MENU) {
+                        quit = true;
+                    }
+                    break;
+
+                case 4:
                     quit = true;
                     break;
                 default:
