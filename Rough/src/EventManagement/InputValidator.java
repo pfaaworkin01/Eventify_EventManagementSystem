@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import static Global.GlobalMethod.printCentered;
 
-
 public class InputValidator {
 
     public boolean eventIDValid(String eventIDInput) {
