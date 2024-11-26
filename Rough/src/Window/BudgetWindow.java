@@ -1,6 +1,9 @@
 package Window;
 
 public class BudgetWindow implements Window{
+
+
+    @Override
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
@@ -15,4 +18,5 @@ public class BudgetWindow implements Window{
         System.out.println(" ".repeat(65) + "4. View Event Budget Summary");
         System.out.println(" ".repeat(65) + "5. Go Back");
     }
+    
 }
