@@ -3,30 +3,16 @@ package BudgetManagement;
 import java.util.List;
 import java.util.ArrayList;
 
-public class BudgetManager {   private List<DepartmentBudget> departmentBudgets = new ArrayList<>();
-    private double totalEventBudget;
-
-    public BudgetManager(double totalEventBudget) {
-        this.totalEventBudget = totalEventBudget;
-    }
-
-    public double getTotalEventBudget() {
-        return totalEventBudget;
-    }
+public class BudgetManager {
+    private List<DepartmentBudget> departmentBudgets = new ArrayList<>();
 
     public double getTotalAllocatedBudget() {
-        return departmentBudgets.stream().mapToDouble(DepartmentBudget::getRemainingBudget).sum();
+        return departmentBudgets.stream().mapToDouble(DepartmentBudget::getAllocatedBudget).sum();
     }
 
     public void addDepartment(String departmentName, double allocatedBudget) {
-        double totalAllocated = getTotalAllocatedBudget();
-
-        if (totalAllocated + allocatedBudget > totalEventBudget) {
-            System.out.println("Error: Total allocated budget exceeds event budget.");
-        } else {
-            departmentBudgets.add(new DepartmentBudget(departmentName, allocatedBudget));
-            System.out.println("Department added: " + departmentName + " with a budget of $" + allocatedBudget);
-        }
+        departmentBudgets.add(new DepartmentBudget(departmentName, allocatedBudget));
+        System.out.println("Department added: " + departmentName + " with a budget of $" + allocatedBudget);
     }
 
     public void addExpense(String departmentName, String expenseName, double amount, String description) {
@@ -46,6 +32,6 @@ public class BudgetManager {   private List<DepartmentBudget> departmentBudgets 
     public void viewEventBudgetSummary() {
         System.out.printf("%-20s %-15s %-15s %-15s%n", "Department", "Allocated", "Spent", "Remaining");
         departmentBudgets.forEach(DepartmentBudget::displayExpenses);
-        System.out.println("\nTotal Event Budget: $" + totalEventBudget);
+        System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
     }
 }

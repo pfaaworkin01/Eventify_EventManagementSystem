@@ -68,7 +68,7 @@ public class BudgetWindow implements Window {
         if (event != null) {
             if (!eventBudgets.containsKey(eventID)) {
                 // If no budget exists for this event, create a new one
-                EventBudget newBudget = new EventBudget(event.getEventName(), 10000); // Default budget
+                EventBudget newBudget = new EventBudget(event.getEventName());
                 eventBudgets.put(eventID, newBudget);
             }
             manageEventBudget(scanner, eventID);
