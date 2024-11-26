@@ -13,4 +13,12 @@ public class EventBudget {
         this.totalBudget = totalBudget;
         this.departments = new ArrayList<>();
     }
+    public void addDepartment(String departmentName, double allocatedBudget) {
+        if (getTotalAllocatedBudget() + allocatedBudget > totalBudget) {
+            System.out.println("Error: Total department budgets exceed the event budget.");
+        } else {
+            departments.add(new DepartmentBudget(departmentName, allocatedBudget));
+            System.out.println("Department added: " + departmentName + " (Budget: " + allocatedBudget + ")");
+        }
+    }
 }
