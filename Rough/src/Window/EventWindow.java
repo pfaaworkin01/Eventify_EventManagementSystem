@@ -2,6 +2,7 @@ package Window;
 
 import EventManagement.DataManager;
 import EventManagement.EventManager;
+import EventManagement.EventTypeTable;
 import EventManagement.InputValidator;
 import Global.GlobalMethod;
 
@@ -52,8 +53,8 @@ public class EventWindow implements Window {
                     }
                     int eventID = Integer.parseInt(eventIDInput);
 
-                    System.out.println("Enter Event Type: ");
-                    String eventType = scanner.nextLine();
+                    EventTypeTable eventTypeTable = new EventTypeTable();
+                    String eventType = eventTypeTable.selectEventType();
                     System.out.println("Enter Event Name: ");
                     String eventName = scanner.nextLine();
                     System.out.println("Enter Event Date: ");
