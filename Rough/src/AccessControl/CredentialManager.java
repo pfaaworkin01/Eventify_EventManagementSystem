@@ -44,4 +44,24 @@ public class CredentialManager {
         }
     }
 
+    public boolean checkUsernameAvailability(String username) {
+        boolean available = true;
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if(username.equals(parts[0])) {
+                    available = false;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Logging In!!!");
+        }
+
+        return available;
+    }
+
 }

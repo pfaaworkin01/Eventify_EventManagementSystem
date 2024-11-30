@@ -16,9 +16,15 @@ public class Register {
     public void register() {
 
         this.username = returnUsername();
-        this.password = returnPassword();
 
-        saveCredentials.saveCredentials(username, password);
+        if(saveCredentials.checkUsernameAvailability(this.username)) {
+            this.password = returnPassword();
+            saveCredentials.saveCredentials(username, password);
+        }
+        else {
+            printCentered("Username exists!!! Try using another one");
+            register();
+        }
 
     }
 
