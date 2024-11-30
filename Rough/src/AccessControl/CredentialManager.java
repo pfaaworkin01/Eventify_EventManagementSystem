@@ -14,9 +14,9 @@ public class CredentialManager {
     public void saveCredentials(String username, String password) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(LOGIN_CREDENTIALS, true))) {
             writer.write(username + ":" + password + "\n");
-            System.out.println("Registered Successfully!!!");
+            printCentered("Registered Successfully!!!");
         } catch (IOException e) {
-            System.out.println("Error Registering User!!!");
+            printCentered("Error Registering User!!!");
         }
     }
 
@@ -42,6 +42,26 @@ public class CredentialManager {
         } catch (IOException e) {
             System.out.println("Error Logging In!!!");
         }
+    }
+
+    public boolean checkUsernameAvailability(String username) {
+        boolean available = true;
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if(username.equals(parts[0])) {
+                    available = false;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error Logging In!!!");
+        }
+
+        return available;
     }
 
 }
