@@ -14,9 +14,9 @@ public class CredentialManager {
     public void saveCredentials(String username, String password) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(LOGIN_CREDENTIALS, true))) {
             writer.write(username + ":" + password + "\n");
-            System.out.println("Registered Successfully!!!");
+            printCentered("Registered Successfully!!!");
         } catch (IOException e) {
-            System.out.println("Error Registering User!!!");
+            printCentered("Error Registering User!!!");
         }
     }
 

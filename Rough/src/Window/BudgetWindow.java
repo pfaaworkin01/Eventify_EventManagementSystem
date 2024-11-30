@@ -42,7 +42,7 @@ public class BudgetWindow implements Window {
 
             System.out.print("Select an Option (1-3): ");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:

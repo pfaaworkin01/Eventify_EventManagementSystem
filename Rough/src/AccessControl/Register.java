@@ -2,31 +2,64 @@ package AccessControl;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.printCentered;
+
 public class Register {
+
+    private String username;
+    private String password;
+    int terminalWidth = 150;
+    int padding = 0;
 
     CredentialManager saveCredentials = new CredentialManager();
 
     public void register() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter Username: ");
-        String username = scanner.nextLine();
-        while (!username.matches("[a-zA-Z0-9]+")) {
-            System.out.println("Invalid Username. Your username can only contain alphanumeric characters!!!");
-            username = scanner.nextLine();
-        }
-
-        System.out.println("Enter Password: ");
-        String password = scanner.nextLine();
-        
-        while (!password.matches(".*[a-z].*") || !password.matches(".*[A-Z].*") || !password.matches(".*[0-9].*")) {
-            System.out.println("Invalid Password. Password must contain at least one lowercase letter, one uppercase letter, and one digit.");
-            password = scanner.nextLine();
-        }
+        this.username = returnUsername();
+        this.password = returnPassword();
 
         saveCredentials.saveCredentials(username, password);
 
+    }
+
+    private String returnUsername() {
+        Scanner scanner = new Scanner(System.in);
+        padding = (terminalWidth - "Enter Username: ".length()) / 2;
+        for(int i = 0; i < padding; i++) {
+            System.out.print(" ");
+        }
+        System.out.print("Enter Username: ");
+        String inputUsername = scanner.nextLine();
+        while (!inputUsername.matches("[a-zA-Z0-9]+")) {
+            printCentered("Invalid Username. Your username can only contain alphanumeric characters!!!");
+            for(int i = 0; i < padding; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("Enter Username: ");
+            inputUsername = scanner.nextLine();
+        }
+
+        return inputUsername;
+    }
+
+    private String returnPassword() {
+        Scanner scanner = new Scanner(System.in);
+        padding = (terminalWidth - "Enter Password: ".length()) / 2;
+        for(int i = 0; i < padding; i++) {
+            System.out.print(" ");
+        }
+        System.out.print("Enter Password: ");
+        String inputPassword = scanner.nextLine();
+        while (!inputPassword.matches(".*[a-z].*") || !inputPassword.matches(".*[A-Z].*") || !inputPassword.matches(".*[0-9].*")) {
+            printCentered("Invalid Password!!! Password must contain at least one lowercase letter (a-z), one uppercase letter(A-Z), and one digit(0-9)");
+            for(int i = 0; i < padding; i++) {
+                System.out.print(" ");
+            }
+            System.out.print("Enter Password: ");
+            inputPassword = scanner.nextLine();
+        }
+
+        return inputPassword;
     }
 
 }
