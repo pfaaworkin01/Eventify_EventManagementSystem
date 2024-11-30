@@ -4,17 +4,18 @@ import Global.GlobalData;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.printCentered;
+
 public class LoggedInWindow implements Window {
 
     @Override
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
-        Window.printCentered("EVENTIFY");
-        Window.printCentered("Make Every Event Count");
+        printCentered("EVENTIFY");
+        printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        System.out.println("\n");
-        Window.printCentered("Logged In\n");
+        printCentered("Logged In\n");
         System.out.println(" ".repeat(65) + "1. Manage Events");
         System.out.println(" ".repeat(65) + "2. Manage Teams");
         System.out.println(" ".repeat(65) + "3. Manage Budget");

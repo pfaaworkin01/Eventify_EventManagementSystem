@@ -5,6 +5,8 @@ import Global.GlobalData;
 import java.io.*;
 import java.io.IOException;
 
+import static Global.GlobalMethod.printCentered;
+
 public class CredentialManager {
 
     private static final String LOGIN_CREDENTIALS = "Login_Credentials.txt";
@@ -28,7 +30,7 @@ public class CredentialManager {
                 if(username.equals(parts[0]) && password.equals(parts[1])) {
                     found = true;
                     GlobalData.AUTHENTICATED = true;
-                    System.out.println(" ".repeat(65) + "Logged in Successfully!!!");
+                    printCentered("Logged in Successfully!!!");
                     break;
                 }
             }

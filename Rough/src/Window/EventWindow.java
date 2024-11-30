@@ -2,10 +2,13 @@ package Window;
 
 import EventManagement.DataManager;
 import EventManagement.EventManager;
+import EventManagement.EventTypeTable;
 import EventManagement.InputValidator;
 import Global.GlobalMethod;
 
 import java.util.Scanner;
+
+import static Global.GlobalMethod.printCentered;
 
 public class EventWindow implements Window {
 
@@ -13,11 +16,10 @@ public class EventWindow implements Window {
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
-        Window.printCentered("EVENTIFY");
-        Window.printCentered("Make Every Event Count");
+        printCentered("EVENTIFY");
+        printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        System.out.println("\n");
-        Window.printCentered("Managing Events\n");
+        printCentered("Managing Events\n");
         System.out.println(" ".repeat(65) + "1. Add New Event");
         System.out.println(" ".repeat(65) + "2. Cancel an Event");
         System.out.println(" ".repeat(65) + "3. Display Upcoming Events");
@@ -52,8 +54,8 @@ public class EventWindow implements Window {
                     }
                     int eventID = Integer.parseInt(eventIDInput);
 
-                    System.out.println("Enter Event Type: ");
-                    String eventType = scanner.nextLine();
+                    EventTypeTable eventTypeTable = new EventTypeTable();
+                    String eventType = eventTypeTable.selectEventType();
                     System.out.println("Enter Event Name: ");
                     String eventName = scanner.nextLine();
                     System.out.println("Enter Event Date: ");
