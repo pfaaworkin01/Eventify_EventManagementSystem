@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import static Global.GlobalMethod.printCentered;
+
 public class BudgetWindow implements Window {
     private Map<Integer, EventBudget> eventBudgets; // Keyed by event ID
     private EventManager eventManager;
@@ -21,10 +23,10 @@ public class BudgetWindow implements Window {
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
-        Window.printCentered("EVENTIFY");
-        Window.printCentered("Make Every Event Count");
+        printCentered("EVENTIFY");
+        printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        Window.printCentered("Budget Management\n");
+        printCentered("Budget Management\n");
         System.out.println(" ".repeat(65) + "1. Select an Event");
         System.out.println(" ".repeat(65) + "2. View All Events");
         System.out.println(" ".repeat(65) + "3. Go Back");

@@ -5,15 +5,17 @@ import Team.TeamManager;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.printCentered;
+
 public class TeamWindow implements Window {
     @Override
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
-        Window.printCentered("EVENTIFY");
-        Window.printCentered("Make Every Event Count");
+        printCentered("EVENTIFY");
+        printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        Window.printCentered("Managing Teams\n");
+        printCentered("Managing Teams\n");
         System.out.println(" ".repeat(65) + "1. Add members to a Sector");
         System.out.println(" ".repeat(65) + "2. Add a custom Sector");
         System.out.println(" ".repeat(65) + "3. View all Sectors and Members");

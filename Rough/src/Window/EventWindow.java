@@ -8,16 +8,18 @@ import Global.GlobalMethod;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.printCentered;
+
 public class EventWindow implements Window {
 
     @Override
     public void showWindow() {
         System.out.println("\n");
         System.out.println("*".repeat(147));
-        Window.printCentered("EVENTIFY");
-        Window.printCentered("Make Every Event Count");
+        printCentered("EVENTIFY");
+        printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        Window.printCentered("Managing Events\n");
+        printCentered("Managing Events\n");
         System.out.println(" ".repeat(65) + "1. Add New Event");
         System.out.println(" ".repeat(65) + "2. Cancel an Event");
         System.out.println(" ".repeat(65) + "3. Display Upcoming Events");
