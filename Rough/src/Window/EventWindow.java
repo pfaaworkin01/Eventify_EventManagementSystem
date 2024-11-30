@@ -17,7 +17,6 @@ public class EventWindow implements Window {
         Window.printCentered("EVENTIFY");
         Window.printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        System.out.println("\n");
         Window.printCentered("Managing Events\n");
         System.out.println(" ".repeat(65) + "1. Add New Event");
         System.out.println(" ".repeat(65) + "2. Cancel an Event");

@@ -13,7 +13,6 @@ public class LoggedInWindow implements Window {
         Window.printCentered("EVENTIFY");
         Window.printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        System.out.println("\n");
         Window.printCentered("Logged In\n");
         System.out.println(" ".repeat(65) + "1. Manage Events");
         System.out.println(" ".repeat(65) + "2. Manage Teams");

@@ -24,7 +24,6 @@ public class BudgetWindow implements Window {
         Window.printCentered("EVENTIFY");
         Window.printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        System.out.println("\n");
         Window.printCentered("Budget Management\n");
         System.out.println(" ".repeat(65) + "1. Select an Event");
         System.out.println(" ".repeat(65) + "2. View All Events");

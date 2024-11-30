@@ -13,7 +13,6 @@ public class TeamWindow implements Window {
         Window.printCentered("EVENTIFY");
         Window.printCentered("Make Every Event Count");
         System.out.println("*".repeat(147));
-        System.out.println("\n");
         Window.printCentered("Managing Teams\n");
         System.out.println(" ".repeat(65) + "1. Add members to a Sector");
         System.out.println(" ".repeat(65) + "2. Add a custom Sector");
