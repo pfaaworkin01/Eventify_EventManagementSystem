@@ -53,4 +53,8 @@ public class DepartmentBudget {
             System.out.println("  - " + expense);
         }
     }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
 }
