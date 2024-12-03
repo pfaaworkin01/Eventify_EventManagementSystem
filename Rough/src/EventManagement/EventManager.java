@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EventManager {
@@ -32,6 +33,10 @@ public class EventManager {
 
     public Event getEventByID(int eventID) {
         return events.get(eventID);
+    }
+
+    public List<Event> getAllEvents() {
+        return new ArrayList<>(events.values());
     }
 
     private void loadEvents() {
