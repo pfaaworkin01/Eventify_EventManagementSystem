@@ -57,4 +57,7 @@ public class DepartmentBudget {
     public List<Expense> getExpenses() {
         return expenses;
     }
+    public void setAllocatedBudget(double allocatedBudget) {
+        this.allocatedBudget = allocatedBudget;
+    }
 }
