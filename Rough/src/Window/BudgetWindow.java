@@ -136,4 +136,11 @@ public class BudgetWindow implements Window {
             }
         }
     }
+    private void loadBudgetInfo() {
+        for (Event event : eventManager.getAllEvents()) {
+            EventBudget eventBudget = new EventBudget(event.getEventName());
+            eventBudget.getBudgetManager().setDepartmentBudgets(BudgetFileManager.loadBudgetInfo());
+            eventBudgets.put(event.getEventID(), eventBudget);
+        }
+    }
 }
