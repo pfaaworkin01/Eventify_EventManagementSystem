@@ -34,4 +34,12 @@ public class BudgetManager {
         departmentBudgets.forEach(DepartmentBudget::displayExpenses);
         System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
     }
+    public List<DepartmentBudget> getDepartmentBudgets() {
+        return departmentBudgets;
+    }
+
+    public void setDepartmentBudgets(List<DepartmentBudget> departmentBudgets) {
+        this.departmentBudgets = departmentBudgets;
+    }
+
 }
