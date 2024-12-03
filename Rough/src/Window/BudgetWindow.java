@@ -1,5 +1,6 @@
 package Window;
 
+import  BudgetManagement.BudgetFileManager;
 import BudgetManagement.EventBudget;
 import EventManagement.EventManager;
 import EventManagement.Event;
@@ -15,6 +16,7 @@ public class BudgetWindow implements Window {
     public BudgetWindow() {
         this.eventManager = new EventManager();
         this.eventBudgets = new HashMap<>();
+        loadBudgetInfo();
     }
 
     @Override
@@ -105,6 +107,7 @@ public class BudgetWindow implements Window {
                     double budget = scanner.nextDouble();
                     scanner.nextLine();
                     eventBudget.getBudgetManager().addDepartment(departmentName, budget);
+                    BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
                     break;
                 case 2:
                     System.out.print("Enter department name: ");
@@ -117,6 +120,7 @@ public class BudgetWindow implements Window {
                     System.out.print("Enter expense description: ");
                     String description = scanner.nextLine();
                     eventBudget.getBudgetManager().addExpense(deptName, expenseName, amount, description);
+                    BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
                     break;
                 case 3:
                     eventBudget.getBudgetManager().viewDepartmentBudgets();
