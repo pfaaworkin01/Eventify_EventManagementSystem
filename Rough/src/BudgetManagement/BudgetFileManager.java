@@ -1,8 +1,7 @@
 package BudgetManagement;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BudgetFileManager {
@@ -24,5 +23,41 @@ public class BudgetFileManager {
         } catch (IOException e) {
             System.out.println("Error saving budget information: " + e.getMessage());
         }
+    }
+
+    public static List<DepartmentBudget> loadBudgetInfo() {
+        List<DepartmentBudget> departmentBudgets = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            DepartmentBudget currentDepartment = null;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Department: ")) {
+                    if (currentDepartment != null) {
+                        departmentBudgets.add(currentDepartment);
+                    }
+                    String departmentName = line.substring(12);
+                    currentDepartment = new DepartmentBudget(departmentName, 0);
+                } else if (line.startsWith("Allocated Budget: ")) {
+                    if (currentDepartment != null) {
+                        double allocatedBudget = Double.parseDouble(line.substring(18));
+                        currentDepartment.setAllocatedBudget(allocatedBudget);
+                    }
+                } else if (line.startsWith("  - Expense: ")) {
+                    if (currentDepartment != null) {
+                        String[] expenseDetails = line.substring(12).split(", Amount: |, Description: ");
+                        String expenseName = expenseDetails[0];
+                        double amount = Double.parseDouble(expenseDetails[1]);
+                        String description = expenseDetails[2];
+                        currentDepartment.addExpense(expenseName, amount, description);
+                    }
+                }
+            }
+            if (currentDepartment != null) {
+                departmentBudgets.add(currentDepartment);
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading budget information: " + e.getMessage());
+        }
+        return departmentBudgets;
     }
 }
