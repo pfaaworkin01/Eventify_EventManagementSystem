@@ -107,7 +107,7 @@ public class DataManager {
     }
 
     static void printCentered(String text) {
-        int terminalWidth = 150;
+        int terminalWidth = 154;
         int padding = (terminalWidth - text.length()) / 2;
         System.out.println(" ".repeat(Math.max(0, padding)) + text);
     }

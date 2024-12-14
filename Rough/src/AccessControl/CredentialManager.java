@@ -5,7 +5,9 @@ import Global.GlobalData;
 import java.io.*;
 import java.io.IOException;
 
+import static Global.GlobalData.LOGGED_IN_USERNAME;
 import static Global.GlobalMethod.printCentered;
+import static Global.GlobalMethod.waitForAnyKey;
 
 public class CredentialManager {
 
@@ -14,9 +16,11 @@ public class CredentialManager {
     public void saveCredentials(String username, String password) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(LOGIN_CREDENTIALS, true))) {
             writer.write(username + ":" + password + "\n");
-            printCentered("Registered Successfully!!!");
+            System.out.println();
+            printCentered("!!!  Registered Successfully  !!!");
+            waitForAnyKey();
         } catch (IOException e) {
-            printCentered("Error Registering User!!!");
+            printCentered("!!!  Error Registering User  !!!");
         }
     }
 
@@ -30,17 +34,20 @@ public class CredentialManager {
                 if(username.equals(parts[0]) && password.equals(parts[1])) {
                     found = true;
                     GlobalData.AUTHENTICATED = true;
-                    printCentered("Logged in Successfully!!!");
+                    System.out.println();
+                    printCentered("!!!  Logged in Successfully  !!!");
+                    GlobalData.LOGGED_IN_USERNAME = username;
+                    waitForAnyKey();
                     break;
                 }
             }
 
             if(!found) {
                 GlobalData.AUTHENTICATED = false;
-                System.out.println(" ".repeat(63) + "** Invalid Username or Password **");
+                printCentered("!!!  Invalid Username or Password. Try Again  !!!");
             }
         } catch (IOException e) {
-            System.out.println("Error Logging In!!!");
+            printCentered("Error Logging In!!!");
         }
     }
 
@@ -58,7 +65,7 @@ public class CredentialManager {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error Logging In!!!");
+            System.out.println("!!!  Error Checking Username Availability  !!!");
         }
 
         return available;

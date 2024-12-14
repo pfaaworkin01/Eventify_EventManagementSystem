@@ -26,7 +26,7 @@ public class EventTypeTable {
         while (!quit) {
             displayEventTypes();
 
-            int terminalWidth = 150;
+            int terminalWidth = 154;
             int padding = (terminalWidth - "Choose Event Type (1/2/3): ".length()) / 2;
             for(int i = 0; i < padding; i++) {
                 System.out.print(" ");

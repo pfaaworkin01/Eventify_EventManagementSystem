@@ -32,7 +32,7 @@ public class TeamWindow implements Window {
         while (!quit) {
             showWindow();
 
-            int terminalWidth = 150;
+            int terminalWidth = 154;
             int padding = (terminalWidth - "Select an Option (1-5): ".length()) / 2;
             for(int i = 0; i < padding; i++) {
                 System.out.print(" ");

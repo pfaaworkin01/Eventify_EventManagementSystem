@@ -6,21 +6,23 @@ import Global.GlobalData;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.clearConsole;
 import static Global.GlobalMethod.printCentered;
 
 public class HomeWindow implements Window {
 
     @Override
     public void showWindow() {
-        System.out.println();
-        System.out.println("*".repeat(147));
+        clearConsole();
+
+        System.out.println("*".repeat(154));
         printCentered("EVENTIFY");
         printCentered("Make Every Event Count");
-        System.out.println("*".repeat(147));
-        printCentered("HOME\n");
-        System.out.println(" ".repeat(65) + "1. User Registration");
-        System.out.println(" ".repeat(65) + "2. User Login");
-        System.out.println(" ".repeat(65) + "3. Quit\n");
+        System.out.println("*".repeat(154));
+        printCentered("<<< HOME >>>\n");
+        System.out.println(" ".repeat(67) + "1. User Registration");
+        System.out.println(" ".repeat(67) + "2. User Login");
+        System.out.println(" ".repeat(67) + "3. Quit");
     }
 
     @Override
@@ -32,7 +34,10 @@ public class HomeWindow implements Window {
         while (!quit) {
             showWindow();
 
-            int terminalWidth = 150;
+            for(int i = 0; i < 5; i++) {
+                System.out.println();
+            }
+            int terminalWidth = 154;
             int padding = (terminalWidth - "Select an Option (1-3): ".length()) / 2;
             for(int i = 0; i < padding; i++) {
                 System.out.print(" ");

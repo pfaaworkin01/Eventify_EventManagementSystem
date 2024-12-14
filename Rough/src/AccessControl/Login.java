@@ -4,20 +4,45 @@ import java.util.Scanner;
 
 public class Login {
 
+    private String username;
+    private String password;
+    int terminalWidth = 154;
+    int padding = 0;
+
     CredentialManager loadCredentials = new CredentialManager();
 
     public void login() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter Username: ");
-        String username = scanner.nextLine();
-
-        System.out.println("Enter Password: ");
-        String password = scanner.nextLine();
+        System.out.printf("\n");
+        this.username = returnUsername();
+        this.password = returnPassword();
 
         loadCredentials.loadCredentials(username, password);
 
+    }
+
+    private String returnUsername() {
+        Scanner scanner = new Scanner(System.in);
+        padding = (terminalWidth - "Enter Username: ".length()) / 2;
+        for(int i = 0; i < padding; i++) {
+            System.out.print(" ");
+        }
+        System.out.print("Enter Username: ");
+        String inputUsername = scanner.nextLine();
+
+        return inputUsername;
+    }
+
+    private String returnPassword() {
+        Scanner scanner = new Scanner(System.in);
+        padding = (terminalWidth - "Enter Password: ".length()) / 2;
+        for(int i = 0; i < padding; i++) {
+            System.out.print(" ");
+        }
+        System.out.print("Enter Password: ");
+        String inputPassword = scanner.nextLine();
+
+        return inputPassword;
     }
 
 }
