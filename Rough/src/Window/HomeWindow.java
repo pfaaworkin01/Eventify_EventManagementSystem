@@ -6,15 +6,10 @@ import Global.GlobalData;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.clearConsole;
 import static Global.GlobalMethod.printCentered;
 
 public class HomeWindow implements Window {
-
-    public static void clearConsole() {
-        for(int i = 0; i < 6; i++) {
-            System.out.println();
-        }
-    }
 
     @Override
     public void showWindow() {

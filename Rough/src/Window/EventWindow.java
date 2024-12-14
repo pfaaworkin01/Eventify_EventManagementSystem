@@ -9,15 +9,10 @@ import Global.GlobalMethod;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static Global.GlobalMethod.clearConsole;
 import static Global.GlobalMethod.printCentered;
 
 public class EventWindow implements Window {
-
-    public static void clearConsole() {
-        for(int i = 0; i < 20; i++) {
-            System.out.println("\n");
-        }
-    }
 
     @Override
     public void showWindow() {

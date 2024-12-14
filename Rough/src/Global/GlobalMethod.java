@@ -17,4 +17,18 @@ public class GlobalMethod {
         scanner.nextLine();
     }
 
+    public static void clearConsole() {
+        for(int i = 0; i < 8; i++) {
+            System.out.println();
+        }
+    }
+
+    public static void insertPadding() {
+        int terminalWidth = 154;
+        int padding = (terminalWidth - "Select an Option (1-4): ".length()) / 2;
+        for(int i = 0; i < padding; i++) {
+            System.out.print(" ");
+        }
+    }
+
 }

@@ -5,6 +5,7 @@ import Global.GlobalData;
 import java.io.*;
 import java.io.IOException;
 
+import static Global.GlobalData.LOGGED_IN_USERNAME;
 import static Global.GlobalMethod.printCentered;
 import static Global.GlobalMethod.waitForAnyKey;
 
@@ -35,13 +36,15 @@ public class CredentialManager {
                     GlobalData.AUTHENTICATED = true;
                     System.out.println();
                     printCentered("!!!  Logged in Successfully  !!!");
+                    GlobalData.LOGGED_IN_USERNAME = username;
+                    waitForAnyKey();
                     break;
                 }
             }
 
             if(!found) {
                 GlobalData.AUTHENTICATED = false;
-                printCentered("!!!  Invalid Username or Password  !!!");
+                printCentered("!!!  Invalid Username or Password. Try Again  !!!");
             }
         } catch (IOException e) {
             printCentered("Error Logging In!!!");
