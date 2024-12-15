@@ -19,15 +19,15 @@ public class EventWindow implements Window {
         clearConsole();
 
         System.out.println();
-        System.out.println("*".repeat(147));
+        System.out.println("*".repeat(154));
         printCentered("EVENTIFY");
         printCentered("Make Every Event Count");
-        System.out.println("*".repeat(147));
+        System.out.println("*".repeat(154));
         printCentered("<<< Managing Events >>>\n");
-        System.out.println(" ".repeat(65) + "1. Add New Event");
-        System.out.println(" ".repeat(65) + "2. Cancel an Event");
-        System.out.println(" ".repeat(65) + "3. Display Upcoming Events");
-        System.out.println(" ".repeat(65) + "4. Back to Logged In Menu");
+        System.out.println(" ".repeat(67) + "1. Add New Event");
+        System.out.println(" ".repeat(67) + "2. Cancel an Event");
+        System.out.println(" ".repeat(67) + "3. Display Upcoming Events");
+        System.out.println(" ".repeat(67) + "4. Back to Logged In Menu");
     }
 
     @Override
