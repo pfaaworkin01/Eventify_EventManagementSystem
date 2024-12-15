@@ -54,12 +54,17 @@ public class EventWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Enter Event ID: ");
-                    String eventIDInput = scanner.nextLine();
-                    while (!inputValidator.eventIDValid(eventIDInput)) {
-                        eventIDInput = scanner.nextLine();
+                    padding = (terminalWidth - "Enter Event ID: ".length()) / 2;
+                    for(int i = 0; i < padding; i++) {
+                        System.out.print(" ");
                     }
-                    int eventID = Integer.parseInt(eventIDInput);
+                    System.out.println("Enter Event ID: ");
+//                    int eventID = scanner.nextInt();
+                    String newl = scanner.nextLine();
+//                    while (!inputValidator.eventIDValid(eventID)) {
+////                        eventID = scanner.nextInt();
+//                        scanner.nextLine();
+//                    }
 
                     EventTypeTable eventTypeTable = new EventTypeTable();
                     String eventType = eventTypeTable.selectEventType();
@@ -67,7 +72,7 @@ public class EventWindow implements Window {
                     String eventName = scanner.nextLine();
                     System.out.println("Enter Event Date: ");
                     String eventDate = scanner.nextLine();
-                    eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
+//                    eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
                     break;
                 case 2:
                     System.out.println("Enter Event ID: ");

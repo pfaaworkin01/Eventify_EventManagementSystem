@@ -11,7 +11,9 @@ import static Global.GlobalMethod.printCentered;
 
 public class InputValidator {
 
-    public boolean eventIDValid(String eventIDInput) {
+    public boolean eventIDValid(int eventIDInput) {
+        String StringEventIDInput = String.valueOf(eventIDInput);
+
         String filePath = "Event_Data.txt";
         List<String[]> events = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -25,14 +27,14 @@ public class InputValidator {
             System.out.println("Error reading file: " + e.getMessage());
         }
 
-        while (!eventIDInput.matches("^[0-9]{6}$")) {
+        while (!StringEventIDInput.matches("^[0-9]{6}$")) {
             printCentered("Invalid Event ID. Event ID must strictly be 6 digits long.");
-            eventIDInput = scanner.nextLine();
+            return false;
         }
 
         for (String[] event : events) {
-            if(event[0].equals(eventIDInput)) {
-                printCentered("Error! Event ID " + eventIDInput + " is already in use!");
+            if(event[0].equals(StringEventIDInput)) {
+                printCentered("Error! Event ID " + StringEventIDInput + " is already in use!");
                 printCentered("Event ID must be unique");
                 return false;
             }
