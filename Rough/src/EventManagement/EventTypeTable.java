@@ -25,6 +25,7 @@ public class EventTypeTable {
         Scanner scanner = new Scanner(System.in);
         while (!quit) {
             displayEventTypes();
+            System.out.println();
 
             int terminalWidth = 154;
             int padding = (terminalWidth - "Choose Event Type (1/2/3): ".length()) / 2;
@@ -50,7 +51,7 @@ public class EventTypeTable {
                     quit = true;
                     break;
                 default:
-                    printCentered("Invalid Selection. Try Again!!!");
+                    printCentered("Invalid Selection. Try Again!!!\n");
                     break;
             }
         }

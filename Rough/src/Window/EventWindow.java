@@ -51,34 +51,29 @@ public class EventWindow implements Window {
 
             switch (choice) {
                 case 1:
-//                    GlobalMethod.insertPadding("Enter Event ID: ");
-//                    System.out.println("Enter Event ID: ");
-//                    int eventID = scanner.nextInt();
-//                    scanner.nextLine();
-//                    while (!inputValidator.eventIDValid(eventID)) {
-//                        eventID = scanner.nextInt();
-//                        scanner.nextLine();
-//                    }
-//
-//                    EventTypeTable eventTypeTable = new EventTypeTable();
-//                    String eventType = eventTypeTable.selectEventType();
-//                    System.out.println("Enter Event Name: ");
-//                    String eventName = scanner.nextLine();
-//                    System.out.println("Enter Event Date: ");
-//                    String eventDate = scanner.nextLine();
-//                    eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
-//                    break;
                     GlobalMethod.insertPadding("Enter Event ID: ");
                     System.out.printf("Enter Event ID: ");
                     int eventID = scanner.nextInt();
                     scanner.nextLine();
-
                     while(!inputValidator.eventIDValid(eventID)) {
                         GlobalMethod.insertPadding("Enter Event ID: ");
                         System.out.printf("Enter Event ID: ");
                         eventID = scanner.nextInt();
                         scanner.nextLine();
                     }
+
+                    EventTypeTable eventTypeTable = new EventTypeTable();
+                    String eventType = eventTypeTable.selectEventType();
+
+                    GlobalMethod.insertPadding("Enter Event Name: ");
+                    System.out.printf("Enter Event Name: ");
+                    String eventName = scanner.nextLine();
+
+                    GlobalMethod.insertPadding("Enter Event Date: ");
+                    System.out.printf("Enter Event Date: ");
+                    String eventDate = scanner.nextLine();
+
+                    eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
                     break;
                 case 2:
                     System.out.println("Enter Event ID: ");
@@ -86,18 +81,14 @@ public class EventWindow implements Window {
                     eventManager.removeEvent(eventID2);
                     break;
                 case 3:
-//                    DataManager dataManager = new DataManager();
-//                    dataManager.displayEvents();
-//                    String doneViewingEvents = "N";
-//                    while (!doneViewingEvents.equalsIgnoreCase("Y")) {
-//                        terminalWidth = 150;
-//                        padding = (terminalWidth - "Quit? (Y/N): ".length()) / 2;
-//                        for(int i = 0; i < padding; i++) {
-//                            System.out.print(" ");
-//                        }
-//                        System.out.print("Quit? (Y/N): ");
-//                        doneViewingEvents = scanner.nextLine();
-//                    }
+                    DataManager dataManager = new DataManager();
+                    dataManager.displayEvents();
+                    String doneViewingEvents = "N";
+                    while (!doneViewingEvents.equalsIgnoreCase("Y")) {
+                        GlobalMethod.insertPadding("Quit? (Y/N): ");
+                        System.out.print("Quit? (Y/N): ");
+                        doneViewingEvents = scanner.nextLine();
+                    }
                     break;
                 case 4:
                     quit = true;
