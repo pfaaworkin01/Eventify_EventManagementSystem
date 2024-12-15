@@ -36,7 +36,8 @@ public class LoggedInWindow implements Window {
             for(int i = 0; i < 5; i++) {
                 System.out.println();
             }
-            GlobalMethod.insertPadding();
+
+            GlobalMethod.insertPadding("Select an Option (1-4): ");
             System.out.print("Select an Option (1-4): ");
             int choice = scanner.nextInt();
             scanner.nextLine();

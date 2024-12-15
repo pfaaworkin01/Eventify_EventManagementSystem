@@ -43,36 +43,42 @@ public class EventWindow implements Window {
             for(int i = 0; i < 5; i++) {
                 System.out.println("\n");
             }
-            int terminalWidth = 154;
-            int padding = (terminalWidth - "Select an Option (1-4): ".length()) / 2;
-            for(int i = 0; i < padding; i++) {
-                System.out.print(" ");
-            }
+
+            GlobalMethod.insertPadding("Select an Option (1-4): ");
             System.out.print("Select an Option (1-4): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
                 case 1:
-                    padding = (terminalWidth - "Enter Event ID: ".length()) / 2;
-                    for(int i = 0; i < padding; i++) {
-                        System.out.print(" ");
-                    }
-                    System.out.println("Enter Event ID: ");
+//                    GlobalMethod.insertPadding("Enter Event ID: ");
+//                    System.out.println("Enter Event ID: ");
 //                    int eventID = scanner.nextInt();
-                    String newl = scanner.nextLine();
+//                    scanner.nextLine();
 //                    while (!inputValidator.eventIDValid(eventID)) {
-////                        eventID = scanner.nextInt();
+//                        eventID = scanner.nextInt();
 //                        scanner.nextLine();
 //                    }
-
-                    EventTypeTable eventTypeTable = new EventTypeTable();
-                    String eventType = eventTypeTable.selectEventType();
-                    System.out.println("Enter Event Name: ");
-                    String eventName = scanner.nextLine();
-                    System.out.println("Enter Event Date: ");
-                    String eventDate = scanner.nextLine();
+//
+//                    EventTypeTable eventTypeTable = new EventTypeTable();
+//                    String eventType = eventTypeTable.selectEventType();
+//                    System.out.println("Enter Event Name: ");
+//                    String eventName = scanner.nextLine();
+//                    System.out.println("Enter Event Date: ");
+//                    String eventDate = scanner.nextLine();
 //                    eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
+//                    break;
+                    GlobalMethod.insertPadding("Enter Event ID: ");
+                    System.out.printf("Enter Event ID: ");
+                    int eventID = scanner.nextInt();
+                    scanner.nextLine();
+
+                    while(!inputValidator.eventIDValid(eventID)) {
+                        GlobalMethod.insertPadding("Enter Event ID: ");
+                        System.out.printf("Enter Event ID: ");
+                        eventID = scanner.nextInt();
+                        scanner.nextLine();
+                    }
                     break;
                 case 2:
                     System.out.println("Enter Event ID: ");
@@ -80,18 +86,18 @@ public class EventWindow implements Window {
                     eventManager.removeEvent(eventID2);
                     break;
                 case 3:
-                    DataManager dataManager = new DataManager();
-                    dataManager.displayEvents();
-                    String doneViewingEvents = "N";
-                    while (!doneViewingEvents.equalsIgnoreCase("Y")) {
-                        terminalWidth = 150;
-                        padding = (terminalWidth - "Quit? (Y/N): ".length()) / 2;
-                        for(int i = 0; i < padding; i++) {
-                            System.out.print(" ");
-                        }
-                        System.out.print("Quit? (Y/N): ");
-                        doneViewingEvents = scanner.nextLine();
-                    }
+//                    DataManager dataManager = new DataManager();
+//                    dataManager.displayEvents();
+//                    String doneViewingEvents = "N";
+//                    while (!doneViewingEvents.equalsIgnoreCase("Y")) {
+//                        terminalWidth = 150;
+//                        padding = (terminalWidth - "Quit? (Y/N): ".length()) / 2;
+//                        for(int i = 0; i < padding; i++) {
+//                            System.out.print(" ");
+//                        }
+//                        System.out.print("Quit? (Y/N): ");
+//                        doneViewingEvents = scanner.nextLine();
+//                    }
                     break;
                 case 4:
                     quit = true;

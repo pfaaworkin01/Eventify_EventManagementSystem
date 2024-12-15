@@ -16,7 +16,6 @@ public class InputValidator {
 
         String filePath = "Event_Data.txt";
         List<String[]> events = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -28,7 +27,7 @@ public class InputValidator {
         }
 
         while (!StringEventIDInput.matches("^[0-9]{6}$")) {
-            printCentered("Invalid Event ID. Event ID must strictly be 6 digits long.");
+            printCentered("Invalid Event ID. Event ID must strictly be 6 digits long & cannot start with 0.");
             return false;
         }
 

@@ -23,9 +23,9 @@ public class GlobalMethod {
         }
     }
 
-    public static void insertPadding() {
+    public static void insertPadding(String text) {
         int terminalWidth = 154;
-        int padding = (terminalWidth - "Select an Option (1-4): ".length()) / 2;
+        int padding = (terminalWidth - text.length()) / 2;
         for(int i = 0; i < padding; i++) {
             System.out.print(" ");
         }
