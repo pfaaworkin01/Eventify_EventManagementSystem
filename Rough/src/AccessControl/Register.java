@@ -2,6 +2,7 @@ package AccessControl;
 
 import java.util.Scanner;
 
+import static Global.GlobalMethod.insertPadding;
 import static Global.GlobalMethod.printCentered;
 
 public class Register {
@@ -10,31 +11,36 @@ public class Register {
     private String password;
     int terminalWidth = 154;
     int padding = 0;
+    Scanner scanner = new Scanner(System.in);
 
-    CredentialManager saveCredentials = new CredentialManager();
+
+    CredentialManager credentialManager = new CredentialManager();
 
     public void register() {
 
         System.out.printf("\n");
-        this.username = returnUsername();
+        this.username = receiveUsername();
 
-        if(saveCredentials.checkUsernameAvailability(this.username)) {
-            this.password = returnPassword();
-            saveCredentials.saveCredentials(username, password);
+        if(credentialManager.checkUsernameAvailability(this.username)) {
+            this.password = receivePassword();
+            credentialManager.saveCredentials(username, password);
         }
         else {
-            printCentered("!!!  Username exists. Try something different  !!!");
-            register();
+            System.out.println();
+            printCentered("!!!  Username already exists. Try something different  !!!\n");
+            insertPadding("Do you want to continue? (Y/N): ");
+            System.out.print("Do you want to continue? (Y/N): ");
+            String continueRegistration = scanner.nextLine();
+            if(continueRegistration.equalsIgnoreCase("N")) {}
+            else {
+                register();
+            }
         }
 
     }
 
-    private String returnUsername() {
-        Scanner scanner = new Scanner(System.in);
-        padding = (terminalWidth - "Enter Username: ".length()) / 2;
-        for(int i = 0; i < padding; i++) {
-            System.out.print(" ");
-        }
+    private String receiveUsername() {
+        insertPadding("Enter Username: ");
         System.out.print("Enter Username: ");
         String inputUsername = scanner.nextLine();
         while (!inputUsername.matches("[a-zA-Z0-9]+")) {
@@ -50,12 +56,10 @@ public class Register {
         return inputUsername;
     }
 
-    private String returnPassword() {
+    private String receivePassword() {
         Scanner scanner = new Scanner(System.in);
-        padding = (terminalWidth - "Enter Password: ".length()) / 2;
-        for(int i = 0; i < padding; i++) {
-            System.out.print(" ");
-        }
+
+        insertPadding("Enter Password: ");
         System.out.print("Enter Password: ");
         String inputPassword = scanner.nextLine();
         while (!inputPassword.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,15}")) {

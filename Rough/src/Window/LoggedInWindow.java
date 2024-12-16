@@ -3,14 +3,14 @@ package Window;
 import Global.GlobalData;
 import Global.GlobalMethod;
 import java.util.Scanner;
-import static Global.GlobalMethod.clearConsole;
+import static Global.GlobalMethod.lineGaps;
 import static Global.GlobalMethod.printCentered;
 
 public class LoggedInWindow implements Window {
 
     @Override
     public void showWindow() {
-        clearConsole();
+        lineGaps(8);
 
         System.out.println("*".repeat(154));
         printCentered("EVENTIFY");

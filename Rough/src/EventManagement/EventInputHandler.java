@@ -1,5 +1,7 @@
 package EventManagement;
 
+import Global.GlobalMethod;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,7 +11,36 @@ import java.util.Scanner;
 
 import static Global.GlobalMethod.printCentered;
 
-public class InputValidator {
+public class EventInputHandler {
+
+    public void receiveEventInput() {
+        Scanner scanner = new Scanner(System.in);
+        EventManager eventManager = new EventManager();
+
+        GlobalMethod.insertPadding("Enter Event ID: ");
+        System.out.printf("Enter Event ID: ");
+        int eventID = scanner.nextInt();
+        scanner.nextLine();
+        while(!eventIDValid(eventID)) {
+            GlobalMethod.insertPadding("Enter Event ID: ");
+            System.out.printf("Enter Event ID: ");
+            eventID = scanner.nextInt();
+            scanner.nextLine();
+        }
+
+        EventTypeTable eventTypeTable = new EventTypeTable();
+        String eventType = eventTypeTable.selectEventType();
+
+        GlobalMethod.insertPadding("Enter Event Name: ");
+        System.out.printf("Enter Event Name: ");
+        String eventName = scanner.nextLine();
+
+        GlobalMethod.insertPadding("Enter Event Date: ");
+        System.out.printf("Enter Event Date: ");
+        String eventDate = scanner.nextLine();
+
+        eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
+    }
 
     public boolean eventIDValid(int eventIDInput) {
         String StringEventIDInput = String.valueOf(eventIDInput);

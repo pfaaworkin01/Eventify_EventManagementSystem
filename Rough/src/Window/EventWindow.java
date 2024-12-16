@@ -2,21 +2,19 @@ package Window;
 
 import EventManagement.DataManager;
 import EventManagement.EventManager;
-import EventManagement.EventTypeTable;
-import EventManagement.InputValidator;
+import EventManagement.EventInputHandler;
 import Global.GlobalMethod;
 
-import java.io.IOException;
 import java.util.Scanner;
 
-import static Global.GlobalMethod.clearConsole;
+import static Global.GlobalMethod.lineGaps;
 import static Global.GlobalMethod.printCentered;
 
 public class EventWindow implements Window {
 
     @Override
     public void showWindow() {
-        clearConsole();
+        lineGaps(8);
 
         System.out.println();
         System.out.println("*".repeat(154));
@@ -35,7 +33,7 @@ public class EventWindow implements Window {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         EventManager eventManager = new EventManager();
-        InputValidator inputValidator = new InputValidator();
+        EventInputHandler eventInputHandler = new EventInputHandler();
 
         while (!quit) {
             showWindow();
@@ -51,29 +49,7 @@ public class EventWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    GlobalMethod.insertPadding("Enter Event ID: ");
-                    System.out.printf("Enter Event ID: ");
-                    int eventID = scanner.nextInt();
-                    scanner.nextLine();
-                    while(!inputValidator.eventIDValid(eventID)) {
-                        GlobalMethod.insertPadding("Enter Event ID: ");
-                        System.out.printf("Enter Event ID: ");
-                        eventID = scanner.nextInt();
-                        scanner.nextLine();
-                    }
-
-                    EventTypeTable eventTypeTable = new EventTypeTable();
-                    String eventType = eventTypeTable.selectEventType();
-
-                    GlobalMethod.insertPadding("Enter Event Name: ");
-                    System.out.printf("Enter Event Name: ");
-                    String eventName = scanner.nextLine();
-
-                    GlobalMethod.insertPadding("Enter Event Date: ");
-                    System.out.printf("Enter Event Date: ");
-                    String eventDate = scanner.nextLine();
-
-                    eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
+                    eventInputHandler.receiveEventInput();
                     break;
                 case 2:
                     System.out.println("Enter Event ID: ");
