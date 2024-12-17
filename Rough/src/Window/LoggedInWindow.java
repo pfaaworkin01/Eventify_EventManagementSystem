@@ -2,27 +2,25 @@ package Window;
 
 import Global.GlobalData;
 import Global.GlobalMethod;
-
 import java.util.Scanner;
-
-import static Global.GlobalMethod.clearConsole;
+import static Global.GlobalMethod.lineGaps;
 import static Global.GlobalMethod.printCentered;
 
 public class LoggedInWindow implements Window {
 
     @Override
     public void showWindow() {
-        clearConsole();
+        lineGaps(8);
 
         System.out.println("*".repeat(154));
         printCentered("EVENTIFY");
         printCentered("Make Every Event Count");
         System.out.println("*".repeat(154));
         printCentered("<<< Logged In as \"" + GlobalData.LOGGED_IN_USERNAME + "\" >>>\n");
-        System.out.println(" ".repeat(65) + "1. Manage Events");
-        System.out.println(" ".repeat(65) + "2. Manage Teams");
-        System.out.println(" ".repeat(65) + "3. Manage Budget");
-        System.out.println(" ".repeat(65) + "4. Log Out\n");
+        System.out.println(" ".repeat(67) + "1. Manage Events");
+        System.out.println(" ".repeat(67) + "2. Manage Teams");
+        System.out.println(" ".repeat(67) + "3. Manage Budget");
+        System.out.println(" ".repeat(67) + "4. Log Out\n");
     }
 
     @Override
@@ -38,7 +36,8 @@ public class LoggedInWindow implements Window {
             for(int i = 0; i < 5; i++) {
                 System.out.println();
             }
-            GlobalMethod.insertPadding();
+
+            GlobalMethod.insertPadding("Select an Option (1-4): ");
             System.out.print("Select an Option (1-4): ");
             int choice = scanner.nextInt();
             scanner.nextLine();

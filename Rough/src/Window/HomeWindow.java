@@ -3,17 +3,15 @@ package Window;
 import AccessControl.Login;
 import AccessControl.Register;
 import Global.GlobalData;
-
 import java.util.Scanner;
 
-import static Global.GlobalMethod.clearConsole;
-import static Global.GlobalMethod.printCentered;
+import static Global.GlobalMethod.*;
 
 public class HomeWindow implements Window {
 
     @Override
     public void showWindow() {
-        clearConsole();
+        lineGaps(8);
 
         System.out.println("*".repeat(154));
         printCentered("EVENTIFY");
@@ -27,21 +25,14 @@ public class HomeWindow implements Window {
 
     @Override
     public void askForInput() {
-        LoggedInWindow loggedInWindow = new LoggedInWindow();
-        Scanner scanner = new Scanner(System.in);
         boolean quit = false;
+        Scanner scanner = new Scanner(System.in);
 
         while (!quit) {
             showWindow();
 
-            for(int i = 0; i < 5; i++) {
-                System.out.println();
-            }
-            int terminalWidth = 154;
-            int padding = (terminalWidth - "Select an Option (1-3): ".length()) / 2;
-            for(int i = 0; i < padding; i++) {
-                System.out.print(" ");
-            }
+            lineGaps(5);
+            insertPadding("Select an Option (1-3): ");
             System.out.print("Select an Option (1-3): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -52,6 +43,7 @@ public class HomeWindow implements Window {
                     register.register();
                     break;
                 case 2:
+                    LoggedInWindow loggedInWindow = new LoggedInWindow();
                     Login login = new Login();
                     login.login();
                     if(GlobalData.AUTHENTICATED) {

@@ -24,14 +24,14 @@ public class BudgetWindow implements Window {
     @Override
     public void showWindow() {
         System.out.println("\n");
-        System.out.println("*".repeat(147));
+        System.out.println("*".repeat(154));
         printCentered("EVENTIFY");
         printCentered("Make Every Event Count");
-        System.out.println("*".repeat(147));
+        System.out.println("*".repeat(154));
         printCentered("Budget Management\n");
-        System.out.println(" ".repeat(65) + "1. Select an Event");
-        System.out.println(" ".repeat(65) + "2. View All Events");
-        System.out.println(" ".repeat(65) + "3. Go Back");
+        System.out.println(" ".repeat(67) + "1. Select an Event");
+        System.out.println(" ".repeat(67) + "2. View All Events");
+        System.out.println(" ".repeat(67) + "3. Go Back");
     }
 
     @Override

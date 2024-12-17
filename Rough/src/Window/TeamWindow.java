@@ -11,16 +11,16 @@ public class TeamWindow implements Window {
     @Override
     public void showWindow() {
         System.out.println("\n");
-        System.out.println("*".repeat(147));
+        System.out.println("*".repeat(154));
         printCentered("EVENTIFY");
         printCentered("Make Every Event Count");
-        System.out.println("*".repeat(147));
+        System.out.println("*".repeat(154));
         printCentered("Managing Teams\n");
-        System.out.println(" ".repeat(65) + "1. Add members to a Sector");
-        System.out.println(" ".repeat(65) + "2. Add a custom Sector");
-        System.out.println(" ".repeat(65) + "3. View all Sectors and Members");
-        System.out.println(" ".repeat(65) + "4. Go Back");
-        System.out.println(" ".repeat(65) + "5. Return to Main Menu");
+        System.out.println(" ".repeat(67) + "1. Add members to a Sector");
+        System.out.println(" ".repeat(67) + "2. Add a custom Sector");
+        System.out.println(" ".repeat(67) + "3. View all Sectors and Members");
+        System.out.println(" ".repeat(67) + "4. Go Back");
+        System.out.println(" ".repeat(67) + "5. Return to Main Menu");
     }
 
     @Override

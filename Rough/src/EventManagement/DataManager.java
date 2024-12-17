@@ -3,7 +3,7 @@ package EventManagement;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+import static Global.GlobalMethod.printCentered;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,12 +104,6 @@ public class DataManager {
         }
 
         printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(typeWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
-    }
-
-    static void printCentered(String text) {
-        int terminalWidth = 154;
-        int padding = (terminalWidth - text.length()) / 2;
-        System.out.println(" ".repeat(Math.max(0, padding)) + text);
     }
 
 }
