@@ -2,25 +2,22 @@ package Window;
 
 import AccessControl.Login;
 import AccessControl.Register;
-import Global.GlobalData;
 import java.util.Scanner;
-
+import static Global.GlobalData.*;
 import static Global.GlobalMethod.*;
 
 public class HomeWindow implements Window {
 
+    int numberOfLinesToKeepEmpty = 5;
+
     @Override
     public void showWindow() {
-        lineGaps(8);
+        lineGaps(numberOfLinesToKeepEmpty);
 
-        System.out.println("*".repeat(154));
-        printCentered("EVENTIFY");
-        printCentered("Make Every Event Count");
-        System.out.println("*".repeat(154));
-        printCentered("<<< HOME >>>\n");
-        System.out.println(" ".repeat(67) + "1. User Registration");
-        System.out.println(" ".repeat(67) + "2. User Login");
-        System.out.println(" ".repeat(67) + "3. Quit");
+        printHeaderPart("Home");
+        insertPadding("1. User Registration", 67);
+        insertPadding("2. User Login", 67);
+        insertPadding("3. Quit", 67);
     }
 
     @Override
@@ -32,10 +29,21 @@ public class HomeWindow implements Window {
             showWindow();
 
             lineGaps(5);
+
             insertPadding("Select an Option (1-3): ");
             System.out.print("Select an Option (1-3): ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice;
+            if(scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            }
+            else {
+                System.out.println();
+                printCentered("!!!  Dude, only numbers from 1 to 3. It says right there next to the cursor  !!!", YELLOW_TEXT);
+                scanner.nextLine();
+                numberOfLinesToKeepEmpty = 2;
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -43,10 +51,11 @@ public class HomeWindow implements Window {
                     register.register();
                     break;
                 case 2:
-                    LoggedInWindow loggedInWindow = new LoggedInWindow();
                     Login login = new Login();
                     login.login();
-                    if(GlobalData.AUTHENTICATED) {
+
+                    LoggedInWindow loggedInWindow = new LoggedInWindow();
+                    if(AUTHENTICATED) {
                         loggedInWindow.askForInput();
                     }
                     break;
@@ -54,7 +63,9 @@ public class HomeWindow implements Window {
                     quit = true;
                     break;
                 default:
-                    System.out.println("Invalid Option");
+                    System.out.println();
+                    printCentered("!!!  Seriously Nigga??. U blind or something? Do u see anything assigned to \'" + choice + "\'?", YELLOW_TEXT);
+                    numberOfLinesToKeepEmpty = 2;
                     break;
             }
         }
