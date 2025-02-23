@@ -2,3 +2,4 @@ Rough/out/
 Rough/*.iml
 out/*
 *.iml
+.DS_Store
