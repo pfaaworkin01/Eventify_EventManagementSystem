@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Global.GlobalData.RESET_ANSI_ESCAPE_CODE_MODIFICATIONS;
+import static Global.GlobalData.YELLOW_TEXT;
 import static Global.GlobalMethod.printCentered;
 
 public class EventInputHandler {
@@ -18,12 +20,19 @@ public class EventInputHandler {
         EventManager eventManager = new EventManager();
 
         GlobalMethod.insertPadding("Enter Event ID: ");
-        System.out.printf("Enter Event ID: ");
+        System.out.print("Enter Event ID: ");
         int eventID = scanner.nextInt();
         scanner.nextLine();
+        while (!(String.valueOf(eventID).matches("^[0-9]{6}$"))) {
+            printCentered(YELLOW_TEXT + "Invalid Event ID. Event ID must strictly be 6 digits long & cannot start with 0. Try Again" + RESET_ANSI_ESCAPE_CODE_MODIFICATIONS);
+            GlobalMethod.insertPadding("Enter Event ID: ");
+            System.out.print("Enter Event ID: ");
+            eventID = scanner.nextInt();
+            scanner.nextLine();
+        }
         while(!eventIDValid(eventID)) {
             GlobalMethod.insertPadding("Enter Event ID: ");
-            System.out.printf("Enter Event ID: ");
+            System.out.print("Enter Event ID: ");
             eventID = scanner.nextInt();
             scanner.nextLine();
         }
@@ -32,11 +41,11 @@ public class EventInputHandler {
         String eventType = eventTypeTable.selectEventType();
 
         GlobalMethod.insertPadding("Enter Event Name: ");
-        System.out.printf("Enter Event Name: ");
+        System.out.print("Enter Event Name: ");
         String eventName = scanner.nextLine();
 
         GlobalMethod.insertPadding("Enter Event Date: ");
-        System.out.printf("Enter Event Date: ");
+        System.out.print("Enter Event Date: ");
         String eventDate = scanner.nextLine();
 
         eventManager.addNewEvent(eventID, eventType, eventName, eventDate);
@@ -55,11 +64,6 @@ public class EventInputHandler {
             }
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
-        }
-
-        while (!StringEventIDInput.matches("^[0-9]{6}$")) {
-            printCentered("Invalid Event ID. Event ID must strictly be 6 digits long & cannot start with 0.");
-            return false;
         }
 
         for (String[] event : events) {
