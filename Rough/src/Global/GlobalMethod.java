@@ -13,7 +13,7 @@ public class GlobalMethod {
         printCentered("Make Every Event Count");
         System.out.print(RESET_ANSI_ESCAPE_CODE_MODIFICATIONS);
         System.out.println("*".repeat(154));
-        printCentered("<<< " + windowTitle + " >>>", BLUE_TEXT);
+        printCentered(windowTitle, BLUE_TEXT);
         System.out.println();
     }
 
@@ -27,7 +27,7 @@ public class GlobalMethod {
         System.out.print(textColor);
         int terminalWidth = 154;
         int padding = (terminalWidth - text.length()) / 2;
-        System.out.println(" ".repeat(Math.max(0, padding)) + text);
+        System.out.println(" ".repeat(Math.max(0, padding)) + "<<< " + RESET_ANSI_ESCAPE_CODE_MODIFICATIONS + text + BLUE_TEXT + " >>>");
         System.out.print(RESET_ANSI_ESCAPE_CODE_MODIFICATIONS);
     }
 

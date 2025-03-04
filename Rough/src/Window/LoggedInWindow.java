@@ -3,20 +3,14 @@ package Window;
 import Global.GlobalData;
 import Global.GlobalMethod;
 import java.util.Scanner;
-import static Global.GlobalMethod.lineGaps;
-import static Global.GlobalMethod.printCentered;
+
+import static Global.GlobalMethod.*;
 
 public class LoggedInWindow implements Window {
 
     @Override
     public void showWindow() {
-        lineGaps(8);
-
-        System.out.println("*".repeat(154));
-        printCentered("EVENTIFY");
-        printCentered("Make Every Event Count");
-        System.out.println("*".repeat(154));
-        printCentered("<<< Logged In as \"" + GlobalData.LOGGED_IN_USERNAME + "\" >>>\n");
+        printHeaderPart("Logged In as \"" + GlobalData.LOGGED_IN_USERNAME + "\"");
         System.out.println(" ".repeat(67) + "1. Manage Events");
         System.out.println(" ".repeat(67) + "2. Manage Teams");
         System.out.println(" ".repeat(67) + "3. Manage Budget");

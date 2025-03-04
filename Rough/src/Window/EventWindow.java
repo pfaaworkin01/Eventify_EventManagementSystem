@@ -7,21 +7,13 @@ import Global.GlobalMethod;
 
 import java.util.Scanner;
 
-import static Global.GlobalMethod.lineGaps;
-import static Global.GlobalMethod.printCentered;
+import static Global.GlobalMethod.*;
 
 public class EventWindow implements Window {
 
     @Override
     public void showWindow() {
-        lineGaps(8);
-
-        System.out.println();
-        System.out.println("*".repeat(154));
-        printCentered("EVENTIFY");
-        printCentered("Make Every Event Count");
-        System.out.println("*".repeat(154));
-        printCentered("<<< Managing Events >>>\n");
+        printHeaderPart("<<< Managing Events >>>");
         System.out.println(" ".repeat(67) + "1. Add New Event");
         System.out.println(" ".repeat(67) + "2. Cancel an Event");
         System.out.println(" ".repeat(67) + "3. Display Upcoming Events");

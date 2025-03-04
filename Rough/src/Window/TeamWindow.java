@@ -6,16 +6,12 @@ import Team.TeamManager;
 import java.util.Scanner;
 
 import static Global.GlobalMethod.printCentered;
+import static Global.GlobalMethod.printHeaderPart;
 
 public class TeamWindow implements Window {
     @Override
     public void showWindow() {
-        System.out.println("\n");
-        System.out.println("*".repeat(154));
-        printCentered("EVENTIFY");
-        printCentered("Make Every Event Count");
-        System.out.println("*".repeat(154));
-        printCentered("Managing Teams\n");
+        printHeaderPart("Managing Teams");
         System.out.println(" ".repeat(67) + "1. Add members to a Sector");
         System.out.println(" ".repeat(67) + "2. Add a custom Sector");
         System.out.println(" ".repeat(67) + "3. View all Sectors and Members");
