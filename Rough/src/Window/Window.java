@@ -4,5 +4,5 @@ public interface  Window {
 
     void showWindow();
     void askForInput();
-
+    
 }
