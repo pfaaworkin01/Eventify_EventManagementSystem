@@ -39,7 +39,7 @@ public class HomeWindow implements Window {
             }
             else {
                 System.out.println();
-                printCentered("!!!  Dude, only numbers from 1 to 3. It says right there next to the cursor  !!!", YELLOW_TEXT);
+                printCentered("Invalid input. Enter only a number in the range 1-3 ", YELLOW_TEXT);
                 scanner.nextLine();
                 numberOfLinesToKeepEmpty = 2;
                 continue;
@@ -64,7 +64,7 @@ public class HomeWindow implements Window {
                     break;
                 default:
                     System.out.println();
-                    printCentered("!!!  Seriously Nigga??. U blind or something? Do u see anything assigned to \'" + choice + "\'?", YELLOW_TEXT);
+                    printCentered("Invalid choice. Enter a number in the range 1-3", YELLOW_TEXT);
                     numberOfLinesToKeepEmpty = 2;
                     break;
             }
