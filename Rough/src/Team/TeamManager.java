@@ -53,7 +53,7 @@ public class TeamManager {
         }
     }
 
-    
+
 
     private Sector findSector(String sectorName) {
         for (Sector sector : sectors) {
