@@ -21,6 +21,19 @@ public class TeamManager {
             sectors.add(new CreativeSector());
         }
     }
+    public void removeMemberFromSector(int sectorIndex, String memberName) {
+        if (sectorIndex >= 0 && sectorIndex < sectors.size()) {
+            Sector sector = sectors.get(sectorIndex);
+            if (sector.getTeamMembers().remove(memberName)) {
+                System.out.println(memberName + " removed from " + sector.getSectorName());
+                FileSystem.saveData(sectors); // Save to file after removing a member
+            } else {
+                System.out.println("Member not found in the sector.");
+            }
+        } else {
+            System.out.println("Invalid sector index.");
+        }
+    }
 
     public void addCustomSector(String sectorName) {
         if (findSector(sectorName) == null) {

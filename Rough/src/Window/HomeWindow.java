@@ -26,6 +26,7 @@ public class HomeWindow implements Window {
         Scanner scanner = new Scanner(System.in);
 
         while (!quit) {
+
             showWindow();
 
             lineGaps(5);
@@ -47,10 +48,12 @@ public class HomeWindow implements Window {
 
             switch (choice) {
                 case 1:
+
                     Register register = new Register();
                     register.register();
                     break;
                 case 2:
+
                     Login login = new Login();
                     login.login();
 
@@ -60,14 +63,17 @@ public class HomeWindow implements Window {
                     }
                     break;
                 case 3:
+
                     quit = true;
                     break;
                 default:
                     System.out.println();
-                    printCentered("!!!  Seriously Nigga??. U blind or something? Do u see anything assigned to \'" + choice + "\'?", YELLOW_TEXT);
+                    printCentered("Select Numbers Assigned to 1-3 only. Nothing is assigned to \'" + choice + "\'", YELLOW_TEXT);
                     numberOfLinesToKeepEmpty = 2;
                     break;
             }
         }
     }
+
+
 }
