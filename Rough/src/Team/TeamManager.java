@@ -32,13 +32,13 @@ public class TeamManager {
         }
     }
 
-    public void addMemberToSector(String sectorName, String memberName) {
-        Sector sector = findSector(sectorName);
-        if (sector != null) {
+    public void addMemberToSector(int sectorIndex, String memberName) {
+        if (sectorIndex >= 0 && sectorIndex < sectors.size()) {
+            Sector sector = sectors.get(sectorIndex);
             sector.addMember(memberName);
             FileSystem.saveData(sectors); // Save to file after adding a member
         } else {
-            System.out.println("Sector not found.");
+            System.out.println("Invalid sector index.");
         }
     }
 
