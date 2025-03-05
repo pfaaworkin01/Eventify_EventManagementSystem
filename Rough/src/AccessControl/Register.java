@@ -12,13 +12,13 @@ public class Register {
     public void register() {
         String username = receiveUsername();
 
-        if(credentialManager.checkUsernameAvailability(username)) {
+        if (credentialManager.checkUsernameAvailability(username)) {
             String password = receivePassword();
 
             while (true) {
                 System.out.println();
-                insertPadding("Are you sure you want to register as \'" + username + "\'? (Y/N): ");
-                System.out.print("Are you sure you want to register as \'" + username + "\'? (Y/N): ");
+                insertPadding("Are you sure you want to register as '" + username + "'? (Y/N): ");
+                System.out.print("Are you sure you want to register as '" + username + "'? (Y/N): ");
                 String confirmRegistration = scanner.nextLine();
                 if (confirmRegistration.equalsIgnoreCase("N")) {
                     System.out.println();
@@ -33,8 +33,7 @@ public class Register {
                     printCentered("Invalid input. Please enter 'Y' or 'N'", YELLOW_TEXT);
                 }
             }
-        }
-        else {
+        } else {
             System.out.println();
             printCentered("Username already exists. Try something different", YELLOW_TEXT);
 
@@ -57,7 +56,6 @@ public class Register {
                 }
             }
         }
-
     }
 
     private String receiveUsername() {
@@ -68,28 +66,23 @@ public class Register {
         if (!username.matches("[a-zA-Z0-9]+")) {
             System.out.println();
             printCentered("Invalid Username. Only alphanumeric characters are allowed", YELLOW_TEXT);
-            receiveUsername();
+            return receiveUsername();
         }
-
         return username;
     }
 
     private String receivePassword() {
         System.out.println();
         insertPadding("Enter Password: ");
-        System.out.print("Enter Password: ");
-        String inputPassword = scanner.nextLine();
+        String inputPassword = PasswordField.readPassword("Enter Password: ");
         while (!inputPassword.matches("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,15}")) {
             System.out.println();
             printCentered("!!!  Invalid Password  !!!", YELLOW_TEXT);
             printCentered("!!!  Password length must be between 8-15  !!!", YELLOW_TEXT);
             printCentered("!!!  Password also must contain at least one character from each of these groups (a-z), (A-Z), (0-9)  !!!", YELLOW_TEXT);
             insertPadding("Enter Password: ");
-            System.out.print("Enter Password: ");
-            inputPassword = scanner.nextLine();
+            inputPassword = PasswordField.readPassword("Enter Password: ");
         }
-
         return inputPassword;
     }
-
 }
