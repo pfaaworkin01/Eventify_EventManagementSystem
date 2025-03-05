@@ -47,6 +47,13 @@ public class TeamManager {
             sector.displayMembers();
         }
     }
+    public void displaySectorNames() {
+        for (int i = 0; i < sectors.size(); i++) {
+            System.out.println((i + 1) + ". " + sectors.get(i).getSectorName());
+        }
+    }
+
+    
 
     private Sector findSector(String sectorName) {
         for (Sector sector : sectors) {
