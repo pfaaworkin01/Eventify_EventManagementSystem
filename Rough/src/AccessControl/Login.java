@@ -12,37 +12,27 @@ public class Login {
     CredentialManager loadCredentials = new CredentialManager();
 
     public void login() {
-
         System.out.printf("\n");
         this.username = returnUsername();
         this.password = returnPassword();
-
         loadCredentials.loadCredentials(username, password);
-
     }
 
     private String returnUsername() {
         Scanner scanner = new Scanner(System.in);
         padding = (terminalWidth - "Enter Username: ".length()) / 2;
-        for(int i = 0; i < padding; i++) {
+        for (int i = 0; i < padding; i++) {
             System.out.print(" ");
         }
         System.out.print("Enter Username: ");
-        String inputUsername = scanner.nextLine();
-
-        return inputUsername;
+        return scanner.nextLine();
     }
 
     private String returnPassword() {
-        Scanner scanner = new Scanner(System.in);
         padding = (terminalWidth - "Enter Password: ".length()) / 2;
-        for(int i = 0; i < padding; i++) {
+        for (int i = 0; i < padding; i++) {
             System.out.print(" ");
         }
-        System.out.print("Enter Password: ");
-        String inputPassword = scanner.nextLine();
-
-        return inputPassword;
+        return PasswordField.readPassword("Enter Password: ");
     }
-
 }
