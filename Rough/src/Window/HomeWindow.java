@@ -15,9 +15,9 @@ public class HomeWindow implements Window {
         lineGaps(numberOfLinesToKeepEmpty);
 
         printHeaderPart("Home");
-        insertPadding("1. User Registration", 67);
-        insertPadding("2. User Login", 67);
-        insertPadding("3. Quit", 67);
+        insertPadding("1. User Registration", 64);
+        insertPadding("2. User Login", 64);
+        insertPadding("3. Quit", 64);
     }
 
     @Override

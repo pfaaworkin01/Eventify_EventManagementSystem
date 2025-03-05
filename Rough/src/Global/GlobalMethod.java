@@ -7,32 +7,32 @@ import static Global.GlobalData.*;
 public class GlobalMethod {
 
     public static void printHeaderPart(String windowTitle) {
-        System.out.println("*".repeat(154));
+        System.out.println("*".repeat(149));
         System.out.print(BLUE_BACKGROUND + BLACK_TEXT + BOLD_TEXT);
         printCentered("EVENTIFY");
         printCentered("Make Every Event Count");
         System.out.print(RESET_ANSI_ESCAPE_CODE_MODIFICATIONS);
-        System.out.println("*".repeat(154));
+        System.out.println("*".repeat(149));
         printCentered(windowTitle, BLUE_TEXT);
         System.out.println();
     }
 
     public static void printCentered(String text) {
-        int terminalWidth = 154;
+        int terminalWidth = 149;
         int padding = (terminalWidth - text.length()) / 2;
         System.out.println(" ".repeat(Math.max(0, padding)) + text);
     }
 
     public static void printCentered(String text, String textColor) {
         System.out.print(textColor);
-        int terminalWidth = 154;
-        int padding = (terminalWidth - text.length()) / 2;
+        int terminalWidth = 149;
+        int padding = ((terminalWidth - text.length()) / 2) - 4;
         System.out.println(" ".repeat(Math.max(0, padding)) + "<<< " + RESET_ANSI_ESCAPE_CODE_MODIFICATIONS + text + BLUE_TEXT + " >>>");
         System.out.print(RESET_ANSI_ESCAPE_CODE_MODIFICATIONS);
     }
 
     public static void insertPadding(String text) {
-        int terminalWidth = 154;
+        int terminalWidth = 149;
         int padding = (terminalWidth - text.length()) / 2;
         for(int i = 0; i < padding; i++) {
             System.out.print(" ");
