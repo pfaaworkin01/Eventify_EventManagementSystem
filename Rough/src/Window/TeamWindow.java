@@ -43,14 +43,22 @@ public class TeamWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Available Sectors:");
-                    teamManager.displaySectorNames();
-                    System.out.print("Select the sector number to add a member: ");
-                    int sectorIndex = scanner.nextInt() - 1;
-                    scanner.nextLine();
-                    System.out.print("Enter the member's name: ");
-                    String memberName = scanner.nextLine();
-                    teamManager.addMemberToSector(sectorIndex, memberName);
+                    boolean back = false;
+                    while (!back) {
+                        System.out.println("Available Sectors:");
+                        teamManager.displaySectorNames();
+                        System.out.println("0. Go Back");
+                        System.out.print("Select the sector number to add a member: ");
+                        int sectorIndex = scanner.nextInt() - 1;
+                        scanner.nextLine();
+                        if (sectorIndex == -1) {
+                            back = true;
+                        } else {
+                            System.out.print("Enter the member's name: ");
+                            String memberName = scanner.nextLine();
+                            teamManager.addMemberToSector(sectorIndex, memberName);
+                        }
+                    }
                     break;
                 case 2:
                     System.out.print("Enter the name of the new sector: ");
