@@ -20,7 +20,7 @@ public class PasswordField {
                     }
                 } else {
                     password.append(c);
-                    System.out.print("*"); // Print '*' instead of the character
+                    //System.out.print("*"); // Print '*' instead of the character
                 }
             }
         } catch (IOException e) {
