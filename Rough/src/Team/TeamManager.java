@@ -63,4 +63,8 @@ public class TeamManager {
         }
         return null;
     }
+
+    public int getSectorCount() {
+        return sectors.size();
+    }
 }
