@@ -43,16 +43,19 @@ public class TeamWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the sector name to add a member: ");
-                    String sectorName1 = scanner.nextLine();
+                    System.out.println("Available Sectors:");
+                    teamManager.displaySectorNames();
+                    System.out.print("Select the sector number to add a member: ");
+                    int sectorIndex = scanner.nextInt() - 1;
+                    scanner.nextLine();
                     System.out.print("Enter the member's name: ");
                     String memberName = scanner.nextLine();
-                    teamManager.addMemberToSector(sectorName1, memberName);
+                    teamManager.addMemberToSector(sectorIndex, memberName);
                     break;
                 case 2:
                     System.out.print("Enter the name of the new sector: ");
-                    String sectorName2 = scanner.nextLine();
-                    teamManager.addCustomSector(sectorName2);
+                    String sectorName = scanner.nextLine();
+                    teamManager.addCustomSector(sectorName);
                     break;
                 case 3:
                     teamManager.displayAllSectors();
