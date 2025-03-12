@@ -5,8 +5,8 @@ import Team.TeamManager;
 
 import java.util.Scanner;
 
-import static Global.GlobalMethod.printCentered;
-import static Global.GlobalMethod.printHeaderPart;
+import static Global.GlobalData.YELLOW_TEXT;
+import static Global.GlobalMethod.*;
 
 public class TeamWindow implements Window {
     @Override
@@ -17,7 +17,7 @@ public class TeamWindow implements Window {
         System.out.println(" ".repeat(67) + "3. View all Sectors and Members");
         System.out.println(" ".repeat(67) + "4. Remove a member from a Sector");
         System.out.println(" ".repeat(67) + "5. Go Back");
-        System.out.println(" ".repeat(67) + "6. Return to Main Menu");
+        System.out.println(" ".repeat(67) + "6. Return to Main Menu\n");
 
     }
 
@@ -43,15 +43,22 @@ public class TeamWindow implements Window {
                 case 1:
                     boolean back = false;
                     while (!back) {
-                        System.out.println("Available Sectors:");
+                        System.out.println();
+                        printCentered("Available Sectors:");
                         teamManager.displaySectorNames();
-                        System.out.println("0. Go Back");
+                        printCentered("Enter 0 to Quit\n");
+                        insertPadding("Select the sector number to add a member: ");
                         System.out.print("Select the sector number to add a member: ");
                         int sectorIndex = scanner.nextInt() - 1;
                         scanner.nextLine();
                         if (sectorIndex == -1) {
                             back = true;
-                        } else {
+                        }
+                        else if (!teamManager.choiceValidity(sectorIndex)) {
+                            printCentered("\n!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
+                        }
+                        else {
+                            insertPadding("Enter the member's name: ");
                             System.out.print("Enter the member's name: ");
                             String memberName = scanner.nextLine();
                             teamManager.addMemberToSector(sectorIndex, memberName);
