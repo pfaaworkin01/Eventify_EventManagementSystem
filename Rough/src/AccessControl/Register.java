@@ -15,7 +15,7 @@ public class Register {
         if (credentialManager.checkUsernameAvailability(username)) {
             String password = receivePassword();
 
-            while (!password.equals("")) {
+            while (!password.isEmpty()) {
                 System.out.println();
                 insertPadding("Are you sure you want to register as '" + username + "'? (Y/N): ");
                 System.out.print("Are you sure you want to register as '" + username + "'? (Y/N): ");
