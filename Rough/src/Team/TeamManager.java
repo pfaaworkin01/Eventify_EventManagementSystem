@@ -2,9 +2,14 @@ package Team;
 
 import Window.LoggedInWindow;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+
+import static Global.GlobalMethod.printCentered;
 
 public class TeamManager {
     private List<Sector> sectors;
@@ -46,12 +51,16 @@ public class TeamManager {
     }
 
     public void addMemberToSector(int sectorIndex, String memberName) {
-        if (sectorIndex >= 0 && sectorIndex < sectors.size()) {
             Sector sector = sectors.get(sectorIndex);
             sector.addMember(memberName);
-            FileSystem.saveData(sectors); // Save to file after adding a member
-        } else {
-            System.out.println("Invalid sector index.");
+            FileSystem.saveData(sectors);
+    }
+    public boolean choiceValidity(int choice) {
+        if(choice >= 0 && choice < sectors.size()) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -61,8 +70,18 @@ public class TeamManager {
         }
     }
     public void displaySectorNames() {
+        printCentered("+" + "-".repeat(7) + "+" + "-".repeat(50) + "+");
+        printCentered("|" + "  " + "No.  " + "|" + " ".repeat(19) + "Sector Name" + " ".repeat(20) + "|");
+        printCentered("+" + "-".repeat(7) + "+" + "-".repeat(50) + "+");
         for (int i = 0; i < sectors.size(); i++) {
-            System.out.println((i + 1) + ". " + sectors.get(i).getSectorName());
+            if(sectors.get(i).getSectorName().length() % 2 == 0) {
+                printCentered("|" + "   " + (i + 1) + "   " + "|" + " ".repeat((50 - sectors.get(i).getSectorName().length()) / 2) + sectors.get(i).getSectorName() + " ".repeat((50 - sectors.get(i).getSectorName().length()) / 2) + "|");
+                printCentered("+" + "-".repeat(7) + "+" + "-".repeat(50) + "+");
+            }
+            else {
+                printCentered("|" + "   " + (i + 1) + "   " + "|" + " ".repeat((50 - sectors.get(i).getSectorName().length()) / 2) + sectors.get(i).getSectorName() + " ".repeat(((50 - sectors.get(i).getSectorName().length()) / 2) + 1) + "|");
+                printCentered("+" + "-".repeat(7) + "+" + "-".repeat(50) + "+");
+            }
         }
     }
 

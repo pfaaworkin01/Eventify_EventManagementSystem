@@ -19,7 +19,6 @@ public class FileSystem {
     public static List<Sector> loadData() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             List<Sector> sectors = (List<Sector>) ois.readObject();
-            System.out.println("Data loaded successfully.");
             return sectors;
         } catch (FileNotFoundException e) {
             System.out.println("No existing data found. Starting with default sectors.");
