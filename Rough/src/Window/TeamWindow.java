@@ -11,13 +11,13 @@ import static Global.GlobalMethod.*;
 public class TeamWindow implements Window {
     @Override
     public void showWindow() {
-        printHeaderPart("Managing Teams");
-        System.out.println(" ".repeat(67) + "1. Add members to a Sector");
-        System.out.println(" ".repeat(67) + "2. Add a custom Sector");
-        System.out.println(" ".repeat(67) + "3. View all Sectors and Members");
-        System.out.println(" ".repeat(67) + "4. Remove a member from a Sector");
-        System.out.println(" ".repeat(67) + "5. Go Back");
-        System.out.println(" ".repeat(67) + "6. Return to Main Menu\n");
+        printHeaderPart("Managing Teams as \"" + GlobalData.LOGGED_IN_USERNAME + "\"");
+        System.out.println(" ".repeat(64) + "1. Add members to a Sector");
+        System.out.println(" ".repeat(64) + "2. Add a custom Sector");
+        System.out.println(" ".repeat(64) + "3. View all Sectors and Members");
+        System.out.println(" ".repeat(64) + "4. Remove a member from a Sector");
+        System.out.println(" ".repeat(64) + "5. Go Back");
+        System.out.println(" ".repeat(64) + "6. Return to Main Menu\n");
 
     }
 
@@ -66,6 +66,8 @@ public class TeamWindow implements Window {
                     }
                     break;
                 case 2:
+                    System.out.println();
+                    insertPadding("Enter the name of the new sector: ");
                     System.out.print("Enter the name of the new sector: ");
                     String sectorName = scanner.nextLine();
                     teamManager.addCustomSector(sectorName);

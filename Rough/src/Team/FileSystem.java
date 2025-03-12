@@ -2,14 +2,15 @@ package Team;
 import java.io.*;
 import java.util.List;
 
+import static Global.GlobalMethod.printCentered;
+
 public class FileSystem {
     private static final String FILE_NAME = "Team_Data.txt";
 
-    // Method to save sectors data to file
     public static void saveData(List<Sector> sectors) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(sectors);
-            System.out.println("Data saved successfully.");
+            printCentered("Member added successfully!");
         } catch (IOException e) {
             System.err.println("Error saving data: " + e.getMessage());
         }

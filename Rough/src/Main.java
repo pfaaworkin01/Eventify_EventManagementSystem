@@ -6,7 +6,6 @@ public class Main {
 
         HomeWindow homeWindow = new HomeWindow();
         homeWindow.askForInput();
-
     }
 
 }
