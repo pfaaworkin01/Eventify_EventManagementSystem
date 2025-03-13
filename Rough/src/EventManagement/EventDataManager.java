@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataManager {
+public class EventDataManager {
 
     private static final String EVENT_DATA = "Event_Data.txt";
 
