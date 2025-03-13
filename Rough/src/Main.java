@@ -1,4 +1,5 @@
 import Window.HomeWindow;
+import Window.TeamWindow;
 
 public class Main {
 
@@ -6,6 +7,9 @@ public class Main {
 
         HomeWindow homeWindow = new HomeWindow();
         homeWindow.askForInput();
+
+//        TeamWindow teamWindow = new TeamWindow();
+//        teamWindow.askForInput();
 
     }
 
