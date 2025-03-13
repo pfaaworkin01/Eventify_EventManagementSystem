@@ -55,8 +55,12 @@ public class HomeWindow implements Window {
                     Login login = new Login();
                     login.login();
                     LoggedInWindow loggedInWindow = new LoggedInWindow();
+                    ParticipantWindow participantWindow = new ParticipantWindow();
                     if(AUTHENTICATED) {
                         loggedInWindow.askForInput();
+                    }
+                    else if (PARTICIPANT_AUTHENTICATED) {
+                        participantWindow.askForInput();
                     }
                     break;
                 case 3:
