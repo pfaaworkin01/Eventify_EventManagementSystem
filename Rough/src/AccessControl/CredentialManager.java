@@ -13,67 +13,131 @@ import static Global.GlobalMethod.waitForAnyKey;
 public class CredentialManager {
 
     private static final String ADMIN_LOGIN_CREDENTIALS = "Admin_Login_Credentials.txt";
-    private static final String PARTICIPANT_CREDENTIALS_ADMIN = "Participant_Login_Credentials.txt";
+    private static final String PARTICIPANT_LOGIN_CREDENTIALS = "Participant_Login_Credentials.txt";
 
-    public void saveCredentials(String username, String password) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ADMIN_LOGIN_CREDENTIALS, true))) {
-            String salt = generateSalt();
-            String hashedPassword = hashPassword(password, salt);
-            writer.write(username + ":" + salt + ":" + hashedPassword + "\n");
-            System.out.println();
-            printCentered("Registered Successfully", GREEN_TEXT);
-            waitForAnyKey();
-        } catch (IOException e) {
-            printCentered("Error Registering User, try again", RED_TEXT);
+    public void saveCredentials(String username, String password, int admin1_participant2) {
+        if(admin1_participant2 == 1) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(ADMIN_LOGIN_CREDENTIALS, true))) {
+                String salt = generateSalt();
+                String hashedPassword = hashPassword(password, salt);
+                writer.write(username + ":" + salt + ":" + hashedPassword + "\n");
+                System.out.println();
+                printCentered("Registered Successfully", GREEN_TEXT);
+                waitForAnyKey();
+            } catch (IOException e) {
+                printCentered("Error Registering User, try again", RED_TEXT);
+            }
+        }
+        else if (admin1_participant2 == 2) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(PARTICIPANT_LOGIN_CREDENTIALS, true))) {
+                String salt = generateSalt();
+                String hashedPassword = hashPassword(password, salt);
+                writer.write(username + ":" + salt + ":" + hashedPassword + "\n");
+                System.out.println();
+                printCentered("Registered Successfully", GREEN_TEXT);
+                waitForAnyKey();
+            } catch (IOException e) {
+                printCentered("Error Registering User, try again", RED_TEXT);
+            }
+        }
+
+    }
+
+    public void loadCredentials(String username, String password, int admin1_participant2) {
+        if(admin1_participant2 == 1) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(ADMIN_LOGIN_CREDENTIALS))) {
+                String line;
+                boolean found = false;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (username.equals(parts[0])) {
+                        String salt = parts[1];
+                        String storedHash = parts[2];
+                        if (checkPassword(password, salt, storedHash)) {
+                            found = true;
+                            GlobalData.AUTHENTICATED = true;
+                            System.out.println();
+                            printCentered("!!!  Logged in Successfully  !!!");
+                            GlobalData.LOGGED_IN_USERNAME = username;
+                            waitForAnyKey();
+                            break;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    GlobalData.AUTHENTICATED = false;
+                    printCentered("Invalid Username or Password. Try Again", YELLOW_TEXT);
+                }
+            } catch (IOException e) {
+                printCentered("Error Logging In", RED_TEXT);
+            }
+        }
+        else if(admin1_participant2 == 2) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(PARTICIPANT_LOGIN_CREDENTIALS))) {
+                String line;
+                boolean found = false;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (username.equals(parts[0])) {
+                        String salt = parts[1];
+                        String storedHash = parts[2];
+                        if (checkPassword(password, salt, storedHash)) {
+                            found = true;
+                            GlobalData.AUTHENTICATED = true;
+                            System.out.println();
+                            printCentered("!!!  Logged in Successfully  !!!");
+                            GlobalData.LOGGED_IN_USERNAME = username;
+                            waitForAnyKey();
+                            break;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    GlobalData.AUTHENTICATED = false;
+                    printCentered("Invalid Username or Password. Try Again", YELLOW_TEXT);
+                }
+            } catch (IOException e) {
+                printCentered("Error Logging In", RED_TEXT);
+            }
         }
     }
 
-    public void loadCredentials(String username, String password) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
-            String line;
-            boolean found = false;
+    public boolean checkUsernameAvailability(String username, int admin1_participant2) {
+        boolean available = true;
 
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (username.equals(parts[0])) {
-                    String salt = parts[1];
-                    String storedHash = parts[2];
-                    if (checkPassword(password, salt, storedHash)) {
-                        found = true;
-                        GlobalData.AUTHENTICATED = true;
-                        System.out.println();
-                        printCentered("!!!  Logged in Successfully  !!!");
-                        GlobalData.LOGGED_IN_USERNAME = username;
-                        waitForAnyKey();
+        if(admin1_participant2 == 1) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(ADMIN_LOGIN_CREDENTIALS))) {
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (username.equals(parts[0])) {
+                        available = false;
                         break;
                     }
                 }
+            } catch (IOException e) {
+                printCentered("Credentials file not found. Creating new file...", RED_TEXT);
             }
-
-            if (!found) {
-                GlobalData.AUTHENTICATED = false;
-                printCentered("Invalid Username or Password. Try Again", YELLOW_TEXT);
-            }
-        } catch (IOException e) {
-            printCentered("Error Logging In", RED_TEXT);
         }
-    }
+        else if (admin1_participant2 == 2) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(PARTICIPANT_LOGIN_CREDENTIALS))) {
+                String line;
 
-    public boolean checkUsernameAvailability(String username) {
-        boolean available = true;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(LOGIN_CREDENTIALS))) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (username.equals(parts[0])) {
-                    available = false;
-                    break;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (username.equals(parts[0])) {
+                        available = false;
+                        break;
+                    }
                 }
+            } catch (IOException e) {
+                printCentered("Credentials file not found. Creating new file...", RED_TEXT);
             }
-        } catch (IOException e) {
-            printCentered("Credentials file not found. Creating new file...", RED_TEXT);
         }
 
         return available;

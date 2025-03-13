@@ -1,5 +1,7 @@
 package AccessControl;
 
+import Window.LoggedInWindow;
+
 import java.util.Scanner;
 import static Global.GlobalData.*;
 import static Global.GlobalMethod.*;
@@ -10,13 +12,52 @@ public class Register {
     CredentialManager credentialManager = new CredentialManager();
 
     public void register() {
+        int admin1_participant2 = 0;
+
         System.out.println();
         insertPadding("1. Admin", 64);
         insertPadding("2. Participant", 64);
+        insertPadding("3. Go Back\n", 64);
+        boolean quit = false;
+        Scanner scanner = new Scanner(System.in);
+
+        while (!quit) {
+            insertPadding("Select an Option (1/2): ");
+            System.out.print("Select an Option (1/2): ");
+            int choice;
+            if(scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            }
+            else {
+                System.out.println();
+                printCentered("Invalid input. Enter only a number in the range 1-3 ", YELLOW_TEXT);
+                scanner.nextLine();
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    admin1_participant2 = 1;
+                    quit = true;
+                    break;
+                case 2:
+                    admin1_participant2 = 2;
+                    quit = true;
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.println();
+                    printCentered("Select Numbers Assigned to 1-3 only. Nothing is assigned to \'" + choice + "\'", YELLOW_TEXT);
+                    printCentered("Invalid choice. Enter a number in the range 1-3", YELLOW_TEXT);
+                    break;
+            }
+        }
 
         String username = receiveUsername();
 
-        if (credentialManager.checkUsernameAvailability(username)) {
+        if (credentialManager.checkUsernameAvailability(username, admin1_participant2)) {
             String password = receivePassword();
 
             while (!password.isEmpty()) {
@@ -30,7 +71,7 @@ public class Register {
                     waitForAnyKey();
                     return;
                 } else if (confirmRegistration.equalsIgnoreCase("Y")) {
-                    credentialManager.saveCredentials(username, password);
+                    credentialManager.saveCredentials(username, password, admin1_participant2);
                     return;
                 } else {
                     System.out.println();

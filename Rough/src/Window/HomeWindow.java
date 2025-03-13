@@ -15,8 +15,8 @@ public class HomeWindow implements Window {
         lineGaps(numberOfLinesToKeepEmpty);
 
         printHeaderPart("Home");
-        insertPadding("1. User Registration", 64);
-        insertPadding("2. User Login", 64);
+        insertPadding("1. Register", 64);
+        insertPadding("2. Login", 64);
         insertPadding("3. Quit", 64);
     }
 
@@ -52,10 +52,8 @@ public class HomeWindow implements Window {
                     register.register();
                     break;
                 case 2:
-
                     Login login = new Login();
                     login.login();
-
                     LoggedInWindow loggedInWindow = new LoggedInWindow();
                     if(AUTHENTICATED) {
                         loggedInWindow.askForInput();
