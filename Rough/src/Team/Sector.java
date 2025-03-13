@@ -3,6 +3,9 @@ package Team;   // Package containing all the classes related to the team
 import java.io.Serializable;
 import java.util.List;
 
+import static Global.GlobalData.YELLOW_TEXT;
+import static Global.GlobalMethod.*;
+
 abstract class Sector implements Serializable {
     private static final long serialVersionUID = 1L;
     private String sectorName;
@@ -35,13 +38,18 @@ abstract class Sector implements Serializable {
     }
 
     public void displayMembers() {
-        System.out.println("Team Members in " + sectorName + ":");
         if (teamMembers.isEmpty()) {
-            System.out.println("No members in this sector.");
-        } else {
+            System.out.println();
+            printCentered("!!! No members assigned to " + sectorName + " yet. !!!", YELLOW_TEXT);
+            waitForAnyKey();
+        }
+        else {
+            System.out.println();
+            printCentered("Team Members in " + sectorName + ":");
             for (String member : teamMembers) {
-                System.out.println("- " + member);
+                insertPadding("- " + member, 64);
             }
+            waitForAnyKey();
         }
     }
 }

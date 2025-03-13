@@ -12,11 +12,11 @@ public class TeamWindow implements Window {
     @Override
     public void showWindow() {
         printHeaderPart("Managing Teams as \"" + GlobalData.LOGGED_IN_USERNAME + "\"");
-        System.out.println(" ".repeat(64) + "1. Add members to a Sector");
-        System.out.println(" ".repeat(64) + "2. Add a custom Sector");
-        System.out.println(" ".repeat(64) + "3. View all Sectors and Members");
-        System.out.println(" ".repeat(64) + "4. Remove a member from a Sector");
-        System.out.println(" ".repeat(64) + "5. Go Back");
+        System.out.println(" ".repeat(64) + "1. Add Members");
+        System.out.println(" ".repeat(64) + "2. View Team Members");
+        System.out.println(" ".repeat(64) + "3. Remove a Member");
+        System.out.println(" ".repeat(64) + "4. Create Custom Sector");
+        System.out.println(" ".repeat(64) + "5. Go Back to Logged-In Menu");
         System.out.println(" ".repeat(64) + "6. Return to Main Menu\n");
 
     }
@@ -41,8 +41,8 @@ public class TeamWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    boolean back = false;
-                    while (!back) {
+                    boolean back1 = false;
+                    while (!back1) {
                         System.out.println();
                         printCentered("Available Sectors:");
                         teamManager.displaySectorNames();
@@ -52,10 +52,11 @@ public class TeamWindow implements Window {
                         int sectorIndex = scanner.nextInt() - 1;
                         scanner.nextLine();
                         if (sectorIndex == -1) {
-                            back = true;
+                            back1 = true;
                         }
                         else if (!teamManager.choiceValidity(sectorIndex)) {
-                            printCentered("\n!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
+                            System.out.println();
+                            printCentered("!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
                         }
                         else {
                             insertPadding("Enter the member's name: ");
@@ -66,16 +67,28 @@ public class TeamWindow implements Window {
                     }
                     break;
                 case 2:
-                    System.out.println();
-                    insertPadding("Enter the name of the new sector: ");
-                    System.out.print("Enter the name of the new sector: ");
-                    String sectorName = scanner.nextLine();
-                    teamManager.addCustomSector(sectorName);
+                    boolean back2 = false;
+                    while (!back2) {
+                        System.out.println();
+                        teamManager.displaySectorNames();
+                        printCentered("Enter 0 to Quit\n");
+                        insertPadding("Select which sector members to view: ");
+                        System.out.print("Select which sector members to view: ");
+                        int sectorIndex = scanner.nextInt() - 1;
+                        scanner.nextLine();
+                        if (sectorIndex == -1) {
+                            back2 = true;
+                        }
+                        else if (!teamManager.choiceValidity(sectorIndex)) {
+                            System.out.println();
+                            printCentered("!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
+                        }
+                        else {
+                            teamManager.displaySectorMembers(sectorIndex);
+                        }
+                    }
                     break;
                 case 3:
-                    teamManager.displayAllSectors();
-                    break;
-                case 4:
                     System.out.println("Available Sectors:");
                     teamManager.displaySectorNames();
                     System.out.println("0. Go Back");
@@ -87,6 +100,13 @@ public class TeamWindow implements Window {
                         String memberName = scanner.nextLine();
                         teamManager.removeMemberFromSector(sectorIndex, memberName);
                     }
+                    break;
+                case 4:
+                    System.out.println();
+                    insertPadding("Enter the name of the new sector: ");
+                    System.out.print("Enter the name of the new sector: ");
+                    String sectorName = scanner.nextLine();
+                    teamManager.addCustomSector(sectorName);
                     break;
                 case 5:
                     quit = true;

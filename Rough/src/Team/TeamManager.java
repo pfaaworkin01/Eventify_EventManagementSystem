@@ -64,10 +64,9 @@ public class TeamManager {
         }
     }
 
-    public void displayAllSectors() {
-        for (Sector sector : sectors) {
-            sector.displayMembers();
-        }
+    public void displaySectorMembers(int sectorIndex) {
+        Sector sector = sectors.get(sectorIndex);
+        sector.displayMembers();
     }
     public void displaySectorNames() {
         printCentered("+" + "-".repeat(7) + "+" + "-".repeat(50) + "+");
