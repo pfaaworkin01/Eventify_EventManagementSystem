@@ -48,7 +48,6 @@ public class HomeWindow implements Window {
 
             switch (choice) {
                 case 1:
-
                     Register register = new Register();
                     register.register();
                     break;

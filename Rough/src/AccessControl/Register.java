@@ -10,6 +10,10 @@ public class Register {
     CredentialManager credentialManager = new CredentialManager();
 
     public void register() {
+        System.out.println();
+        insertPadding("1. Admin", 64);
+        insertPadding("2. Participant", 64);
+
         String username = receiveUsername();
 
         if (credentialManager.checkUsernameAvailability(username)) {

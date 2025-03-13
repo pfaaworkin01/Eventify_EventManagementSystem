@@ -12,10 +12,11 @@ import static Global.GlobalMethod.waitForAnyKey;
 
 public class CredentialManager {
 
-    private static final String LOGIN_CREDENTIALS = "Login_Credentials.txt";
+    private static final String ADMIN_LOGIN_CREDENTIALS = "Admin_Login_Credentials.txt";
+    private static final String PARTICIPANT_CREDENTIALS_ADMIN = "Participant_Login_Credentials.txt";
 
     public void saveCredentials(String username, String password) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOGIN_CREDENTIALS, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ADMIN_LOGIN_CREDENTIALS, true))) {
             String salt = generateSalt();
             String hashedPassword = hashPassword(password, salt);
             writer.write(username + ":" + salt + ":" + hashedPassword + "\n");

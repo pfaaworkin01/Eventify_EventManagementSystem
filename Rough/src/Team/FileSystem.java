@@ -7,8 +7,8 @@ import static Global.GlobalMethod.printCentered;
 public class FileSystem {
     private static final String FILE_NAME = "Team_Data.txt";
 
-    public static void saveData(List<Sector> sectors) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+    public static void saveData(List<Sector> sectors, int eventID) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(eventID + "_" + FILE_NAME))) {
             oos.writeObject(sectors);
             printCentered("Member added successfully!");
         } catch (IOException e) {

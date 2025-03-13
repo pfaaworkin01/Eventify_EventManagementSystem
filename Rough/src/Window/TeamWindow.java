@@ -1,5 +1,6 @@
 package Window;
 
+import EventManagement.DataManager;
 import Global.GlobalData;
 import Team.TeamManager;
 
@@ -62,7 +63,13 @@ public class TeamWindow implements Window {
                             insertPadding("Enter the member's name: ");
                             System.out.print("Enter the member's name: ");
                             String memberName = scanner.nextLine();
-                            teamManager.addMemberToSector(sectorIndex, memberName);
+                            DataManager dataManager = new DataManager();
+                            dataManager.displayEvents();
+                            insertPadding("Select Event to add Member to (Event ID): ");
+                            System.out.print("Select Event to add Member to (Event ID): ");
+                            int eventID = scanner.nextInt();
+                            scanner.nextLine();
+                            teamManager.addMemberToSector(sectorIndex, memberName, eventID);
                         }
                     }
                     break;
@@ -70,6 +77,12 @@ public class TeamWindow implements Window {
                     boolean back2 = false;
                     while (!back2) {
                         System.out.println();
+                        DataManager dataManager = new DataManager();
+                        dataManager.displayEvents();
+                        insertPadding("Select Event (Event ID): ");
+                        System.out.print("Select Event (Event ID): ");
+                        int eventID = scanner.nextInt();
+                        scanner.nextLine();
                         teamManager.displaySectorNames();
                         printCentered("Enter 0 to Quit\n");
                         insertPadding("Select which sector members to view: ");
@@ -84,29 +97,43 @@ public class TeamWindow implements Window {
                             printCentered("!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
                         }
                         else {
-                            teamManager.displaySectorMembers(sectorIndex);
+                            teamManager.displaySectorMembers(sectorIndex, eventID);
+                            back2 = true;
                         }
                     }
                     break;
                 case 3:
+                    System.out.println();
+                    DataManager dataManager = new DataManager();
+                    dataManager.displayEvents();
+                    insertPadding("Select Event (Event ID): ");
+                    System.out.print("Select Event (Event ID): ");
+                    int eventID = scanner.nextInt();
+                    scanner.nextLine();
                     System.out.println("Available Sectors:");
                     teamManager.displaySectorNames();
                     System.out.println("0. Go Back");
-                    System.out.print("Select the sector number to remove a member: ");
+                    System.out.print("Select the sector to remove a member: ");
                     int sectorIndex = scanner.nextInt() - 1;
                     scanner.nextLine();
                     if (sectorIndex != -1) {
                         System.out.print("Enter the member's name to remove: ");
                         String memberName = scanner.nextLine();
-                        teamManager.removeMemberFromSector(sectorIndex, memberName);
+                        teamManager.removeMemberFromSector(sectorIndex, memberName, eventID);
                     }
                     break;
                 case 4:
                     System.out.println();
+                    DataManager dataManager2 = new DataManager();
+                    dataManager2.displayEvents();
+                    insertPadding("Select Event (Event ID): ");
+                    System.out.print("Select Event (Event ID): ");
+                    int eventID2 = scanner.nextInt();
+                    scanner.nextLine();
                     insertPadding("Enter the name of the new sector: ");
                     System.out.print("Enter the name of the new sector: ");
                     String sectorName = scanner.nextLine();
-                    teamManager.addCustomSector(sectorName);
+                    teamManager.addCustomSector(sectorName, eventID2);
                     break;
                 case 5:
                     quit = true;
