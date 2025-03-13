@@ -86,7 +86,7 @@ public class CredentialManager {
                         String storedHash = parts[2];
                         if (checkPassword(password, salt, storedHash)) {
                             found = true;
-                            GlobalData.AUTHENTICATED = true;
+                            PARTICIPANT_AUTHENTICATED = true;
                             System.out.println();
                             printCentered("!!!  Logged in Successfully  !!!");
                             GlobalData.LOGGED_IN_USERNAME = username;
@@ -97,7 +97,7 @@ public class CredentialManager {
                 }
 
                 if (!found) {
-                    GlobalData.AUTHENTICATED = false;
+                    PARTICIPANT_AUTHENTICATED = false;
                     printCentered("Invalid Username or Password. Try Again", YELLOW_TEXT);
                 }
             } catch (IOException e) {

@@ -10,7 +10,7 @@ public class LoggedInWindow implements Window {
 
     @Override
     public void showWindow() {
-        printHeaderPart("Logged In as \"" + GlobalData.LOGGED_IN_USERNAME + "\"");
+        printHeaderPart("Logged In as admin \"" + GlobalData.LOGGED_IN_USERNAME + "\"");
         System.out.println(" ".repeat(67) + "1. Manage Events");
         System.out.println(" ".repeat(67) + "2. Manage Teams");
         System.out.println(" ".repeat(67) + "3. Manage Budget");
