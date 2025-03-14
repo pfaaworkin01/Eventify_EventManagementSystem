@@ -98,4 +98,14 @@ public class TeamManager {
     public int getSectorCount() {
         return sectors.size();
     }
+    public String getSectorNameAt(int index) {
+        if (index >= 0 && index < sectors.size()) {
+            return sectors.get(index).getSectorName();
+        }
+        return null;
+    }
+
 }
+
+
+
