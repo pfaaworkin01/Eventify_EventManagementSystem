@@ -103,7 +103,7 @@ public class BudgetWindow implements Window {
                     System.out.print("Enter budget amount: ");
                     double budget = scanner.nextDouble();
                     scanner.nextLine();
-                    eventBudget.getBudgetManager().addDepartment(departmentName, budget);
+                    eventBudget.getBudgetManager().addDepartment(departmentName, budget, scanner);
                     BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
                     break;
                 case 2:
