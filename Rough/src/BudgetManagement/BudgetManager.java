@@ -20,13 +20,12 @@ public class BudgetManager {
         }
     }
     public void addExpense(String departmentName, String expenseName, double amount, String description) {
-        for (DepartmentBudget department : departmentBudgets) {
-            if (department.getDepartmentName().equalsIgnoreCase(departmentName)) {
-                department.addExpense(expenseName, amount, description);
-                return;
-            }
+        DepartmentBudget department = findDepartment(departmentName);
+        if (department != null) {
+            department.addExpense(expenseName, amount, description);
+        } else {
+            System.out.println("Error: Department not found.");
         }
-        System.out.println("Error: Department not found.");
     }
 
     public void viewDepartmentBudgets() {
@@ -45,5 +44,9 @@ public class BudgetManager {
     public void setDepartmentBudgets(List<DepartmentBudget> departmentBudgets) {
         this.departmentBudgets = departmentBudgets;
     }
+
+    
+
+
 
 }
