@@ -1,11 +1,13 @@
 package Window;
 
 import  BudgetManagement.BudgetFileManager;
+import BudgetManagement.DepartmentBudget;
 import BudgetManagement.EventBudget;
 import EventManagement.EventManager;
 import EventManagement.Event;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -115,6 +117,32 @@ public class BudgetWindow implements Window {
                 default:
                     System.out.println("Invalid Option");
             }
+        }
+    }
+
+    private void allocateBudgetToDepartment(Scanner scanner, EventBudget eventBudget) {
+        List<DepartmentBudget> departments = eventBudget.getBudgetManager().getDepartmentBudgets();
+        if (departments.isEmpty()) {
+            System.out.println("No departments available. Please add a department first.");
+            return;
+        }
+
+        System.out.println("Available Departments:");
+        for (int i = 0; i < departments.size(); i++) {
+            System.out.println((i + 1) + ". " + departments.get(i).getDepartmentName());
+        }
+        System.out.print("Select the department number: ");
+        int departmentIndex = scanner.nextInt() - 1;
+        scanner.nextLine(); // Consume newline
+
+        if (departmentIndex >= 0 && departmentIndex < departments.size()) {
+            System.out.print("Enter budget amount: ");
+            double budget = scanner.nextDouble();
+            scanner.nextLine();
+            eventBudget.getBudgetManager().addDepartment(departments.get(departmentIndex).getDepartmentName(), budget);
+            BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
+        } else {
+            System.out.println("Invalid department number.");
         }
     }
     private void loadBudgetInfo() {
