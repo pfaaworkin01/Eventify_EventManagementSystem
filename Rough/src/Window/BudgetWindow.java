@@ -152,4 +152,34 @@ public class BudgetWindow implements Window {
             eventBudgets.put(event.getEventID(), eventBudget);
         }
     }
+
+    private void addExpenseToDepartment(Scanner scanner, EventBudget eventBudget) {
+        List<DepartmentBudget> departments = eventBudget.getBudgetManager().getDepartmentBudgets();
+        if (departments.isEmpty()) {
+            System.out.println("No departments available. Please add a department first.");
+            return;
+        }
+
+        System.out.println("Available Departments:");
+        for (int i = 0; i < departments.size(); i++) {
+            System.out.println((i + 1) + ". " + departments.get(i).getDepartmentName());
+        }
+        System.out.print("Select the department number: ");
+        int departmentIndex = scanner.nextInt() - 1;
+        scanner.nextLine(); // Consume newline
+
+        if (departmentIndex >= 0 && departmentIndex < departments.size()) {
+            System.out.print("Enter expense name: ");
+            String expenseName = scanner.nextLine();
+            System.out.print("Enter expense amount: ");
+            double amount = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.print("Enter expense description: ");
+            String description = scanner.nextLine();
+            eventBudget.getBudgetManager().addExpense(departments.get(departmentIndex).getDepartmentName(), expenseName, amount, description);
+            BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
+        } else {
+            System.out.println("Invalid department number.");
+        }
+    }
 }

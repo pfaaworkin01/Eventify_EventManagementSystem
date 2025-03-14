@@ -10,6 +10,18 @@ public class BudgetManager {
     public double getTotalAllocatedBudget() {
         return departmentBudgets.stream().mapToDouble(DepartmentBudget::getAllocatedBudget).sum();
     }
+    public BudgetManager() {
+        initializeBasicDepartments();
+    }
+
+    private void initializeBasicDepartments() {
+        String[] basicDepartments = {"Development", "Logistics", "Communication", "Creative"};
+        for (String departmentName : basicDepartments) {
+            if (findDepartment(departmentName) == null) {
+                departmentBudgets.add(new DepartmentBudget(departmentName, 0));
+            }
+        }
+    }
 
 
 
