@@ -98,26 +98,10 @@ public class BudgetWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter department name: ");
-                    String departmentName = scanner.nextLine();
-                    System.out.print("Enter budget amount: ");
-                    double budget = scanner.nextDouble();
-                    scanner.nextLine();
-                    eventBudget.getBudgetManager().addDepartment(departmentName, budget);
-                    BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
+                    allocateBudgetToDepartment(scanner, eventBudget);
                     break;
                 case 2:
-                    System.out.print("Enter department name: ");
-                    String deptName = scanner.nextLine();
-                    System.out.print("Enter expense name: ");
-                    String expenseName = scanner.nextLine();
-                    System.out.print("Enter expense amount: ");
-                    double amount = scanner.nextDouble();
-                    scanner.nextLine();
-                    System.out.print("Enter expense description: ");
-                    String description = scanner.nextLine();
-                    eventBudget.getBudgetManager().addExpense(deptName, expenseName, amount, description);
-                    BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
+                    addExpenseToDepartment(scanner, eventBudget);
                     break;
                 case 3:
                     eventBudget.getBudgetManager().viewDepartmentBudgets();
