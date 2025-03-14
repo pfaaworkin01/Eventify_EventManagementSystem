@@ -11,6 +11,12 @@ public class BudgetManager {
     }
 
     public void addDepartment(String departmentName, double allocatedBudget) {
+        for (DepartmentBudget department : departmentBudgets) {
+            if (department.getDepartmentName().equalsIgnoreCase(departmentName)) {
+                System.out.println("Department already exists: " + departmentName);
+                return;
+            }
+        }
         departmentBudgets.add(new DepartmentBudget(departmentName, allocatedBudget));
         System.out.println("Department added: " + departmentName + " with a budget of $" + allocatedBudget);
     }
