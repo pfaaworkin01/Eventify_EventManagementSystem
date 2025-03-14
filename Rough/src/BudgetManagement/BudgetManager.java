@@ -11,10 +11,14 @@ public class BudgetManager {
     }
 
     public void addDepartment(String departmentName, double allocatedBudget) {
-        departmentBudgets.add(new DepartmentBudget(departmentName, allocatedBudget));
-        System.out.println("Department added: " + departmentName + " with a budget of $" + allocatedBudget);
+        DepartmentBudget existingDepartment = findDepartment(departmentName);
+        if (existingDepartment == null) {
+            departmentBudgets.add(new DepartmentBudget(departmentName, allocatedBudget));
+            System.out.println("Department added: " + departmentName + " with a budget of $" + allocatedBudget);
+        } else {
+            System.out.println("Department already exists: " + departmentName);
+        }
     }
-
     public void addExpense(String departmentName, String expenseName, double amount, String description) {
         for (DepartmentBudget department : departmentBudgets) {
             if (department.getDepartmentName().equalsIgnoreCase(departmentName)) {
