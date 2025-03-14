@@ -45,7 +45,16 @@ public class BudgetManager {
         this.departmentBudgets = departmentBudgets;
     }
 
-    
+    private DepartmentBudget findDepartment(String departmentName) {
+        for (DepartmentBudget department : departmentBudgets) {
+            if (department.getDepartmentName().equalsIgnoreCase(departmentName)) {
+                return department;
+            }
+        }
+        return null;
+    }
+
+
 
 
 
