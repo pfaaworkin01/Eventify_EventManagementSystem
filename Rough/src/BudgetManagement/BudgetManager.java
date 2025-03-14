@@ -10,6 +10,7 @@ public class BudgetManager {
         return departmentBudgets.stream().mapToDouble(DepartmentBudget::getAllocatedBudget).sum();
     }
 
+
     public void addDepartment(String departmentName, double allocatedBudget) {
         DepartmentBudget existingDepartment = findDepartment(departmentName);
         if (existingDepartment == null) {
