@@ -1,7 +1,5 @@
 package AccessControl;
 
-import Window.LoggedInWindow;
-
 import java.util.Scanner;
 import static Global.GlobalData.*;
 import static Global.GlobalMethod.*;
@@ -38,7 +36,13 @@ public class Register {
 
             switch (choice) {
                 case 1:
-                    admin1_participant2 = 1;
+                    if(grantAdminRegistration()) {
+                        admin1_participant2 = 1;
+                    }
+                    else {
+                        waitForAnyKey();
+                        return;
+                    }
                     quit = true;
                     break;
                 case 2:
@@ -155,4 +159,29 @@ public class Register {
         }
         return inputPassword;
     }
+
+    private boolean grantAdminRegistration() {
+        boolean granted;
+        String adminKey;
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println();
+        insertPadding("Enter Key to Register as Admin: ");
+        System.out.print("Enter Key to Register as Admin: ");
+        adminKey = scanner.nextLine();
+
+        if (adminKey.equals("admin@2025#ADMIN")) {
+            granted = true;
+            System.out.println();
+            printCentered("Access Granted for Admin Registration", GREEN_TEXT);
+        }
+        else {
+            granted = false;
+            System.out.println();
+            printCentered("Incorrect Admin Key", RED_TEXT);
+        }
+
+        return granted;
+    }
+
 }
