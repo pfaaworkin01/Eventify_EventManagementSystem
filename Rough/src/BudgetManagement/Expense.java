@@ -23,4 +23,9 @@ public class Expense {
     public String toString() {
         return "Expense: " + expenseName + ", Amount: " + amount + ", Description: " + description;
     }
+
+    public String getDescription() {
+    return description;
+    }
+
 }

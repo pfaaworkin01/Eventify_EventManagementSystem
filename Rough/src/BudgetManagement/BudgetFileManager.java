@@ -60,4 +60,17 @@ public class BudgetFileManager {
         }
         return departmentBudgets;
     }
+    public static void clearBudgetData() {
+        File file = new File(FILE_PATH);
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("Budget data cleared successfully.");
+            } else {
+                System.out.println("Error: Unable to clear budget data.");
+            }
+        } else {
+            System.out.println("No budget data found to clear.");
+        }
+    }
+
 }
