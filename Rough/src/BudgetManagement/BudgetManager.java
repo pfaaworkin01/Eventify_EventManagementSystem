@@ -3,8 +3,10 @@ package BudgetManagement;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import static Global.GlobalMethod.printCentered;
 
 public class BudgetManager {
+
     private List<DepartmentBudget> departmentBudgets = new ArrayList<>();
 
     public double getTotalAllocatedBudget() {

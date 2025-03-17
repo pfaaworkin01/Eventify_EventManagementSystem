@@ -7,10 +7,7 @@ import BudgetManagement.EventBudget;
 import EventManagement.EventManager;
 import EventManagement.Event;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import static Global.GlobalMethod.printCentered;
 import static Global.GlobalMethod.printHeaderPart;
@@ -146,32 +143,49 @@ public class BudgetWindow implements Window {
         for (int i = 0; i < departments.size(); i++) {
             System.out.println((i + 1) + ". " + departments.get(i).getDepartmentName());
         }
+        System.out.println("0. Go Back");
 
-        System.out.print("Select the department number to allocate budget: ");
-        int departmentIndex = scanner.nextInt() - 1;
-        scanner.nextLine(); // Consume newline
-
-        if (departmentIndex >= 0 && departmentIndex < departments.size()) {
-            System.out.print("Enter budget amount: ");
-            double budget = scanner.nextDouble();
+        try {
+            System.out.print("Select the department number to allocate budget: ");
+            int departmentIndex = scanner.nextInt() - 1;
             scanner.nextLine(); // Consume newline
 
-            DepartmentBudget selectedDepartment = departments.get(departmentIndex);
-            if (selectedDepartment.getAllocatedBudget() > 0) {
-                System.out.print("Do you want to add the new budget to the existing budget? (y/n): ");
-                String response = scanner.nextLine();
-                if (response.equalsIgnoreCase("y")) {
-                    selectedDepartment.setAllocatedBudget(selectedDepartment.getAllocatedBudget() + budget);
-                    System.out.println("New budget added. Total allocated budget for " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+            if (departmentIndex == -1) {
+                return; // Go back
+            }
+
+            if (departmentIndex >= 0 && departmentIndex < departments.size()) {
+                System.out.print("Enter budget amount: ");
+                double budget = scanner.nextDouble();
+                scanner.nextLine(); // Consume newline
+
+                if (budget < 0) {
+                    System.out.println("Error: Budget amount cannot be negative.");
+                    return;
+                }
+
+                DepartmentBudget selectedDepartment = departments.get(departmentIndex);
+                if (selectedDepartment.getAllocatedBudget() > 0) {
+                    System.out.print("Do you want to add the new budget to the existing budget? (y/n): ");
+                    String response = scanner.nextLine();
+                    if (response.equalsIgnoreCase("y")) {
+                        selectedDepartment.setAllocatedBudget(selectedDepartment.getAllocatedBudget() + budget);
+                        System.out.println("New budget added. Total allocated budget for " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+                    } else {
+                        System.out.println("No changes made to the existing budget.");
+                    }
                 } else {
-                    System.out.println("No changes made to the existing budget.");
+                    selectedDepartment.setAllocatedBudget(budget);
+                    System.out.println("Budget allocated to " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
                 }
             } else {
-                selectedDepartment.setAllocatedBudget(budget);
-                System.out.println("Budget allocated to " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+                System.out.println("Invalid department selection.");
             }
-        } else {
-            System.out.println("Invalid department selection.");
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Invalid input. Please enter a valid number.");
+            scanner.nextLine(); // Clear the invalid input
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         }
     }
 }
