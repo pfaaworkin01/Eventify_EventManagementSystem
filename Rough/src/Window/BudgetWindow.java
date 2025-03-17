@@ -1,11 +1,14 @@
 package Window;
 
 import  BudgetManagement.BudgetFileManager;
+import BudgetManagement.BudgetManager;
+import BudgetManagement.DepartmentBudget;
 import BudgetManagement.EventBudget;
 import EventManagement.EventManager;
 import EventManagement.Event;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -98,12 +101,7 @@ public class BudgetWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter department name: ");
-                    String departmentName = scanner.nextLine();
-                    System.out.print("Enter budget amount: ");
-                    double budget = scanner.nextDouble();
-                    scanner.nextLine();
-                    eventBudget.getBudgetManager().addDepartment(departmentName, budget, scanner);
+                    allocateBudgetToDepartment(scanner, eventBudget);
                     BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
                     break;
                 case 2:
@@ -140,4 +138,42 @@ public class BudgetWindow implements Window {
             eventBudgets.put(event.getEventID(), eventBudget);
         }
     }
+    private void allocateBudgetToDepartment(Scanner scanner, EventBudget eventBudget) {
+        BudgetManager budgetManager = eventBudget.getBudgetManager();
+        List<DepartmentBudget> departments = budgetManager.getDepartmentBudgets();
+
+        System.out.println("Available Departments:");
+        for (int i = 0; i < departments.size(); i++) {
+            System.out.println((i + 1) + ". " + departments.get(i).getDepartmentName());
+        }
+
+        System.out.print("Select the department number to allocate budget: ");
+        int departmentIndex = scanner.nextInt() - 1;
+        scanner.nextLine(); // Consume newline
+
+        if (departmentIndex >= 0 && departmentIndex < departments.size()) {
+            System.out.print("Enter budget amount: ");
+            double budget = scanner.nextDouble();
+            scanner.nextLine(); // Consume newline
+
+            DepartmentBudget selectedDepartment = departments.get(departmentIndex);
+            if (selectedDepartment.getAllocatedBudget() > 0) {
+                System.out.print("Do you want to add the new budget to the existing budget? (y/n): ");
+                String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("y")) {
+                    selectedDepartment.setAllocatedBudget(selectedDepartment.getAllocatedBudget() + budget);
+                    System.out.println("New budget added. Total allocated budget for " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+                } else {
+                    System.out.println("No changes made to the existing budget.");
+                }
+            } else {
+                selectedDepartment.setAllocatedBudget(budget);
+                System.out.println("Budget allocated to " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+            }
+        } else {
+            System.out.println("Invalid department selection.");
+        }
+    }
 }
+
+
