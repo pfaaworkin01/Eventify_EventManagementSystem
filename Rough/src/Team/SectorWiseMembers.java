@@ -1,45 +1,46 @@
 package Team;
 
+import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import static Global.GlobalData.GREEN_TEXT;
 import static Global.GlobalData.YELLOW_TEXT;
 import static Global.GlobalMethod.insertPadding;
 import static Global.GlobalMethod.printCentered;
 
 public class SectorWiseMembers {
 
-    String[] memberNames;
+    private List<String> memberNames;
 
-    public void enterMemberNames() {
+    public List<String> enterMemberNames() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println();
-        insertPadding("Enter the number of members. Enter 0 to exit: ");
-        System.out.print("Enter the number of members. Enter 0 to exit: ");
-
-        if(scanner.hasNextInt()) {
-            int size = scanner.nextInt();
-            scanner.nextLine();
-            if(size == 0) {
-                return;
-            }
-
-            memberNames = new String[size];
-
-            for (int i = 0; i < size; i++) {
-                System.out.println();
-                insertPadding("Enter name for member number " + (i + 1) + ": ");
-                System.out.print("Enter name for member number " + (i + 1) + ": ");
-                memberNames[i] = scanner.nextLine();
-            }
-        }
-        else {
+        while (true) {
             System.out.println();
-            printCentered("!!! Invalid input. Enter only integers !!!", YELLOW_TEXT);
-            enterMemberNames();
+            insertPadding("Enter member name. Enter 0 to exit: ");
+            System.out.print("Enter member name. Enter 0 to exit: ");
+            String memberName = scanner.nextLine();
+            if(memberName.equals("0")) {
+                break;
+            }
+
+            if (!memberNames.contains(memberName)) {
+                memberNames.add(memberName);
+                System.out.println();
+                printCentered("Member \"" + memberName + "\" added", GREEN_TEXT);
+            }
+            else {
+                System.out.println();
+                printCentered("Member name already exists. Try Again !!!", YELLOW_TEXT);
+            }
         }
 
         scanner.close();
+
+        return memberNames;
     }
 
 }
+
