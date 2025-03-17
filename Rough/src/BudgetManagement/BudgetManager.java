@@ -46,8 +46,14 @@ public class BudgetManager {
     }
 
     public void viewEventBudgetSummary() {
-        System.out.printf("%-20s %-15s %-15s %-15s%n", "Department", "Allocated", "Spent", "Remaining");
-        departmentBudgets.forEach(DepartmentBudget::displayExpenses);
+        String leftAlignFormat = "| %-20s | %-15.2f | %-15.2f | %-15.2f |%n";
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("| Department           | Allocated       | Spent           | Remaining       |%n");
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        for (DepartmentBudget department : departmentBudgets) {
+            System.out.format(leftAlignFormat, department.getDepartmentName(), department.getAllocatedBudget(), department.getTotalExpenses(), department.getRemainingBudget());
+        }
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
         System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
     }
 
