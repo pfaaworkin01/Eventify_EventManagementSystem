@@ -146,10 +146,15 @@ public class BudgetWindow implements Window {
         for (int i = 0; i < departments.size(); i++) {
             System.out.println((i + 1) + ". " + departments.get(i).getDepartmentName());
         }
+        System.out.println("0. Go Back");
 
         System.out.print("Select the department number to allocate budget: ");
         int departmentIndex = scanner.nextInt() - 1;
         scanner.nextLine(); // Consume newline
+
+        if (departmentIndex == -1) {
+            return; // Go back
+        }
 
         if (departmentIndex >= 0 && departmentIndex < departments.size()) {
             System.out.print("Enter budget amount: ");
