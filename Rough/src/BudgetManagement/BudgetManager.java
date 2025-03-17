@@ -42,7 +42,14 @@ public class BudgetManager {
     }
 
     public void viewDepartmentBudgets() {
-        departmentBudgets.forEach(DepartmentBudget::displayExpenses);
+        String leftAlignFormat = "| %-20s | %-15.2f | %-15.2f | %-15.2f |%n";
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("| Department           | Allocated       | Spent           | Remaining       |%n");
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        for (DepartmentBudget department : departmentBudgets) {
+            System.out.format(leftAlignFormat, department.getDepartmentName(), department.getAllocatedBudget(), department.getTotalExpenses(), department.getRemainingBudget());
+        }
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
     }
 
     /*public void viewEventBudgetSummary() {
@@ -59,7 +66,8 @@ public class BudgetManager {
     public void viewEventBudgetSummary(String eventName) {
         final String BLUE_TEXT = "\033[0;34m";
         final String RESET_TEXT = "\033[0m";
-
+        System.out.println(BLUE_TEXT + "Event Name: " + eventName + RESET_TEXT);
+        System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
         String leftAlignFormat = "| %-20s | %-15.2f | %-15.2f | %-15.2f |%n";
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
         System.out.format("| Department           | Allocated       | Spent           | Remaining       |%n");
@@ -68,8 +76,7 @@ public class BudgetManager {
             System.out.format(leftAlignFormat, department.getDepartmentName(),department.getAllocatedBudget(), department.getTotalExpenses(), department.getRemainingBudget());
         }
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
-        System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
-        System.out.println(BLUE_TEXT + "Event Name: " + eventName + RESET_TEXT);
+
     }
 
 

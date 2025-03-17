@@ -10,7 +10,11 @@ public class EventBudget {
     }
 
     public String getEventName() {
-        return eventName;
+        final String BLUE_TEXT = "\033[0;34m";
+        final String RESET_TEXT = "\033[0m";
+
+
+        return BLUE_TEXT + eventName+ RESET_TEXT;
     }
 
     public BudgetManager getBudgetManager() {
@@ -19,8 +23,8 @@ public class EventBudget {
 
     public void displayEventSummary() {
         System.out.println("\nEvent Summary:");
-        System.out.println("Event Name: " + eventName);
-        System.out.println("Total Budget: $" + budgetManager.getTotalAllocatedBudget());
+       // System.out.println("Event Name: " + eventName);
+        //System.out.println("Total Budget: $" + budgetManager.getTotalAllocatedBudget());
         budgetManager.viewEventBudgetSummary(eventName);
     }
 
