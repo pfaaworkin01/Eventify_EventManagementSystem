@@ -156,8 +156,20 @@ public class BudgetWindow implements Window {
             double budget = scanner.nextDouble();
             scanner.nextLine(); // Consume newline
 
-            String departmentName = departments.get(departmentIndex).getDepartmentName();
-            budgetManager.addDepartment(departmentName, budget, scanner);
+            DepartmentBudget selectedDepartment = departments.get(departmentIndex);
+            if (selectedDepartment.getAllocatedBudget() > 0) {
+                System.out.print("Do you want to add the new budget to the existing budget? (y/n): ");
+                String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("y")) {
+                    selectedDepartment.setAllocatedBudget(selectedDepartment.getAllocatedBudget() + budget);
+                    System.out.println("New budget added. Total allocated budget for " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+                } else {
+                    System.out.println("No changes made to the existing budget.");
+                }
+            } else {
+                selectedDepartment.setAllocatedBudget(budget);
+                System.out.println("Budget allocated to " + selectedDepartment.getDepartmentName() + " is now $" + selectedDepartment.getAllocatedBudget());
+            }
         } else {
             System.out.println("Invalid department selection.");
         }
