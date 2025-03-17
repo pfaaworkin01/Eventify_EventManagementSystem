@@ -3,7 +3,6 @@ package BudgetManagement;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static Global.GlobalMethod.printCentered;
 
 public class BudgetManager {
 
@@ -51,6 +50,7 @@ public class BudgetManager {
         departmentBudgets.forEach(DepartmentBudget::displayExpenses);
         System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
     }
+
     public List<DepartmentBudget> getDepartmentBudgets() {
         return departmentBudgets;
     }
@@ -58,5 +58,4 @@ public class BudgetManager {
     public void setDepartmentBudgets(List<DepartmentBudget> departmentBudgets) {
         this.departmentBudgets = departmentBudgets;
     }
-
 }
