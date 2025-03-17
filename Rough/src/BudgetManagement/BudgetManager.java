@@ -68,15 +68,27 @@ public class BudgetManager {
         final String RESET_TEXT = "\033[0m";
         System.out.println(BLUE_TEXT + "Event Name: " + eventName + RESET_TEXT);
         System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
+
         String leftAlignFormat = "| %-20s | %-15.2f | %-15.2f | %-15.2f |%n";
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
         System.out.format("| Department           | Allocated       | Spent           | Remaining       |%n");
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
         for (DepartmentBudget department : departmentBudgets) {
-            System.out.format(leftAlignFormat, department.getDepartmentName(),department.getAllocatedBudget(), department.getTotalExpenses(), department.getRemainingBudget());
+            System.out.format(leftAlignFormat, department.getDepartmentName(), department.getAllocatedBudget(), department.getTotalExpenses(), department.getRemainingBudget());
         }
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
 
+        System.out.println("\nExpenses Details:");
+        String expenseAlignFormat = "| %-20s | %-10.2f | %-30s |%n";
+        System.out.format("+----------------------+------------+--------------------------------+%n");
+        System.out.format("| Expense Name         | Amount     | Description                    |%n");
+        System.out.format("+----------------------+------------+--------------------------------+%n");
+        for (DepartmentBudget department : departmentBudgets) {
+            for (Expense expense : department.getExpenses()) {
+                System.out.format(expenseAlignFormat, expense.getExpenseName(), expense.getAmount(), expense.getDescription());
+            }
+        }
+        System.out.format("+----------------------+------------+--------------------------------+%n");
     }
 
 
