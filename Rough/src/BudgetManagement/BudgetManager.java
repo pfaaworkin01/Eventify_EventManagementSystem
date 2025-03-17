@@ -45,7 +45,7 @@ public class BudgetManager {
         departmentBudgets.forEach(DepartmentBudget::displayExpenses);
     }
 
-    public void viewEventBudgetSummary() {
+    /*public void viewEventBudgetSummary() {
         String leftAlignFormat = "| %-20s | %-15.2f | %-15.2f | %-15.2f |%n";
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
         System.out.format("| Department           | Allocated       | Spent           | Remaining       |%n");
@@ -55,7 +55,23 @@ public class BudgetManager {
         }
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
         System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
+    }*/
+    public void viewEventBudgetSummary(String eventName) {
+        final String BLUE_TEXT = "\033[0;34m";
+        final String RESET_TEXT = "\033[0m";
+
+        String leftAlignFormat = "| %-20s | %-15.2f | %-15.2f | %-15.2f |%n";
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("| Department           | Allocated       | Spent           | Remaining       |%n");
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        for (DepartmentBudget department : departmentBudgets) {
+            System.out.format(leftAlignFormat, department.getDepartmentName(),department.getAllocatedBudget(), department.getTotalExpenses(), department.getRemainingBudget());
+        }
+        System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
+        System.out.println("\nTotal Event Budget: $" + getTotalAllocatedBudget());
+        System.out.println(BLUE_TEXT + "Event Name: " + eventName + RESET_TEXT);
     }
+
 
     public List<DepartmentBudget> getDepartmentBudgets() {
         return departmentBudgets;

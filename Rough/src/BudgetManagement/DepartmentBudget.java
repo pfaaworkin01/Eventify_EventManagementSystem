@@ -15,7 +15,9 @@ public class DepartmentBudget {
     }
 
     public String getDepartmentName() {
-        return departmentName;
+        return
+
+                departmentName;
     }
 
     public double getAllocatedBudget() {

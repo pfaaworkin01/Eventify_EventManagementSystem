@@ -21,6 +21,8 @@ public class EventBudget {
         System.out.println("\nEvent Summary:");
         System.out.println("Event Name: " + eventName);
         System.out.println("Total Budget: $" + budgetManager.getTotalAllocatedBudget());
-        budgetManager.viewEventBudgetSummary();
+        budgetManager.viewEventBudgetSummary(eventName);
     }
+
+
 }
