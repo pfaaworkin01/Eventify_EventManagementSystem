@@ -79,16 +79,16 @@ public class BudgetManager {
         System.out.format("+----------------------+-----------------+-----------------+-----------------+%n");
 
         System.out.println("\nExpenses Details:");
-        String expenseAlignFormat = "| %-20s | %-10.2f | %-30s |%n";
-        System.out.format("+----------------------+------------+--------------------------------+%n");
-        System.out.format("| Expense Name         | Amount     | Description                    |%n");
-        System.out.format("+----------------------+------------+--------------------------------+%n");
+        String expenseAlignFormat = "| %-20s | %-20s | %-10.2f | %-30s |%n";
+        System.out.format("+----------------------+----------------------+------------+--------------------------------+%n");
+        System.out.format("| Department           | Expense Name         | Amount     | Description                    |%n");
+        System.out.format("+----------------------+----------------------+------------+--------------------------------+%n");
         for (DepartmentBudget department : departmentBudgets) {
             for (Expense expense : department.getExpenses()) {
-                System.out.format(expenseAlignFormat, expense.getExpenseName(), expense.getAmount(), expense.getDescription());
+                System.out.format(expenseAlignFormat, department.getDepartmentName(), expense.getExpenseName(), expense.getAmount(), expense.getDescription());
             }
         }
-        System.out.format("+----------------------+------------+--------------------------------+%n");
+        System.out.format("+----------------------+----------------------+------------+--------------------------------+%n");
     }
 
 
