@@ -27,6 +27,7 @@ public class TeamWindow implements Window {
 
         while (!quit) {
             showWindow();
+            int eventID;
 
             int terminalWidth = 154;
             int padding = (terminalWidth - "Select an Option (1-6): ".length()) / 2;
@@ -39,16 +40,11 @@ public class TeamWindow implements Window {
 
             switch (choice) {
                 case 1:
-                    System.out.println();
-                    EventDataManager.displayEvents();
-                    System.out.println();
-                    insertPadding("Select Event (Event ID): ");
-                    System.out.print("Select Event (Event ID): ");
-                    int eventID = scanner.nextInt();
-                    scanner.nextLine();
+                    eventID = askToSelectEvent();
 
                     if(EventDataManager.findEventByID(eventID)) {
-                        EventTeamsDataManager.createEventTeamDataFile(eventID);
+                        EventTeamsDataManager eventTeamsDataManager = new EventTeamsDataManager();
+                        eventTeamsDataManager.createEventTeamDataFile(eventID);
                     }
                     else {
                         System.out.println();
@@ -56,8 +52,21 @@ public class TeamWindow implements Window {
                         System.out.println();
                         break;
                     }
+                    break;
                 case 2:
+                    eventID = askToSelectEvent();
 
+                    if(EventDataManager.findEventByID(eventID)) {
+                        EventTeamsDataManager eventTeamsDataManager = new EventTeamsDataManager();
+                        eventTeamsDataManager.displayEventTeamData(eventID);
+                    }
+                    else {
+                        System.out.println();
+                        printCentered("!!! Invalid Event ID !!!", YELLOW_TEXT);
+                        System.out.println();
+                        break;
+                    }
+                    break;
                 case 3:
 
                 case 4:
@@ -70,6 +79,19 @@ public class TeamWindow implements Window {
                     break;
             }
         }
+    }
+
+    private int askToSelectEvent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println();
+        EventDataManager.displayEvents();
+        System.out.println();
+        insertPadding("Select Event (Event ID): ");
+        System.out.print("Select Event (Event ID): ");
+        int eventID = scanner.nextInt();
+        scanner.nextLine();
+
+        return eventID;
     }
 }
 
