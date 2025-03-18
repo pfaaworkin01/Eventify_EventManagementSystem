@@ -30,6 +30,7 @@ public class TeamWindow implements Window {
         while (!quit) {
             showWindow();
             int eventID;
+            EventTeamsDataManager eventTeamsDataManager = new EventTeamsDataManager();
 
             int terminalWidth = 154;
             int padding = (terminalWidth - "Select an Option (1-6): ".length()) / 2;
@@ -43,10 +44,10 @@ public class TeamWindow implements Window {
             switch (choice) {
                 case 1:
                     eventID = askToSelectEvent();
+                    eventTeamsDataManager.createEventTeamDataFile(eventID);
 
                     if(EventDataManager.findEventByID(eventID)) {
                         ArrayList<String> teamMemberNames = EventTeamMemberNames.getNames();
-                        EventTeamsDataManager eventTeamsDataManager = new EventTeamsDataManager();
                         String sectorName = eventTeamsDataManager.askToSelectEventSector(eventID);
                         eventTeamsDataManager.saveEventTeamData(eventID, teamMemberNames, sectorName);
                     }
@@ -59,9 +60,9 @@ public class TeamWindow implements Window {
                     break;
                 case 2:
                     eventID = askToSelectEvent();
+                    eventTeamsDataManager.createEventTeamDataFile(eventID);
 
                     if(EventDataManager.findEventByID(eventID)) {
-                        EventTeamsDataManager eventTeamsDataManager = new EventTeamsDataManager();
                         eventTeamsDataManager.displayEventTeamData(eventID);
                     }
                     else {
@@ -72,7 +73,23 @@ public class TeamWindow implements Window {
                     }
                     break;
                 case 3:
+                    eventID = askToSelectEvent();
+                    eventTeamsDataManager.createEventTeamDataFile(eventID);
 
+                    while (true) {
+                        eventTeamsDataManager.displayEventTeamDataNoWait(eventID);
+                        String sectorName = eventTeamsDataManager.askToSelectEventSector(eventID);
+                        System.out.println();
+                        insertPadding("Enter member name (enter Q/q to stop): ");
+                        System.out.print("Enter member name (enter Q/q to stop): ");
+                        String memberName = scanner.nextLine();
+                        if (memberName.equals("Q") || memberName.equals("q")) {
+                            System.out.println();
+                            break;
+                        }
+                        eventTeamsDataManager.removeTeamMember(eventID, sectorName, memberName);
+                    }
+                    break;
                 case 4:
 
                 case 5:

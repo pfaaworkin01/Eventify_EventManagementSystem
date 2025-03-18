@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Global.GlobalMethod.insertPadding;
 import static Global.GlobalMethod.printCentered;
 
 public class EventTeamMemberNames {
@@ -15,7 +16,8 @@ public class EventTeamMemberNames {
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> nameList = new ArrayList<>();
 
-        printCentered("Enter names (enter Q/q to stop):");
+        insertPadding("Enter names (enter Q/q to stop): ");
+        System.out.print("Enter names (enter Q/q to stop): ");
 
         while (true) {
             String name = scanner.nextLine();
