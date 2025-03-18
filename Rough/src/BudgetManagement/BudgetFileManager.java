@@ -31,9 +31,22 @@ public class BudgetFileManager {
     }
 
 
+
     public static List<DepartmentBudget> loadBudgetInfo(String eventName) {
         String filePath = getFilePath(eventName);
         List<DepartmentBudget> departmentBudgets = new ArrayList<>();
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("Budget file created for event: " + eventName);
+                }
+            } catch (IOException e) {
+                System.out.println("Error creating budget file for event: " + eventName + " - " + e.getMessage());
+            }
+        }
+
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             DepartmentBudget currentDepartment = null;
