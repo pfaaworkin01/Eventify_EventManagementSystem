@@ -6,10 +6,15 @@ import java.util.List;
 
 public class BudgetFileManager {
 
-    private static final String FILE_PATH = "Budget_Data.txt";
+    //private static final String FILE_PATH = "Budget_Data.txt";
 
-    public static void saveBudgetInfo(List<DepartmentBudget> departmentBudgets) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+    private static String getFilePath(String eventName) {
+        return eventName + "_Budget_Data.txt";
+    }
+
+    public static void saveBudgetInfo(String eventName, List<DepartmentBudget> departmentBudgets) {
+        String filePath = getFilePath(eventName);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (DepartmentBudget department : departmentBudgets) {
                 writer.write("Department: " + department.getDepartmentName() + "\n");
                 writer.write("Allocated Budget: " + department.getAllocatedBudget() + "\n");
@@ -19,9 +24,9 @@ public class BudgetFileManager {
                 }
                 writer.write("\n");
             }
-            System.out.println("Budget information saved successfully.");
+            System.out.println("Budget information saved successfully for event: " + eventName);
         } catch (IOException e) {
-            System.out.println("Error saving budget information: " + e.getMessage());
+            System.out.println("Error saving budget information for event: " + eventName + " - " + e.getMessage());
         }
     }
 
