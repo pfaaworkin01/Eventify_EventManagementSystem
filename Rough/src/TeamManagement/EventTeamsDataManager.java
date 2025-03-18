@@ -1,17 +1,55 @@
 package TeamManagement;
 
-import EventManagement.Event;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static Global.GlobalData.GREEN_TEXT;
 import static Global.GlobalData.RED_TEXT;
-import static Global.GlobalMethod.printCentered;
-import static Global.GlobalMethod.waitForAnyKey;
+import static Global.GlobalMethod.*;
 
 public class EventTeamsDataManager {
+
+    public void saveEventTeamData(int eventID, ArrayList<String> teamMemberNames, String sectorName) {
+        String filePath = eventID + "_Event_Team_Data.txt";
+        File file = new File(filePath);
+
+        Map<String, Set<String>> sectorData = new LinkedHashMap<>();
+
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (parts.length > 0) {
+                        String existingSector = parts[0];
+                        Set<String> members = new LinkedHashSet<>();
+                        for (int i = 1; i < parts.length; i++) {
+                            members.add(parts[i]);
+                        }
+                        sectorData.put(existingSector, members);
+                    }
+                }
+            } catch (IOException e) {
+                System.err.println("Error reading event team data: " + e.getMessage());
+            }
+        }
+
+        sectorData.putIfAbsent(sectorName, new LinkedHashSet<>());
+        sectorData.get(sectorName).addAll(teamMemberNames);
+
+        try (FileWriter writer = new FileWriter(filePath, false)) { // Overwrite mode
+            for (Map.Entry<String, Set<String>> entry : sectorData.entrySet()) {
+                writer.write(entry.getKey());
+                for (String member : entry.getValue()) {
+                    writer.write(":" + member);
+                }
+                writer.write("\n");
+            }
+            System.out.println("Event team data updated successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving event team data: " + e.getMessage());
+        }
+    }
 
     public void displayEventTeamData(int eventID) {
         String filePath = eventID + "_Event_Team_Data.txt";
@@ -40,17 +78,61 @@ public class EventTeamsDataManager {
         System.out.println();
         printCentered(("+" + "-".repeat(20)).repeat(totalSectors) + "+");
         int padding = (149 - (totalSectors*20+5)) / 2;
-
-        for(int i = 0; i < maxNumberOfMembers+1; i++) {
+        for (int i = 0; i < maxNumberOfMembers + 1; i++) {
             System.out.print(" ".repeat(padding));
             for (String[] event : eventTeams) {
-                System.out.print("|" + " ".repeat((int)Math.floor((20 - event[i].length())/2.0)) + event[i] + " ".repeat((int)Math.ceil((20 - event[i].length())/2.0)));
+                // Use a ternary operator to check if 'i' is within bounds
+                String value = (i < event.length) ? event[i] : "";
+                System.out.print("|" + " ".repeat((int) Math.floor((20 - value.length()) / 2.0)) + value + " ".repeat((int) Math.ceil((20 - value.length()) / 2.0)));
             }
             System.out.println("|");
             printCentered(("+" + "-".repeat(20)).repeat(totalSectors) + "+");
         }
         waitForAnyKey();
 
+    }
+
+    public String askToSelectEventSector(int eventID) {
+        String filePath = eventID + "_Event_Team_Data.txt";
+        List<String[]> eventTeams = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String sectorName = "";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] eventDetails = line.split(":");
+                eventTeams.add(eventDetails);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+
+        System.out.println();
+        printCentered("+" + "-".repeat(5) + "+" + "-".repeat(20) + "+");
+
+        int serial = 1;
+        for (String[] event : eventTeams) {
+            printCentered("|" + "  " + serial + "  " + "|" + " ".repeat((int)Math.floor((20 - event[0].length())/2.0)) + event[0] + " ".repeat((int)Math.ceil((20 - event[0].length())/2.0)) + "|");
+            printCentered("+" + "-".repeat(5) + "+" + "-".repeat(20) + "+");
+            serial++;
+        }
+
+        System.out.println();
+        insertPadding("Select Sector: ");
+        System.out.print("Select Sector: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        int sectorNumber = 1;
+        for (String[] event : eventTeams) {
+            if(choice == sectorNumber) {
+                sectorName = event[0];
+            }
+            sectorNumber++;
+        }
+
+        return sectorName;
     }
 
     public void createEventTeamDataFile(int eventID) {

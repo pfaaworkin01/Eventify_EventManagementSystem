@@ -2,8 +2,10 @@ package Window;
 
 import EventManagement.EventDataManager;
 import Global.GlobalData;
+import TeamManagement.EventTeamMemberNames;
 import TeamManagement.EventTeamsDataManager;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Global.GlobalData.YELLOW_TEXT;
@@ -43,8 +45,10 @@ public class TeamWindow implements Window {
                     eventID = askToSelectEvent();
 
                     if(EventDataManager.findEventByID(eventID)) {
+                        ArrayList<String> teamMemberNames = EventTeamMemberNames.getNames();
                         EventTeamsDataManager eventTeamsDataManager = new EventTeamsDataManager();
-                        eventTeamsDataManager.createEventTeamDataFile(eventID);
+                        String sectorName = eventTeamsDataManager.askToSelectEventSector(eventID);
+                        eventTeamsDataManager.saveEventTeamData(eventID, teamMemberNames, sectorName);
                     }
                     else {
                         System.out.println();
@@ -84,7 +88,7 @@ public class TeamWindow implements Window {
     private int askToSelectEvent() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        EventDataManager.displayEvents();
+        EventDataManager.displayEventsShort();
         System.out.println();
         insertPadding("Select Event (Event ID): ");
         System.out.print("Select Event (Event ID): ");
