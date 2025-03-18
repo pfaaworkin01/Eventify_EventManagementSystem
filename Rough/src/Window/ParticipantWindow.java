@@ -16,7 +16,8 @@ public class ParticipantWindow implements Window {
         printHeaderPart("Logged In as participant \"" + LOGGED_IN_USERNAME + "\"");
         System.out.println(" ".repeat(67) + "1. Sign Up for an Event");
         System.out.println(" ".repeat(67) + "2. Cancel Sign Up");
-        System.out.println(" ".repeat(67) + "3. Log Out\n");
+        System.out.println(" ".repeat(67) + "3. View Registered Events");
+        System.out.println(" ".repeat(67) + "4. Log Out\n");
     }
 
     @Override
@@ -47,9 +48,18 @@ public class ParticipantWindow implements Window {
                     participantEventRegistration.registerEvent(LOGGED_IN_USERNAME, eventID);
                     break;
                 case 2:
-                    eventDataManager.displayEvents();
+                    participantEventRegistration.displayRegisteredEvents(LOGGED_IN_USERNAME);
+                    insertPadding("Select Event: ");
+                    System.out.print("Select Event: ");
+                    eventID = scanner.nextInt();
+                    scanner.nextLine();
+                    participantEventRegistration.unregisterEvent(LOGGED_IN_USERNAME, eventID);
                     break;
                 case 3:
+                    participantEventRegistration.displayRegisteredEvents(LOGGED_IN_USERNAME);
+                    waitForAnyKey();
+                    break;
+                case 4:
                     GlobalData.AUTHENTICATED = false;
                     quit = true;
                     break;
