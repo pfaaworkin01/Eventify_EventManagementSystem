@@ -1,6 +1,6 @@
 package Window;
 
-import EventManagement.DataManager;
+import EventManagement.EventDataManager;
 import EventManagement.EventManager;
 import EventManagement.EventInputHandler;
 import Global.GlobalMethod;
@@ -49,8 +49,8 @@ public class EventWindow implements Window {
                     eventManager.removeEvent(eventID2);
                     break;
                 case 3:
-                    DataManager dataManager = new DataManager();
-                    dataManager.displayEvents();
+                    EventDataManager eventDataManager = new EventDataManager();
+                    eventDataManager.displayEvents();
                     String doneViewingEvents = "N";
                     while (!doneViewingEvents.equalsIgnoreCase("Y")) {
                         GlobalMethod.insertPadding("Quit? (Y/N): ");

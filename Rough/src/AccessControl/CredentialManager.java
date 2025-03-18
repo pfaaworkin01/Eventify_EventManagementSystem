@@ -89,7 +89,7 @@ public class CredentialManager {
                             PARTICIPANT_AUTHENTICATED = true;
                             System.out.println();
                             printCentered("!!!  Logged in Successfully  !!!");
-                            GlobalData.LOGGED_IN_USERNAME = username;
+                            LOGGED_IN_USERNAME = username;
                             waitForAnyKey();
                             break;
                         }

@@ -15,19 +15,19 @@ public class EventManager {
         this.events = new HashMap<>();
         loadEvents();
     }
-    DataManager dataManager = new DataManager();
+    EventDataManager eventDataManager = new EventDataManager();
 
     public void addNewEvent(int EventID, String EventType, String EventName, String EventDate) {
         Event event = new Event(EventID, EventType, EventName, EventDate);
-        dataManager.saveData(event);
+        eventDataManager.saveData(event);
     }
 
     public void removeEvent(String EventID) {
-        dataManager.deleteEventByID(EventID);
+        eventDataManager.deleteEventByID(EventID);
     }
 
     public void displayAllEvents() {
-        dataManager.displayEvents();
+        eventDataManager.displayEvents();
     }
 
 

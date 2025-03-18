@@ -1,6 +1,6 @@
 package Window;
 
-import EventManagement.DataManager;
+import EventManagement.EventDataManager;
 import Global.GlobalData;
 import Team.TeamManager;
 
@@ -63,8 +63,8 @@ public class TeamWindow implements Window {
                             insertPadding("Enter the member's name: ");
                             System.out.print("Enter the member's name: ");
                             String memberName = scanner.nextLine();
-                            DataManager dataManager = new DataManager();
-                            dataManager.displayEvents();
+                            EventDataManager eventDataManager = new EventDataManager();
+                            eventDataManager.displayEvents();
                             insertPadding("Select Event to add Member to (Event ID): ");
                             System.out.print("Select Event to add Member to (Event ID): ");
                             int eventID = scanner.nextInt();
@@ -76,36 +76,51 @@ public class TeamWindow implements Window {
                 case 2:
                     boolean back2 = false;
                     while (!back2) {
+
                         System.out.println();
-                        DataManager dataManager = new DataManager();
-                        dataManager.displayEvents();
-                        insertPadding("Select Event (Event ID): ");
-                        System.out.print("Select Event (Event ID): ");
+                        EventDataManager eventDataManager = new EventDataManager();
+                        eventDataManager.displayEvents();
+                        System.out.println();
+                        insertPadding("Select Event (Event ID). Enter 0 to Quit: ");
+                        System.out.print("Select Event (Event ID). Enter 0 to Quit: ");
                         int eventID = scanner.nextInt();
                         scanner.nextLine();
-                        teamManager.displaySectorNames();
-                        printCentered("Enter 0 to Quit\n");
-                        insertPadding("Select which sector members to view: ");
-                        System.out.print("Select which sector members to view: ");
-                        int sectorIndex = scanner.nextInt() - 1;
-                        scanner.nextLine();
-                        if (sectorIndex == -1) {
+
+                        if(TeamManager.findEventByID(eventID)) {
                             back2 = true;
                         }
-                        else if (!teamManager.choiceValidity(sectorIndex)) {
-                            System.out.println();
-                            printCentered("!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
+                        else if(eventID == 0) {
+
+                            back2 = true;
                         }
                         else {
-                            teamManager.displaySectorMembers(sectorIndex, eventID);
-                            back2 = true;
+                            System.out.println();
+                            printCentered("!!! Event ID \"" + eventID + "\" not found. Try Again !!!", YELLOW_TEXT);
                         }
+
+//                        teamManager.displaySectorNames();
+//                        printCentered("Enter 0 to Quit\n");
+//                        insertPadding("Select which sector members to view: ");
+//                        System.out.print("Select which sector members to view: ");
+//                        int sectorIndex = scanner.nextInt() - 1;
+//                        scanner.nextLine();
+//                        if (sectorIndex == -1) {
+//                            back2 = true;
+//                        }
+//                        else if (!teamManager.choiceValidity(sectorIndex)) {
+//                            System.out.println();
+//                            printCentered("!!! Invalid Sector Number. Please choose a number from the table !!!", YELLOW_TEXT);
+//                        }
+//                        else {
+//                            teamManager.displaySectorMembers(sectorIndex, eventID);
+//                            back2 = true;
+//                        }
                     }
                     break;
                 case 3:
                     System.out.println();
-                    DataManager dataManager = new DataManager();
-                    dataManager.displayEvents();
+                    EventDataManager eventDataManager = new EventDataManager();
+                    eventDataManager.displayEvents();
                     insertPadding("Select Event (Event ID): ");
                     System.out.print("Select Event (Event ID): ");
                     int eventID = scanner.nextInt();
@@ -124,8 +139,8 @@ public class TeamWindow implements Window {
                     break;
                 case 4:
                     System.out.println();
-                    DataManager dataManager2 = new DataManager();
-                    dataManager2.displayEvents();
+                    EventDataManager eventDataManager2 = new EventDataManager();
+                    eventDataManager2.displayEvents();
                     insertPadding("Select Event (Event ID): ");
                     System.out.print("Select Event (Event ID): ");
                     int eventID2 = scanner.nextInt();
