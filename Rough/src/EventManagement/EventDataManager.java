@@ -123,7 +123,6 @@ public class EventDataManager {
 
         for (String[] event : events) {
             if(event[0].equals(StringEventIDInput)) {
-                System.out.println("here");
                 return true;
             }
         }
