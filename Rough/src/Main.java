@@ -7,9 +7,6 @@ public class Main {
         HomeWindow homeWindow = new HomeWindow();
         homeWindow.askForInput();
 
-//        TeamWindow window = new TeamWindow();
-//        window.askForInput();
-
     }
 
 }

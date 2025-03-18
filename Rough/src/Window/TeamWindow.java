@@ -91,7 +91,16 @@ public class TeamWindow implements Window {
                     }
                     break;
                 case 4:
-
+                    eventID = askToSelectEvent();
+                    insertPadding("Enter new sector name (enter Q/q to stop): ");
+                    System.out.print("Enter new sector name (enter Q/q to stop): ");
+                    String newSectorName = scanner.nextLine();
+                    if (newSectorName.equals("Q") || newSectorName.equals("q")) {
+                        System.out.println();
+                        break;
+                    }
+                    eventTeamsDataManager.addCustomSector(eventID, newSectorName);
+                    break;
                 case 5:
                     quit = true;
                     break;
