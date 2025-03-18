@@ -6,10 +6,20 @@ import java.util.List;
 
 public class BudgetFileManager {
 
-    private static final String FILE_PATH = "Budget_Data.txt";
+    //private static final String FILE_PATH = "Budget_Data.txt";
 
-    public static void saveBudgetInfo(List<DepartmentBudget> departmentBudgets) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+    private static String getFilePath(String eventName) {
+        return eventName + "_Budget_Data.txt";
+    }
+
+    public static void saveBudgetInfo(String eventName, List<DepartmentBudget> departmentBudgets) {
+        if (eventName == null || eventName.trim().isEmpty()) {
+            System.out.println("Error: Event name is null or empty.");
+            return;
+        }
+
+        String filePath = getFilePath(eventName);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (DepartmentBudget department : departmentBudgets) {
                 writer.write("Department: " + department.getDepartmentName() + "\n");
                 writer.write("Allocated Budget: " + department.getAllocatedBudget() + "\n");
@@ -19,15 +29,30 @@ public class BudgetFileManager {
                 }
                 writer.write("\n");
             }
-            System.out.println("Budget information saved successfully.");
+            System.out.println("Budget information saved successfully for event: " + eventName);
         } catch (IOException e) {
-            System.out.println("Error saving budget information: " + e.getMessage());
+            System.out.println("Error saving budget information for event: " + eventName + " - " + e.getMessage());
         }
     }
 
-    public static List<DepartmentBudget> loadBudgetInfo() {
+
+
+    public static List<DepartmentBudget> loadBudgetInfo(String eventName) {
+        String filePath = getFilePath(eventName);
         List<DepartmentBudget> departmentBudgets = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("Budget file created for event: " + eventName);
+                }
+            } catch (IOException e) {
+                System.out.println("Error creating budget file for event: " + eventName + " - " + e.getMessage());
+            }
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             DepartmentBudget currentDepartment = null;
             while ((line = reader.readLine()) != null) {
@@ -56,21 +81,23 @@ public class BudgetFileManager {
                 departmentBudgets.add(currentDepartment);
             }
         } catch (IOException e) {
-            System.out.println("Error loading budget information: " + e.getMessage());
+            System.out.println("Error loading budget information for event: " + eventName + " - " + e.getMessage());
         }
         return departmentBudgets;
     }
-    public static void clearBudgetData() {
-        File file = new File(FILE_PATH);
+    public static void clearBudgetData(String eventName) {
+        String filePath = getFilePath(eventName);
+        File file = new File(filePath);
         if (file.exists()) {
             if (file.delete()) {
-                System.out.println("Budget data cleared successfully.");
+                System.out.println("Budget data cleared successfully for event: " + eventName);
             } else {
-                System.out.println("Error: Unable to clear budget data.");
+                System.out.println("Error: Unable to clear budget data for event: " + eventName);
             }
         } else {
-            System.out.println("No budget data found to clear.");
+            System.out.println("No budget data found to clear for event: " + eventName);
         }
     }
-
 }
+
+

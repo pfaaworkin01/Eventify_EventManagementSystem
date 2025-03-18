@@ -99,7 +99,7 @@ public class BudgetWindow implements Window {
             switch (choice) {
                 case 1:
                     allocateBudgetToDepartment(scanner, eventBudget);
-                    BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
+                    BudgetFileManager.saveBudgetInfo(eventBudget.getEventName(), eventBudget.getBudgetManager().getDepartmentBudgets());
                     break;
                 case 2:
                     System.out.print("Enter department name: ");
@@ -112,7 +112,7 @@ public class BudgetWindow implements Window {
                     System.out.print("Enter expense description: ");
                     String description = scanner.nextLine();
                     eventBudget.getBudgetManager().addExpense(deptName, expenseName, amount, description);
-                    BudgetFileManager.saveBudgetInfo(eventBudget.getBudgetManager().getDepartmentBudgets());
+                    BudgetFileManager.saveBudgetInfo(eventBudget.getEventName(), eventBudget.getBudgetManager().getDepartmentBudgets());
                     break;
                 case 3:
                     eventBudget.getBudgetManager().viewDepartmentBudgets();
@@ -132,10 +132,11 @@ public class BudgetWindow implements Window {
     private void loadBudgetInfo() {
         for (Event event : eventManager.getAllEvents()) {
             EventBudget eventBudget = new EventBudget(event.getEventName());
-            eventBudget.getBudgetManager().setDepartmentBudgets(BudgetFileManager.loadBudgetInfo());
+            eventBudget.getBudgetManager().setDepartmentBudgets(BudgetFileManager.loadBudgetInfo(event.getEventName()));
             eventBudgets.put(event.getEventID(), eventBudget);
         }
     }
+
 
     private void allocateBudgetToDepartment(Scanner scanner, EventBudget eventBudget) {
         BudgetManager budgetManager = eventBudget.getBudgetManager();

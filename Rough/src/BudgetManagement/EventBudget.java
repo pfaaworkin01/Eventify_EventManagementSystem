@@ -10,11 +10,9 @@ public class EventBudget {
     }
 
     public String getEventName() {
-        final String BLUE_TEXT = "\033[0;34m";
-        final String RESET_TEXT = "\033[0m";
 
 
-        return BLUE_TEXT + eventName+ RESET_TEXT;
+        return  eventName;
     }
 
     public BudgetManager getBudgetManager() {
