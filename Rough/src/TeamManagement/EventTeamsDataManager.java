@@ -50,6 +50,38 @@ public class EventTeamsDataManager {
         }
     }
 
+    public void addCustomSector(int eventID, String sectorName) {
+        String filePath = eventID + "_Event_Team_Data.txt";
+        File file = new File(filePath);
+
+        Set<String> sectors = new LinkedHashSet<>();
+
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(":");
+                    if (parts.length > 0) {
+                        sectors.add(parts[0]);
+                    }
+                }
+            } catch (IOException e) {
+                System.err.println("Error reading event team data: " + e.getMessage());
+            }
+        }
+
+        if (!sectors.contains(sectorName)) {
+            try (FileWriter writer = new FileWriter(filePath, true)) { // Append mode
+                writer.write(sectorName + "\n");
+                System.out.println("Sector added successfully.");
+            } catch (IOException e) {
+                System.err.println("Error saving sector data: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Sector already exists.");
+        }
+    }
+
     public void removeTeamMember(int eventID, String sectorName, String memberName) {
         String filePath = eventID + "_Event_Team_Data.txt";
         File file = new File(filePath);
