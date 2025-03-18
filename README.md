@@ -1,6 +1,6 @@
-# Event Management System
+# Eventify 
 
-This repository contains the source code for the Event Management System project developed by Group 18 (220042127, 220042149, 220042151) for the SPL-I course at IUT.
+This repository contains the source code for the Event Management System project named Eventify developed by Group 18 (220042127, 220042149, 220042151) for the SPL-I course at IUT.
 
 ## Description
 
