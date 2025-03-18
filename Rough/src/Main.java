@@ -1,4 +1,7 @@
 import Team.SectorWiseMembers;
+import Team.Sectors;
+import Window.HomeWindow;
+import Window.TeamWindow;
 
 public class Main {
 
@@ -7,11 +10,8 @@ public class Main {
 //        HomeWindow homeWindow = new HomeWindow();
 //        homeWindow.askForInput();
 
-//        TeamWindow teamWindow = new TeamWindow();
-//        teamWindow.askForInput();
-
-        SectorWiseMembers teamMembers = new SectorWiseMembers();
-        teamMembers.enterMemberNames();
+        TeamWindow window = new TeamWindow();
+        window.askForInput();
 
     }
 

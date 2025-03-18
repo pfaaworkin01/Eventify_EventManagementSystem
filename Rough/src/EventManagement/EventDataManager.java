@@ -58,7 +58,7 @@ public class EventDataManager {
 
     }
 
-    public void displayEvents() {
+    public static void displayEvents() {
         String filePath = "Event_Data.txt";
         List<String[]> events = new ArrayList<>();
 
@@ -104,6 +104,31 @@ public class EventDataManager {
         }
 
         printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(typeWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
+    }
+
+    public static boolean findEventByID(int eventIDInput) {
+        String StringEventIDInput = String.valueOf(eventIDInput);
+
+        String filePath = "Event_Data.txt";
+        List<String[]> events = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] eventDetails = line.split(":");
+                events.add(eventDetails);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+
+        for (String[] event : events) {
+            if(event[0].equals(StringEventIDInput)) {
+                System.out.println("here");
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
