@@ -4,7 +4,7 @@ This repository contains the source code for the Event Management System project
 
 ## Description
 
-The Event Management System is a Java-based application designed to help users manage and organize events efficiently. The system provides features such as event creation, participant registration, scheduling, and notifications.
+The Eventify is a Java-based application designed to help users manage and organize events efficiently. The system provides features such as event creation, participant registration, scheduling, and notifications.
 
 ## Features
 
