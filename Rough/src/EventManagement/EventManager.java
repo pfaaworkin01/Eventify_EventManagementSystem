@@ -61,14 +61,30 @@ public class EventManager {
         ParticipantEventRegistration registration = new ParticipantEventRegistration();
         List<String> registeredUsers = registration.getRegisteredUsersForEvent(eventID);
 
+        String BLUE_TEXT = "\u001B[34m";
+        String GREEN_TEXT = "\u001B[32m";
+        String RESET_TEXT = "\u001B[0m";
+
         if (registeredUsers.isEmpty()) {
-            System.out.println("No users registered for event ID: " + eventID);
+            System.out.println(GREEN_TEXT + "No users registered for event ID: " + eventID + RESET_TEXT);
         } else {
-            System.out.println("Registered users for event ID " + eventID + ":");
+            System.out.println( "Registered users for event ID " + eventID + ":" + RESET_TEXT);
+            System.out.println(BLUE_TEXT + "+" + "-".repeat(30) + "+" + RESET_TEXT);
+            System.out.println(GREEN_TEXT + "| " + center("Username", 28) + " |" + RESET_TEXT);
+            System.out.println(BLUE_TEXT + "+" + "-".repeat(30) + "+" + RESET_TEXT);
             for (String user : registeredUsers) {
-                System.out.println(" - " + user);
+                System.out.println(BLUE_TEXT + "| " + center(user, 28) + " |" + RESET_TEXT);
             }
+            System.out.println(BLUE_TEXT + "+" + "-".repeat(30) + "+" + RESET_TEXT);
         }
     }
 
+    private String center(String text, int width) {
+        if (text.length() >= width) {
+            return text;
+        }
+        int leftPadding = (width - text.length()) / 2;
+        int rightPadding = width - text.length() - leftPadding;
+        return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
+    }
 }
