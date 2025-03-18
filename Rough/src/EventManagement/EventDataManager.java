@@ -106,6 +106,49 @@ public class EventDataManager {
         printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(typeWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
     }
 
+    public static void displayEventsShort() {
+        String filePath = "Event_Data.txt";
+        List<String[]> events = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] eventDetails = line.split(":");
+                events.add(eventDetails);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+
+        int idWidth = 20;
+        int nameWidth = 40;
+        String columnHeader1 = "|" + " ".repeat((idWidth - "Event ID".length())/2) + "Event ID" + " ".repeat((idWidth - "Event ID".length())/2);
+        String columnHeader2 = "|" + " ".repeat((nameWidth - "Event Name".length())/2) + "Event Name" + " ".repeat((nameWidth - "Event Name".length())/2) + "|";
+        int nameCellPaddingLeft = 0;
+        int nameCellPaddingRight = 0;
+
+        printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+");
+        printCentered(columnHeader1 + columnHeader2);
+        printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+");
+
+
+        for (String[] event : events) {
+            if (event[2].length() < 20) {
+                nameCellPaddingLeft = (20 - event[2].length())/2;
+                nameCellPaddingRight = nameCellPaddingLeft;
+                if(event[2].length()%2 == 1) {
+                    nameCellPaddingRight++;
+                }
+            }
+
+            String cell1 = "|" + " ".repeat((idWidth - 6)/2) + event[0] + " ".repeat((idWidth - 6)/2);
+            String cell2 = "|" + " ".repeat((nameWidth - 20)/2) + " ".repeat(nameCellPaddingLeft) + event[2] + " ".repeat(nameCellPaddingRight) + " ".repeat((nameWidth - 20)/2) + "|";
+            printCentered(cell1 + cell2);
+        }
+
+        printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(nameWidth) + "+");
+    }
+
     public static boolean findEventByID(int eventIDInput) {
         String StringEventIDInput = String.valueOf(eventIDInput);
 
