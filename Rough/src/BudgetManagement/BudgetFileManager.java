@@ -13,6 +13,11 @@ public class BudgetFileManager {
     }
 
     public static void saveBudgetInfo(String eventName, List<DepartmentBudget> departmentBudgets) {
+        if (eventName == null || eventName.trim().isEmpty()) {
+            System.out.println("Error: Event name is null or empty.");
+            return;
+        }
+
         String filePath = getFilePath(eventName);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (DepartmentBudget department : departmentBudgets) {
