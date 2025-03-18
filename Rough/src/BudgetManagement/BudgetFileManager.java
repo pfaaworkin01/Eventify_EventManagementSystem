@@ -67,17 +67,19 @@ public class BudgetFileManager {
         }
         return departmentBudgets;
     }
-    public static void clearBudgetData() {
-        File file = new File(FILE_PATH);
+    public static void clearBudgetData(String eventName) {
+        String filePath = getFilePath(eventName);
+        File file = new File(filePath);
         if (file.exists()) {
             if (file.delete()) {
-                System.out.println("Budget data cleared successfully.");
+                System.out.println("Budget data cleared successfully for event: " + eventName);
             } else {
-                System.out.println("Error: Unable to clear budget data.");
+                System.out.println("Error: Unable to clear budget data for event: " + eventName);
             }
         } else {
-            System.out.println("No budget data found to clear.");
+            System.out.println("No budget data found to clear for event: " + eventName);
         }
     }
+}
 
 }
