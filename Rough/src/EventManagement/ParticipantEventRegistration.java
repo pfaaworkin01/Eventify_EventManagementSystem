@@ -158,4 +158,29 @@ public class ParticipantEventRegistration {
         printCentered("+" + "-".repeat(idWidth) + "+" + "-".repeat(typeWidth) + "+" + "-".repeat(nameWidth) + "+" + "-".repeat(dateWidth) + "+");
 
     }
+
+    public List<String> getRegisteredUsersForEvent(int eventID) {
+        List<String> registeredUsers = new ArrayList<>();
+        File folder = new File(".");
+        File[] listOfFiles = folder.listFiles();
+
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if (file.isFile() && file.getName().endsWith("_" + PARTICIPANT_DATA)) {
+                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (Integer.parseInt(line.trim()) == eventID) {
+                                registeredUsers.add(file.getName().replace("_" + PARTICIPANT_DATA, ""));
+                                break;
+                            }
+                        }
+                    } catch (IOException e) {
+                        System.out.println("Error reading file: " + e.getMessage());
+                    }
+                }
+            }
+        }
+        return registeredUsers;
+    }
 }

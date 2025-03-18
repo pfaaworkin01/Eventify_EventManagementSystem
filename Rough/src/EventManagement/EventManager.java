@@ -57,4 +57,18 @@ public class EventManager {
         }
     }
 
+    public void displayRegisteredUsersForEvent(int eventID) {
+        ParticipantEventRegistration registration = new ParticipantEventRegistration();
+        List<String> registeredUsers = registration.getRegisteredUsersForEvent(eventID);
+
+        if (registeredUsers.isEmpty()) {
+            System.out.println("No users registered for event ID: " + eventID);
+        } else {
+            System.out.println("Registered users for event ID " + eventID + ":");
+            for (String user : registeredUsers) {
+                System.out.println(" - " + user);
+            }
+        }
+    }
+
 }

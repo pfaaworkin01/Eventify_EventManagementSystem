@@ -17,7 +17,8 @@ public class EventWindow implements Window {
         System.out.println(" ".repeat(67) + "1. Add New Event");
         System.out.println(" ".repeat(67) + "2. Cancel an Event");
         System.out.println(" ".repeat(67) + "3. Display Upcoming Events");
-        System.out.println(" ".repeat(67) + "4. Back to Logged In Menu");
+        System.out.println(" ".repeat(67) + "4. View Registered Users for Event");
+        System.out.println(" ".repeat(67) + "5. Back to Logged In Menu");
     }
 
     @Override
@@ -30,12 +31,12 @@ public class EventWindow implements Window {
         while (!quit) {
             showWindow();
 
-            for(int i = 0; i < 5; i++) {
+            for(int i = 0; i < 6; i++) {
                 System.out.println("\n");
             }
 
-            GlobalMethod.insertPadding("Select an Option (1-4): ");
-            System.out.print("Select an Option (1-4): ");
+            GlobalMethod.insertPadding("Select an Option (1-5): ");
+            System.out.print("Select an Option (1-5): ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -59,6 +60,13 @@ public class EventWindow implements Window {
                     }
                     break;
                 case 4:
+                    GlobalMethod.insertPadding("Enter Event ID: ");
+                    System.out.print("Enter Event ID: ");
+                    int eventID = scanner.nextInt();
+                    scanner.nextLine();
+                    eventManager.displayRegisteredUsersForEvent(eventID);
+                    break;
+                case 5:
                     quit = true;
                     break;
                 default:
