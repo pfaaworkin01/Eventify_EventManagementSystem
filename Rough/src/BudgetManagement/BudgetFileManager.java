@@ -30,9 +30,11 @@ public class BudgetFileManager {
         }
     }
 
-    public static List<DepartmentBudget> loadBudgetInfo() {
+
+    public static List<DepartmentBudget> loadBudgetInfo(String eventName) {
+        String filePath = getFilePath(eventName);
         List<DepartmentBudget> departmentBudgets = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             DepartmentBudget currentDepartment = null;
             while ((line = reader.readLine()) != null) {
@@ -61,7 +63,7 @@ public class BudgetFileManager {
                 departmentBudgets.add(currentDepartment);
             }
         } catch (IOException e) {
-            System.out.println("Error loading budget information: " + e.getMessage());
+            System.out.println("Error loading budget information for event: " + eventName + " - " + e.getMessage());
         }
         return departmentBudgets;
     }
