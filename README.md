@@ -11,7 +11,8 @@ The Eventify is a Java-based application designed to help users manage and organ
 - Event creation and management
 - Participant registration and management
 - Event scheduling
-- Notifications and reminders
+- Team Management
+- Event Budget Management 
 - User authentication and authorization
 
 ## Technologies Used
