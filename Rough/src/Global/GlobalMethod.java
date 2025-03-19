@@ -61,7 +61,7 @@ public class GlobalMethod {
         scanner.nextLine();
     }
 
-    public static void lineGaps(int numberOfLines) {
+    public static void headClearance(int numberOfLines) {
         for(int i = 0; i < numberOfLines; i++) {
             System.out.println();
         }

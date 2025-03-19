@@ -8,6 +8,7 @@ public class GlobalData {
     public static boolean PARTICIPANT_AUTHENTICATED = false;
     public static boolean BACK_TO_MAIN_MENU = false;
     public static String LOGGED_IN_USERNAME = "NULL";
+    public static final String ADMIN_KEY = "admin@2025#ADMIN";
 
     public static final String RESET_ANSI_ESCAPE_CODE_MODIFICATIONS = "\u001B[0m";
     public static final String BOLD_TEXT = "\u001B[1m";

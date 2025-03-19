@@ -8,29 +8,29 @@ import static Global.GlobalMethod.*;
 
 public class HomeWindow implements Window {
 
-    int numberOfLinesToKeepEmpty = 5;
-
     @Override
     public void showWindow() {
-        lineGaps(numberOfLinesToKeepEmpty);
+        headClearance(5);
 
         printHeaderPart("Home");
-        insertPadding("1. Register", 64);
-        insertPadding("2. Login", 64);
-        insertPadding("3. Quit", 64);
+        insertPadding("1. Register", 68);
+        insertPadding("2. Login", 68);
+        insertPadding("3. Quit", 68);
     }
 
     @Override
     public void askForInput() {
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
+        boolean showWindow = true;
 
-        while (!quit) {
+        while(!quit) {
 
-            showWindow();
+            if(showWindow) {
+                showWindow();
+            }
 
-            lineGaps(5);
-
+            System.out.println();
             insertPadding("Select an Option (1-3): ");
             System.out.print("Select an Option (1-3): ");
             int choice;
@@ -40,13 +40,13 @@ public class HomeWindow implements Window {
             }
             else {
                 System.out.println();
-                printCentered("Invalid input. Enter only a number in the range 1-3 ", YELLOW_TEXT);
+                printCentered("!!! Invalid input. Enter only a number in the range 1-3 !!!", YELLOW_TEXT);
                 scanner.nextLine();
-                numberOfLinesToKeepEmpty = 2;
+                showWindow = false;
                 continue;
             }
 
-            switch (choice) {
+            switch(choice) {
                 case 1:
                     Register register = new Register();
                     register.register();
@@ -54,24 +54,22 @@ public class HomeWindow implements Window {
                 case 2:
                     Login login = new Login();
                     login.login();
-                    LoggedInWindow loggedInWindow = new LoggedInWindow();
-                    ParticipantWindow participantWindow = new ParticipantWindow();
+                    AdminLoggedInWindow adminLoggedInWindow = new AdminLoggedInWindow();
+                    ParticipantLoggedInWindow participantLoggedInWindow = new ParticipantLoggedInWindow();
                     if(AUTHENTICATED) {
-                        loggedInWindow.askForInput();
+                        adminLoggedInWindow.askForInput();
                     }
                     else if (PARTICIPANT_AUTHENTICATED) {
-                        participantWindow.askForInput();
+                        participantLoggedInWindow.askForInput();
                     }
                     break;
                 case 3:
-
                     quit = true;
                     break;
                 default:
                     System.out.println();
-                    printCentered("Select Numbers Assigned to 1-3 only. Nothing is assigned to \'" + choice + "\'", YELLOW_TEXT);
-                    printCentered("Invalid choice. Enter a number in the range 1-3", YELLOW_TEXT);
-                    numberOfLinesToKeepEmpty = 2;
+                    printCentered("!!! Invalid choice. Enter a number in the range 1-3 !!!", YELLOW_TEXT);
+                    showWindow = false;
                     break;
             }
         }
