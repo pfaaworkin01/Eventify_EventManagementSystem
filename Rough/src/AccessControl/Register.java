@@ -10,18 +10,20 @@ public class Register {
     CredentialManager credentialManager = new CredentialManager();
 
     public void register() {
-        int admin1_participant2 = 0;
+        boolean admin = false;
 
         System.out.println();
-        insertPadding("1. Admin", 64);
-        insertPadding("2. Participant", 64);
-        insertPadding("3. Go Back\n", 64);
+        printCenteredHeader("Register as ?", BLUE_TEXT);
+        System.out.println();
+        insertPadding("1. Admin", 68);
+        insertPadding("2. Participant", 68);
+        insertPadding("3. Go Back\n", 68);
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
 
         while (!quit) {
-            insertPadding("Select an Option (1/2): ");
-            System.out.print("Select an Option (1/2): ");
+            insertPadding("Select an Option (1-3): ");
+            System.out.print("Select an Option (1-3): ");
             int choice;
             if(scanner.hasNextInt()) {
                 choice = scanner.nextInt();
@@ -37,23 +39,26 @@ public class Register {
             switch (choice) {
                 case 1:
                     if(grantAdminRegistration()) {
-                        admin1_participant2 = 1;
+                        printCenteredHeader("Registering as an Admin", BLUE_TEXT);
+                        admin = true;
                     }
                     else {
-                        waitForAnyKey();
+                        register();
                         return;
+//                        break;
                     }
                     quit = true;
                     break;
                 case 2:
-                    admin1_participant2 = 2;
+                    admin = false;
+                    System.out.println();
+                    printCenteredHeader("Registering as a Participant", BLUE_TEXT);
                     quit = true;
                     break;
                 case 3:
                     return;
                 default:
                     System.out.println();
-                    printCentered("Select Numbers Assigned to 1-3 only. Nothing is assigned to \'" + choice + "\'", YELLOW_TEXT);
                     printCentered("Invalid choice. Enter a number in the range 1-3", YELLOW_TEXT);
                     break;
             }
@@ -61,7 +66,7 @@ public class Register {
 
         String username = receiveUsername();
 
-        if (credentialManager.checkUsernameAvailability(username, admin1_participant2)) {
+        if (credentialManager.checkUsernameAvailability(username, admin)) {
             String password = receivePassword();
 
             while (!password.isEmpty()) {
@@ -71,39 +76,40 @@ public class Register {
                 String confirmRegistration = scanner.nextLine();
                 if (confirmRegistration.equalsIgnoreCase("N")) {
                     System.out.println();
-                    printCentered("Registration cancelled", YELLOW_TEXT);
+                    printCentered("!!! Registration cancelled !!!", YELLOW_TEXT);
                     waitForAnyKey();
                     return;
                 } else if (confirmRegistration.equalsIgnoreCase("Y")) {
-                    credentialManager.saveCredentials(username, password, admin1_participant2);
+                    credentialManager.saveCredentials(username, password, admin);
                     return;
                 } else {
                     System.out.println();
-                    printCentered("Invalid input. Please enter 'Y' or 'N'", YELLOW_TEXT);
+                    printCentered("!!! Invalid input. Please enter 'Y' or 'N' !!!", YELLOW_TEXT);
                 }
             }
-        } else {
+        }
+        else {
             System.out.println();
-            printCentered("Username already exists. Try something different", YELLOW_TEXT);
-
-            while (true) {
-                System.out.println();
-                insertPadding("Do you want to continue? (Y/N): ");
-                System.out.print("Do you want to continue? (Y/N): ");
-                String continueRegistration = scanner.nextLine();
-                if (continueRegistration.equalsIgnoreCase("N")) {
-                    System.out.println();
-                    printCentered("Registration cancelled", YELLOW_TEXT);
-                    waitForAnyKey();
-                    break;
-                } else if (continueRegistration.equalsIgnoreCase("Y")) {
-                    register();
-                    break;
-                } else {
-                    System.out.println();
-                    printCentered("Invalid input. Please enter 'Y' or 'N'", YELLOW_TEXT);
-                }
-            }
+            printCentered("!!! Username already exists. Try something different !!!", YELLOW_TEXT);
+            register();
+//            while (true) {
+//                System.out.println();
+//                insertPadding("Do you want to continue? (Y/N): ");
+//                System.out.print("Do you want to continue? (Y/N): ");
+//                String continueRegistration = scanner.nextLine();
+//                if (continueRegistration.equalsIgnoreCase("N")) {
+//                    System.out.println();
+//                    printCentered("!!! Registration cancelled !!!", YELLOW_TEXT);
+//                    waitForAnyKey();
+//                    break;
+//                } else if (continueRegistration.equalsIgnoreCase("Y")) {
+//                    register();
+//                    break;
+//                } else {
+//                    System.out.println();
+//                    printCentered("!!! Invalid input. Please enter 'Y' or 'N' !!!", YELLOW_TEXT);
+//                }
+//            }
         }
     }
 
@@ -114,8 +120,9 @@ public class Register {
         String username = scanner.nextLine();
         if (!username.matches("[a-zA-Z0-9]+")) {
             System.out.println();
-            printCentered("Invalid Username. Only alphanumeric characters are allowed", YELLOW_TEXT);
-            return receiveUsername();
+            printCentered("!!! Invalid Username. Only alphanumeric characters are allowed !!!", YELLOW_TEXT);
+            username = receiveUsername();
+            return username;
         }
         return username;
     }
@@ -145,7 +152,7 @@ public class Register {
                     break;
                 } else {
                     System.out.println();
-                    printCentered("Invalid input. Please enter 'Y' or 'N'", YELLOW_TEXT);
+                    printCentered("!!! Invalid input. Please enter 'Y' or 'N' !!!", YELLOW_TEXT);
                 }
             }
             if(count <= 2) {
@@ -162,23 +169,23 @@ public class Register {
 
     private boolean grantAdminRegistration() {
         boolean granted;
-        String adminKey;
+        String inputAdminKey;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println();
-        insertPadding("Enter Key to Register as Admin: ");
-        System.out.print("Enter Key to Register as Admin: ");
-        adminKey = scanner.nextLine();
+        insertPadding("Enter Unique Key to Register as an Admin: ");
+        System.out.print("Enter Unique Key to Register as an Admin: ");
+        inputAdminKey = scanner.nextLine();
 
-        if (adminKey.equals("admin@2025#ADMIN")) {
+        if (inputAdminKey.equals(ADMIN_KEY)) {
             granted = true;
             System.out.println();
-            printCentered("Access Granted for Admin Registration", GREEN_TEXT);
+            printCentered("Access Granted for Admin Registration\n", GREEN_TEXT);
         }
         else {
             granted = false;
             System.out.println();
-            printCentered("Incorrect Admin Key", RED_TEXT);
+            printCentered("!!! Incorrect Admin Key !!!", RED_TEXT);
         }
 
         return granted;

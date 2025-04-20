@@ -9,7 +9,7 @@ import java.util.Scanner;
 import static Global.GlobalData.LOGGED_IN_USERNAME;
 import static Global.GlobalMethod.*;
 
-public class ParticipantWindow implements Window {
+public class ParticipantLoggedInWindow implements Window {
 
     @Override
     public void showWindow() {

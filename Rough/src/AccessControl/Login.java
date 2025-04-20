@@ -20,9 +20,9 @@ public class Login {
         int admin1_participant2 = 0;
 
         System.out.println();
-        insertPadding("1. Admin", 64);
-        insertPadding("2. Participant", 64);
-        insertPadding("3. Go Back\n", 64);
+        insertPadding("1. Admin", 68);
+        insertPadding("2. Participant", 68);
+        insertPadding("3. Go Back\n", 68);
         boolean quit = false;
         Scanner scanner = new Scanner(System.in);
 
@@ -66,19 +66,15 @@ public class Login {
 
     private String returnUsername() {
         Scanner scanner = new Scanner(System.in);
-        padding = (terminalWidth - "Enter Username: ".length()) / 2;
-        for (int i = 0; i < padding; i++) {
-            System.out.print(" ");
-        }
+        System.out.println();
+        insertPadding("Enter username: ");
         System.out.print("Enter Username: ");
         return scanner.nextLine();
     }
 
     private String returnPassword() {
-        padding = (terminalWidth - "Enter Password: ".length()) / 2;
-        for (int i = 0; i < padding; i++) {
-            System.out.print(" ");
-        }
+        System.out.println();
+        insertPadding("Enter password: ");
         return PasswordField.readPassword("Enter Password: ");
     }
 }

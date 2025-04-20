@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import static Global.GlobalMethod.*;
 
-public class LoggedInWindow implements Window {
+public class AdminLoggedInWindow implements Window {
 
     @Override
     public void showWindow() {

@@ -9,14 +9,14 @@ public class PasswordField {
 
         try {
             while (true) {
-                char c = (char) System.in.read(); // Read a single character
+                char c = (char) System.in.read();
 
-                if (c == '\n' || c == '\r') { // Stop when Enter is pressed
+                if (c == '\n' || c == '\r') {
                     break;
-                } else if (c == '\b' || c == 127) { // Handle Backspace (127 for some terminals)
+                } else if (c == '\b' || c == 127) {
                     if (password.length() > 0) {
                         password.deleteCharAt(password.length() - 1);
-                        System.out.print("\b \b"); // Erase last '*'
+                        System.out.print("\b \b");
                     }
                 } else {
                     password.append(c);
